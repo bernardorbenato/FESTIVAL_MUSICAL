@@ -1,0 +1,24 @@
+ATIVIDADE DOM + JAVASCRIPT
+ESTRUTURA ONE-PAGE
+
+Arquivos:
+- index.html
+- style.css
+
+COMO USAR
+
+1. Mantenha os dois arquivos na mesma pasta.
+2. Abra index.html no navegador.
+3. A página possui uma seção reservada para cada exercício.
+4. Leia o enunciado completo no documento de exercícios antes de começar.
+5. Desenvolva o HTML necessário dentro da área correspondente.
+6. Acrescente ao style.css apenas os estilos necessários para sua solução.
+7. Quando iniciar o JavaScript, crie um arquivo script.js e ligue-o ao HTML no final do body.
+8. Consulte os exemplos estudados em aula sempre que necessário.
+9. Não copie um exemplo inteiro. Identifique as partes que resolvem o novo problema e adapte-as.
+10. Teste cada pequena alteração no navegador e utilize o DevTools e o Console para investigar erros.
+
+IMPORTANTE
+
+A estrutura-base organiza a atividade, mas não contém as soluções dos exercícios.
+IDs, classes, funções, eventos e comportamentos específicos deverão ser criados pelos alunos.

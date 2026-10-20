@@ -1,0 +1,391 @@
+/* ================================================================
+   CONFIGURAÇÕES GERAIS
+   ================================================================ */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  line-height: 1.5;
+  background-color: #f4f6f8;
+  color: #1f2937;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+main,
+.cabecalho,
+.rodape {
+  width: min(100% - 32px, 900px);
+  margin-inline: auto;
+}
+
+.cabecalho {
+  padding: 32px 0 16px;
+}
+
+.cabecalho h1 {
+  margin-bottom: 8px;
+}
+
+.bloco {
+  background-color: #ffffff;
+  padding: 24px;
+  margin: 20px 0;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.bloco h2 {
+  margin-bottom: 10px;
+}
+
+.bloco > p {
+  margin-bottom: 16px;
+}
+
+.rodape {
+  padding: 10px 0 30px;
+  text-align: center;
+  color: #6b7280;
+}
+
+/* ================================================================
+   BOTÕES
+   ================================================================ */
+
+button {
+  padding: 9px 14px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  background-color: #2563eb;
+  color: #ffffff;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #1d4ed8;
+}
+
+button:disabled {
+  background-color: #9ca3af;
+  cursor: not-allowed;
+}
+
+.grupo-botoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* ================================================================
+   MODO ESCURO
+   A classe "escuro" será adicionada/removida pelo JavaScript.
+   ================================================================ */
+
+body.escuro {
+  background-color: #111827;
+  color: #f9fafb;
+}
+
+body.escuro .bloco {
+  background-color: #1f2937;
+}
+
+body.escuro input,
+body.escuro select,
+body.escuro textarea {
+  background-color: #111827;
+  color: #f9fafb;
+  border-color: #4b5563;
+}
+
+body.escuro .rodape {
+  color: #d1d5db;
+}
+
+/* ================================================================
+   FORMULÁRIOS
+   ================================================================ */
+
+form {
+  margin-top: 16px;
+}
+
+fieldset {
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  padding: 18px;
+  margin-bottom: 18px;
+}
+
+legend {
+  font-weight: 700;
+  padding: 0 8px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+.form-group-inline {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+label {
+  font-weight: 600;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+input[type="date"],
+select,
+textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #94a3b8;
+  border-radius: 5px;
+  font-size: 15px;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: 2px solid #60a5fa;
+  border-color: transparent;
+}
+
+.mensagem {
+  margin-top: 14px;
+  font-weight: 700;
+}
+
+/* ================================================================
+   ABAS DE CONTEÚDO
+   ================================================================ */
+
+.container-abas {
+  margin-top: 16px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.botoes-abas {
+  display: flex;
+}
+
+.botoes-abas button {
+  flex: 1;
+  border-radius: 0;
+  border: none;
+  background-color: #e5e7eb;
+  color: #374151;
+}
+
+.botoes-abas button.ativo {
+  background-color: #2563eb;
+  color: #ffffff;
+}
+
+.conteudo-aba {
+  display: none;
+  padding: 20px;
+  background-color: #ffffff;
+}
+
+.conteudo-aba.exibida {
+  display: block;
+}
+
+body.escuro .conteudo-aba {
+  background-color: #1f2937;
+}
+
+/* ================================================================
+   ACCORDION
+   ================================================================ */
+
+.accordion-container {
+  margin-top: 16px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.accordion-item {
+  border-bottom: 1px solid #d1d5db;
+}
+
+.accordion-item:last-child {
+  border-bottom: none;
+}
+
+.accordion-btn {
+  width: 100%;
+  border: none;
+  border-radius: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: left;
+  background-color: #f3f4f6;
+  color: #111827;
+}
+
+.accordion-conteudo {
+  max-height: 0;
+  overflow: hidden;
+  background-color: #ffffff;
+  transition: max-height 0.3s ease;
+}
+
+.accordion-conteudo p {
+  padding: 16px;
+}
+
+/* Quando o item recebe a classe "ativo", o conteúdo aparece. */
+.accordion-item.ativo .accordion-conteudo {
+  max-height: 160px;
+}
+
+/* O sinal + gira quando o item está aberto. */
+.accordion-item.ativo .icone {
+  transform: rotate(45deg);
+}
+
+.icone {
+  transition: transform 0.3s ease;
+}
+
+body.escuro .accordion-btn,
+body.escuro .accordion-conteudo {
+  background-color: #374151;
+  color: #f9fafb;
+}
+
+/* ================================================================
+   MODAL
+   ================================================================ */
+
+#fundoModal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 1000;
+}
+
+#caixaModal {
+  position: relative;
+  width: min(90%, 380px);
+  margin: 12% auto;
+  background-color: #ffffff;
+  padding: 24px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+#caixaModal h3 {
+  margin-bottom: 10px;
+}
+
+#caixaModal p {
+  margin-bottom: 16px;
+}
+
+.fechar-x {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* ================================================================
+   CARROSSEL
+   ================================================================ */
+
+.carrossel {
+  margin-top: 16px;
+}
+
+.carrossel img {
+  width: 100%;
+  max-width: 500px;
+  height: 280px;
+  object-fit: cover;
+  border-radius: 8px;
+  display: block;
+  margin-bottom: 10px;
+}
+
+#legendaCarrossel {
+  font-style: italic;
+  margin-bottom: 4px;
+}
+
+#indicadorCarrossel {
+  margin-bottom: 12px;
+}
+
+/* ================================================================
+   LISTA DE TAREFAS
+   ================================================================ */
+
+.linha-tarefa {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 12px 0;
+}
+
+.linha-tarefa input {
+  flex: 1;
+  min-width: 220px;
+}
+
+#listaTarefas {
+  padding-left: 22px;
+}
+
+#listaTarefas li {
+  margin: 8px 0;
+}
+
+.botao-excluir {
+  margin-left: 10px;
+  padding: 4px 8px;
+  font-size: 13px;
+  background-color: #dc2626;
+}
+
+.botao-excluir:hover {
+  background-color: #b91c1c;
+}
+
+/* ================================================================
+   RESPONSIVIDADE BÁSICA
+   ================================================================ */
+
+@media (max-width: 600px) {
+  .botoes-abas {
+    flex-direction: column;
+  }
+
+  .linha-tarefa {
+    flex-direction: column;
+  }
+}

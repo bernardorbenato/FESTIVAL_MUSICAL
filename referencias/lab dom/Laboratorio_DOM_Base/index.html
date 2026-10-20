@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Laboratório DOM JavaScript</title>
+
+  <!--
+    O HTML está ligado ao CSS por meio da tag <link>.
+    O arquivo style.css controla a aparência visual da página.
+  -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ============================================================
+       CABEÇALHO DA PÁGINA
+       ============================================================ -->
+  <header class="cabecalho">
+    <h1>Laboratório DOM JavaScript</h1>
+    <p>Exemplos de manipulação de elementos HTML com JavaScript.</p>
+  </header>
+
+  <main>
+
+    <!-- ============================================================
+         CATEGORIA 1 - CORES E CLASSES
+         ============================================================ -->
+    <section class="bloco" id="secaoCores">
+      <h2>1. Troca de cores e tema</h2>
+      <p>
+        Nesta área, o JavaScript altera estilos e classes aplicadas ao documento.
+      </p>
+
+      <div class="grupo-botoes">
+        <!-- Alteração direta da propriedade backgroundColor do body -->
+        <button type="button" onclick="trocarCor('#ffdddd')">Fundo vermelho claro</button>
+        <button type="button" onclick="trocarCor('#dbeafe')">Fundo azul claro</button>
+        <button type="button" onclick="trocarCor('#dcfce7')">Fundo verde claro</button>
+
+        <!-- Este botão chama uma função que usa classList.toggle() -->
+        <button type="button" id="btnTema" onclick="alternarTema()">🌙 Modo Escuro</button>
+      </div>
+    </section>
+
+
+    <!-- ============================================================
+         CATEGORIA 2 - FORMULÁRIO SEMÂNTICO
+         ============================================================ -->
+    <section class="bloco">
+      <h2>2. Formulário semântico</h2>
+      <p>
+        Exemplo de estrutura com fieldset, legend, label, inputs, radio,
+        checkbox, select e textarea.
+      </p>
+
+      <form id="formPerfil">
+
+        <fieldset>
+          <legend>Identificação</legend>
+
+          <div class="form-group">
+            <label for="nomePerfil">Nome completo:</label>
+            <input type="text" id="nomePerfil" name="nomePerfil" required>
+          </div>
+
+          <div class="form-group">
+            <label for="emailPerfil">E-mail:</label>
+            <input type="email" id="emailPerfil" name="emailPerfil" required>
+          </div>
+
+          <div class="form-group">
+            <label for="dataPerfil">Data de nascimento:</label>
+            <input type="date" id="dataPerfil" name="dataPerfil">
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Modalidade de estudo</legend>
+
+          <!-- Radios com o mesmo name formam um grupo de escolha única -->
+          <div class="form-group-inline">
+            <input type="radio" id="modalidadePresencial" name="modalidade" value="presencial" checked>
+            <label for="modalidadePresencial">Presencial</label>
+          </div>
+
+          <div class="form-group-inline">
+            <input type="radio" id="modalidadeHibrida" name="modalidade" value="hibrida">
+            <label for="modalidadeHibrida">Híbrida</label>
+          </div>
+
+          <div class="form-group-inline">
+            <input type="radio" id="modalidadeRemota" name="modalidade" value="remota">
+            <label for="modalidadeRemota">Remota</label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Interesses</legend>
+
+          <!-- Checkboxes permitem múltiplas escolhas -->
+          <div class="form-group-inline">
+            <input type="checkbox" id="interesseHtml" name="interesses" value="html">
+            <label for="interesseHtml">HTML</label>
+          </div>
+
+          <div class="form-group-inline">
+            <input type="checkbox" id="interesseCss" name="interesses" value="css">
+            <label for="interesseCss">CSS</label>
+          </div>
+
+          <div class="form-group-inline">
+            <input type="checkbox" id="interesseJs" name="interesses" value="javascript">
+            <label for="interesseJs">JavaScript</label>
+          </div>
+
+          <div class="form-group">
+            <label for="areaInteresse">Área de interesse:</label>
+            <select id="areaInteresse" name="areaInteresse">
+              <option value="frontend">Front End</option>
+              <option value="backend">Back End</option>
+              <option value="dados">Dados</option>
+              <option value="mobile">Mobile</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="apresentacao">Breve apresentação:</label>
+            <textarea id="apresentacao" name="apresentacao" rows="4"></textarea>
+          </div>
+        </fieldset>
+
+        <div class="grupo-botoes">
+          <button type="reset">Limpar formulário</button>
+        </div>
+      </form>
+    </section>
+
+
+    <!-- ============================================================
+         CATEGORIA 3 - VALIDAÇÃO DE FORMULÁRIO COM JAVASCRIPT
+         ============================================================ -->
+    <section class="bloco">
+      <h2>3. Validação de formulário</h2>
+
+      <form id="formValidacao">
+        <div class="form-group">
+          <label for="nomeCadastro">Nome:</label>
+          <input type="text" id="nomeCadastro" placeholder="Digite seu nome">
+        </div>
+
+        <div class="form-group">
+          <label for="idadeCadastro">Idade:</label>
+          <input type="number" id="idadeCadastro" placeholder="Ex: 18">
+        </div>
+
+        <div class="form-group">
+          <label for="senhaCadastro">Senha:</label>
+          <input type="password" id="senhaCadastro" placeholder="Mínimo 6 caracteres">
+        </div>
+
+        <div class="form-group">
+          <label for="confirmaSenha">Confirme a senha:</label>
+          <input type="password" id="confirmaSenha" placeholder="Repita a senha">
+        </div>
+
+        <!-- type="button" evita envio automático do formulário -->
+        <button type="button" onclick="validarCadastro()">Validar cadastro</button>
+      </form>
+
+      <!-- O JavaScript modifica o conteúdo e a cor deste parágrafo -->
+      <p id="msgValidacao" class="mensagem"></p>
+    </section>
+
+
+    <!-- ============================================================
+         CATEGORIA 4 - ABAS DE CONTEÚDO
+         ============================================================ -->
+    <section class="bloco">
+      <h2>4. Abas de conteúdo</h2>
+
+      <div class="container-abas">
+        <div class="botoes-abas">
+          <!-- O número é enviado como parâmetro para a função mostrarAba() -->
+          <button id="btnAba1" class="ativo" onclick="mostrarAba(1)">Sobre</button>
+          <button id="btnAba2" onclick="mostrarAba(2)">Serviços</button>
+          <button id="btnAba3" onclick="mostrarAba(3)">Contato</button>
+        </div>
+
+        <div id="aba1" class="conteudo-aba exibida">
+          <h3>Sobre</h3>
+          <p>Conteúdo da primeira aba.</p>
+        </div>
+
+        <div id="aba2" class="conteudo-aba">
+          <h3>Serviços</h3>
+          <p>Conteúdo da segunda aba.</p>
+        </div>
+
+        <div id="aba3" class="conteudo-aba">
+          <h3>Contato</h3>
+          <p>Conteúdo da terceira aba.</p>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ============================================================
+         CATEGORIA 5 - ACCORDION / FAQ
+         ============================================================ -->
+    <section class="bloco">
+      <h2>5. Accordion</h2>
+
+      <div class="accordion-container">
+
+        <div class="accordion-item">
+          <button class="accordion-btn">
+            <span>O que é o DOM?</span>
+            <span class="icone">+</span>
+          </button>
+          <div class="accordion-conteudo">
+            <p>O DOM representa o documento HTML como objetos que podem ser manipulados pelo JavaScript.</p>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-btn">
+            <span>O que é uma função?</span>
+            <span class="icone">+</span>
+          </button>
+          <div class="accordion-conteudo">
+            <p>Uma função é um bloco de código reutilizável criado para executar uma tarefa.</p>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-btn">
+            <span>O que é um evento?</span>
+            <span class="icone">+</span>
+          </button>
+          <div class="accordion-conteudo">
+            <p>Um evento representa uma ação que acontece na página, como um clique ou uma tecla pressionada.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ============================================================
+         CATEGORIA 6 - JANELA MODAL
+         ============================================================ -->
+    <section class="bloco">
+      <h2>6. Janela modal</h2>
+
+      <div class="grupo-botoes">
+        <!-- Os textos são enviados como parâmetros para abrirModal() -->
+        <button type="button" onclick="abrirModal('Aviso', 'Esta é uma mensagem exibida dentro da janela modal.')">
+          Abrir aviso
+        </button>
+
+        <button type="button" onclick="abrirModal('Privacidade', 'Aqui poderia aparecer uma informação sobre privacidade.')">
+          Abrir privacidade
+        </button>
+      </div>
+    </section>
+
+
+    <!-- ============================================================
+         ESTRUTURA DO MODAL
+         Fica fora das demais seções porque cobre a tela inteira.
+         ============================================================ -->
+    <div id="fundoModal">
+      <div id="caixaModal">
+        <span class="fechar-x" onclick="fecharModal()">✕</span>
+        <h3 id="tituloModal">Título</h3>
+        <p id="textoModal">Texto</p>
+        <button type="button" onclick="fecharModal()">Fechar</button>
+      </div>
+    </div>
+
+
+    <!-- ============================================================
+         CATEGORIA 7 - CARROSSEL
+         ============================================================ -->
+    <section class="bloco">
+      <h2>7. Carrossel de imagens</h2>
+
+      <div class="carrossel">
+        <img id="fotoCarrossel" src="https://picsum.photos/id/10/500/280" alt="Imagem do carrossel">
+
+        <p id="legendaCarrossel">Paisagem 1: floresta e montanha</p>
+        <p id="indicadorCarrossel">Imagem 1 de 3</p>
+
+        <div class="grupo-botoes">
+          <button id="btnVoltar" type="button" onclick="mudarImagem(-1)" disabled>Anterior</button>
+          <button id="btnAvancar" type="button" onclick="mudarImagem(1)">Próximo</button>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ============================================================
+         CATEGORIA 8 - LISTA DE TAREFAS
+         ============================================================ -->
+    <section class="bloco">
+      <h2>8. Lista de tarefas</h2>
+
+      <p>
+        <strong>Total de tarefas:</strong>
+        <span id="contadorTarefas">0</span>
+      </p>
+
+      <div class="linha-tarefa">
+        <input type="text" id="campoTarefa" placeholder="Digite uma tarefa">
+        <button type="button" onclick="adicionarTarefa()">Adicionar</button>
+        <button type="button" onclick="limparTarefas()">Limpar tudo</button>
+      </div>
+
+      <!-- Os itens <li> serão criados pelo JavaScript -->
+      <ul id="listaTarefas"></ul>
+    </section>
+
+  </main>
+
+  <footer class="rodape">
+    <p>Material de apoio para estudo de HTML, CSS, JavaScript e DOM.</p>
+  </footer>
+
+  <!--
+    O JavaScript é carregado no final do body.
+    Assim, os elementos HTML já existem quando o script começa a executá-los.
+  -->
+  <script src="script.js"></script>
+</body>
+</html>

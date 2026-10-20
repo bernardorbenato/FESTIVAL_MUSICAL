@@ -1,0 +1,20 @@
+LABORATÓRIO DOM JAVASCRIPT
+
+Arquivos:
+- index.html
+- style.css
+- script.js
+
+Abra o arquivo index.html no navegador.
+
+O projeto reúne, em uma única página, exemplos de:
+- alteração de cores e classes;
+- formulário semântico;
+- validação de formulário;
+- abas de conteúdo;
+- accordion;
+- janela modal;
+- carrossel;
+- lista de tarefas.
+
+Os três arquivos estão interligados e comentados por categorias.
