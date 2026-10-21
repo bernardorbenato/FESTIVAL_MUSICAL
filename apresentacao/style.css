@@ -55,6 +55,7 @@ a:hover {
 
 
 a:focus,
+button:focus,
 .bernardo_tabela_area:focus {
   outline: 3px solid #c5f35b;
   outline-offset: 4px;
@@ -94,6 +95,7 @@ main,
 .bernardo_menu {
   padding: 12px 0;
   border-bottom: 1px solid #434b4c;
+  background-color: #141617;
 }
 
 .bernardo_menu ul {
@@ -274,6 +276,93 @@ button:disabled {
   border-top: 2px solid #c5f35b;
   color: #d2d8d5;
   font-size: 14px;
+  background-color: #141617;
+}
+
+
+.bernardo_personalizacao {
+  margin-bottom: 24px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid #667073;
+}
+
+.bernardo_botoes_cores {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.bernardo_personalizacao button {
+  padding: 10px 12px;
+  border: 1px solid #8c9899;
+  background-color: #292f31;
+  color: #f0f1e9;
+  font-family: inherit;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.bernardo_personalizacao button:hover {
+  background-color: #434b4c;
+}
+
+
+body.bernardo_claro {
+  color: #26312a;
+}
+
+body.bernardo_claro .bernardo_cabecalho,
+body.bernardo_claro .bernardo_menu,
+body.bernardo_claro .bernardo_secao,
+body.bernardo_claro #bernardo_lateral,
+body.bernardo_claro .bernardo_rodape {
+  background-color: #ffffff;
+  color: #26312a;
+  border-color: #677563;
+}
+
+body.bernardo_claro .bernardo_card,
+body.bernardo_claro .bernardo_fotos figure {
+  background-color: #f3f5ed;
+  border-color: #677563;
+}
+
+body.bernardo_claro .bernardo_banner h1,
+body.bernardo_claro .bernardo_card h3,
+body.bernardo_claro legend,
+body.bernardo_claro a {
+  color: #365000;
+}
+
+body.bernardo_claro a:hover {
+  color: #141617;
+}
+
+body.bernardo_claro .bernardo_imagem_pendente,
+body.bernardo_claro input,
+body.bernardo_claro select,
+body.bernardo_claro textarea,
+body.bernardo_claro button,
+body.bernardo_claro tbody th {
+  background-color: #e7ece0;
+  color: #26312a;
+  border-color: #677563;
+}
+
+body.bernardo_claro .bernardo_menu a:hover,
+body.bernardo_claro .bernardo_personalizacao button:hover {
+  background-color: #d2dcc4;
+}
+
+body.bernardo_claro caption {
+  color: #26312a;
+}
+
+body.bernardo_claro a:focus,
+body.bernardo_claro button:focus,
+body.bernardo_claro .bernardo_tabela_area:focus {
+  outline-color: #365000;
 }
 
 

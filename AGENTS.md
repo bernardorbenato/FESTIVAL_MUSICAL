@@ -50,7 +50,7 @@
 
 ## JavaScript — etapa futura
 
-- Quatro opções de cor e botão de modo claro/escuro.
+- Cinco opções de cor (verde-lima, roxo, azul, vermelho e laranja) e botão de modo claro/escuro. Iniciar no escuro. A cor altera o fundo da página e deve permanecer ao alternar o tema; conferir legibilidade nas dez combinações. Esta quantidade substitui a orientação inicial de quatro cores.
 - Seis abas: Festival, Atrações, Programação, Estrutura, Galeria e Inscrição. Somente uma visível e botão ativo destacado. Menu de links separado dos botões das abas.
 - Carrossel com nove imagens locais, arrays de fotos e legendas, indicador, anterior/próximo e limites do índice controlados.
 - Uma única estrutura de modal com conteúdo dinâmico. A função de abertura recebe título e mensagem como parâmetros.

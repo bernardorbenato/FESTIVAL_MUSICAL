@@ -62,7 +62,7 @@ A tabela usa **sete linhas totais × cinco colunas**: uma linha em `thead` e sei
 - Obter imagens locais reais JPG/PNG para banner, cards e nove posições da galeria/carrossel. Registrar fontes e descrições corretas e duplicar os mesmos arquivos nas duas versões. A exigência de imagens e a galeria com fotos **ainda não estão atendidas**.
 - Verificar fontes antes de descrever **AniRap, M4rkim, oShaman, 7 Minutoz, BLXCK, Enygma, Daarui, Anny e Mistery**. Os materiais da aula não contêm suas biografias. Não inventar músicas ou dados pessoais.
 - CSS: identidade urbana, layout lateral, responsividade, seletores, CSS interno/inline e duas aplicações de Grid.
-- JavaScript: quatro cores e tema, seis abas e botões separados do menu, carrossel com nove fotos e limites, modal único dinâmico e validação de seis campos com mensagens e reset().
+- JavaScript: cinco cores (verde-lima, roxo, azul, vermelho e laranja) e tema, seis abas e botões separados do menu, carrossel com nove fotos e limites, modal único dinâmico e validação de seis campos com mensagens e reset().
 - Retirar os bloqueios do formulário somente ao implementar a validação sem envio ou armazenamento; definir regras didáticas dos campos sem apresentá-las como regras reais de um evento.
 - Revisão visual e testes manuais no navegador, conforme roteiro. Nenhum teste visual foi realizado nesta sessão.
 - Preparar arquivo compactado para entrega quando solicitado. O primeiro commit e push foram autorizados no encerramento registrado abaixo; o resultado do envio deve ser conferido no Git antes de considerar o backup remoto atualizado.
@@ -191,3 +191,56 @@ O HTML recebeu apenas classes para os três alvos do CSS interno, duas aplicaç�
 - A inspeção inicial encontrou árvore de trabalho limpa na branch `main`: os estilos já estavam registrados no commit `bd59fd1`. Para preservar o histórico, o novo commit de encerramento inclui somente as atualizações de docs/progresso.md e docs/roteiro-defesa.md, com a mensagem solicitada: "Adiciona identidade visual urbana e layouts responsivos do Geek Beats".
 - O aluno reservou o push para execução manual. Nenhum push será feito pelo assistente neste encerramento. A conferência do diff precede o commit; seu identificador será informado após a criação.
 - Continuam pendentes imagens locais reais, descrições verificadas dos artistas e validação HTML completa. As interações JavaScript dependem de uma próxima etapa autorizada. Testes específicos não detalhados na revisão manual do aluno continuam sem resultado registrado.
+
+## Personalização visual — 21/10/2026
+
+Esta etapa implementa somente cinco opções de cor e a alternância claro/escuro. A correção do aluno substitui a quantidade inicialmente solicitada: agora são **verde-lima, roxo, azul, vermelho e laranja**, além do botão de tema. AGENTS.md e a lista de requisitos deste documento foram atualizados. Não houve commit nem push.
+
+### Preparação e escolha da área
+
+- Lidos AGENTS.md, progresso, roteiro, HTML/CSS/JavaScript atuais e o exemplo de troca de cores e tema do Laboratorio_DOM_Base, incluindo seu CSS. Conferidos pasta, branch `main`, remoto origin e árvore de trabalho inicialmente limpa, um commit à frente do acompanhamento local de origin/main. Essa diferença foi preservada; não houve operações de sincronização do Git.
+- Consultado novamente o enunciado PDF: ele exige no mínimo quatro opções e botão de tema, mas não determina qual região deve receber a cor. As cinco opções do aluno atendem ao mínimo. Nenhum material de referencias/ foi alterado.
+- O fundo do body, visível ao redor e entre os blocos de conteúdo, recebe a cor. Cabeçalho, menu, seções, cards, avisos, formulário e rodapé mantêm fundos próprios para garantir leitura. A área afetada é explicada na interface.
+- As cores dos botões são #c5f35b, #b994ed, #9ecbff, #ff8c91 e #ffb56b. O Azul era #79b8ff na implementação inicial e foi alterado pelo aluno para #9ecbff no encerramento. Elas não substituem os destaques de títulos e bordas. O estado inicial continua escuro, com o fundo grafite original até a primeira escolha de cor.
+
+### Implementação e fluxo
+
+- Clique num botão de cor → onclick chama bernardo_trocarCor(cor) → o parâmetro recebe o hexadecimal do botão → document.body.style.backgroundColor aplica a cor ao fundo da página.
+- Clique no botão de tema → onclick chama bernardo_alternarTema() → classList.toggle("bernardo_claro") adiciona ou remove a classe do body → as regras CSS dos descendentes mudam os painéis e textos.
+- getElementById() localiza o botão; if/else com classList.contains() atualiza innerText: “Ativar modo escuro” quando o modo claro está ativo, ou “Ativar modo claro” quando o escuro está ativo.
+- Diferente da limpeza de backgroundColor usada no exemplo do professor, a função de tema não modifica essa propriedade. A cor e o tema são escolhas independentes e a cor é mantida nos dois sentidos da alternância. Não há armazenamento; recarregar a página volta ao estado inicial.
+- Os seis novos botões usam type="button" e ficam em uma div dentro do aside, fora do menu de links. Não há nova section, abas, carrossel, modal ou validação.
+- CSS simples organizado com seletores como body.bernardo_claro .bernardo_secao, conforme o padrão do professor. Sem !important, bibliotecas, variáveis CSS, dependências ou recursos JavaScript adicionais.
+- Permanecem os seletores exigidos, CSS interno em três elementos, duas situações inline, dois Grids, gap de 20px nos cards/galeria, seis seções visíveis, placeholders textuais e formulário desabilitado. A mensagem introdutória foi atualizada para descrever corretamente o que já funciona.
+
+### Verificações realizadas pelo assistente nesta etapa
+
+- Comparação final de HTML, CSS e JavaScript das duas versões passou: iguais após retirar apenas comentários e normalizar CRLF/LF. Conferidos cinco botões de cor e um de tema com type="button", IDs únicos e prefixados, labels e âncoras, caminhos locais, contagens semânticas, tabela 7×5, duas aplicações inline e preservação do parágrafo do aluno. As pastas img/ continuam apenas com .gitkeep. Não há !important no CSS.
+- Chrome local sem janela: as dez combinações de cinco cores × dois temas foram exercitadas em estudo e apresentacao, nas larguras 1440, 390 e 320 px, totalizando 60 casos. Os cliques foram acionados por automação nos botões reais da página e executaram seus onclick.
+- Em cada caso, conferidos cor aplicada e hexadecimal esperado, classe do tema, texto exato do botão e preservação da cor após duas alternâncias consecutivas. O início no escuro também foi conferido a cada abertura da página.
+- Conferidas as seis seções visíveis, formulário ainda desabilitado, gap de 20px, ausência de rolagem horizontal da página e contorno de foco de 3px em botão focado por automação.
+- Calculado contraste a partir das cores computadas no Chrome e do fundo efetivo dos títulos, parágrafos, links, botões, legends, labels, células e legendas da galeria. Nenhuma razão abaixo de 4,5:1; mínimo observado aproximadamente 8,29:1 nas 60 verificações. Essa medição não equivale a uma auditoria completa de acessibilidade e não abrange todos os estados hover ou tecnologias assistivas.
+- Nenhuma exceção JavaScript capturada na execução final. Capturas do conteúdo e dos controles em verde-lima/escuro e laranja/claro no desktop e laranja/claro em celular simulado foram abertas e inspecionadas pelo assistente.
+- A tentativa restrita do Chrome não concluiu; os testes foram realizados fora do sandbox com autorização do ambiente. Rotina e resultados ficaram em arquivos temporários do sistema, sem entrar no projeto e sem instalar pacotes.
+- A revisão manual anterior no navegador continua atribuída a Bernardo. Ela não é apresentada como teste novo do assistente nem como validação manual desta funcionalidade.
+
+### Pendente e próximos limites
+
+- Revisão manual desta funcionalidade pelo aluno, navegação completa com teclado, testes com zoom, outros navegadores e celular físico. As larguras menores foram simuladas no Chrome desktop.
+- Imagens locais reais, descrições verificadas dos artistas e validador HTML completo continuam pendentes.
+- Abas, carrossel, modal e validação permanecem sem implementação. Não avançar automaticamente para eles.
+
+### Arquivos alterados
+
+- AGENTS.md; estudo/index.html, estudo/style.css e estudo/script.js; apresentacao/index.html, apresentacao/style.css e apresentacao/script.js; docs/progresso.md e docs/roteiro-defesa.md.
+
+## Encerramento da personalização — 21/10/2026
+
+- Conferidos Git e remoto; branch `main` com o commit anterior ainda à frente do acompanhamento local de origin/main. A alteração do Azul para #9ecbff foi encontrada e preservada nas duas versões.
+- O HTML de apresentação havia sido reformatado pelo editor. Uma comparação dos 598 tokens de elementos, atributos e textos, normalizando espaços, fechamento de tags vazias, capitalização do doctype e ponto e vírgula final inline, confirmou equivalência de conteúdo. Essa formatação foi preservada e aplicada ao HTML de estudo, com seus comentários explicativos recolocados.
+- Comparados todos os arquivos de estudo/ e apresentacao/: mesma lista; HTML, CSS e JavaScript iguais após retirar apenas comentários da versão estudo e normalizar CRLF/LF; demais arquivos idênticos. Azul #9ecbff confirmado nos dois onclick.
+- **Testes do assistente neste encerramento:** repetidos no Chrome sem janela os 60 casos de cinco cores × dois temas × duas versões × três larguras (1440, 390 e 320 px), agora com o Azul #9ecbff. Conferidos cor esperada, alternância, texto do botão, preservação da cor nos dois sentidos, início escuro, seis seções visíveis, formulário desabilitado, gap de 20px, foco e ausência de rolagem horizontal da página. Todos passaram; mínimo de contraste medido nos textos verificados de aproximadamente 8,29:1, sem exceções JavaScript capturadas. Não houve nova inspeção visual das capturas neste encerramento.
+- A primeira tentativa de teste encontrou um bloqueio temporário no arquivo de inicialização do Chrome; a rotina auxiliar foi ajustada para aguardar sua gravação e a repetição passou. Apenas arquivos temporários foram usados, sem dependências no projeto.
+- **Revisão manual do aluno:** a revisão manual informada é atribuída a Bernardo, não ao assistente. Não foram especificados resultados individuais de teclado, zoom, outros navegadores ou celular físico; os testes automatizados acima não são apresentados como revisão manual.
+- Diff revisado antes do commit. Escopo limitado aos nove arquivos da personalização: AGENTS.md, os seis arquivos HTML/CSS/JS das versões e os dois documentos. Materiais de referencias/ e imagens não foram alterados. Nenhuma aba, carrossel, modal ou validação foi implementada.
+- Commit autorizado com a mensagem "Adiciona cinco cores e alternância de tema ao Geek Beats". Este registro é preparado antes da criação; o identificador será informado após a conferência final. O push será feito manualmente pelo aluno e não será executado pelo assistente.

@@ -86,3 +86,37 @@ Em 21/10/2026, Bernardo informou que realizou a revisão manual no navegador. Es
 Como roteiro para aprofundar ou registrar os resultados, percorra os links usando Tab, confirme o contorno de foco e teste a área rolável da tabela no teclado. Examine também tabela, galeria, formulário e rodapé, teste zoom de 200% e compare em outro navegador. Não ative o formulário nem acrescente JavaScript neste exercício.
 
 No encerramento, o assistente conferiu estaticamente o gap de 20px e a igualdade entre todos os arquivos das versões, com diferenças apenas nos comentários explicativos. Não houve nova verificação do navegador pelo assistente. O push deste encerramento será feito manualmente pelo aluno.
+
+## Personalização — cinco cores e dois temas
+
+Esta etapa já possui duas funções JavaScript simples. Os trechos anteriores descrevem o histórico, quando ainda não havia interações. O requisito corrigido é de cinco cores: verde-lima, roxo, azul, vermelho e laranja, além de claro/escuro. O escuro é o modo inicial; nenhuma classe de modo claro está no body ao abrir a página.
+
+### Clique → função → alteração na página
+
+No botão Azul, onclick="bernardo_trocarCor('#9ecbff')" liga o clique à função. O valor '#9ecbff' é o argumento enviado; cor é o nome do parâmetro que recebe esse valor na função. A linha document.body.style.backgroundColor = cor altera somente o fundo do body. Os outros quatro botões chamam a mesma função com valores diferentes. Não são necessárias cinco funções.
+
+O fundo aparece nas margens e intervalos entre os blocos. Os painéis mantêm fundos de leitura definidos pelo tema. O enunciado não exige uma área específica; o body foi escolhido para seguir o exemplo de aula, e a interface explica onde a cor aparece.
+
+O botão de tema chama bernardo_alternarTema(). classList.toggle("bernardo_claro") adiciona a classe se ela estiver ausente e a remove se estiver presente. O CSS externo contém as regras body.bernardo_claro para modificar textos e fundos dos blocos, sem esconder seções.
+
+Depois, getElementById() localiza o botão. A condição classList.contains("bernardo_claro") verifica o estado atual: no if, innerText recebe “Ativar modo escuro”; no else, recebe “Ativar modo claro”. O texto descreve o próximo clique, não apenas o estado atual.
+
+A função do tema não limpa nem redefine backgroundColor. Por isso, a cor escolhida permanece ao alternar para claro e voltar ao escuro. Como não há armazenamento, recarregar a página restaura o escuro com fundo grafite inicial. Os botões têm type="button"; o formulário de demonstração continua desabilitado.
+
+### Três perguntas de defesa
+
+1. Qual é a diferença entre o argumento '#9ecbff' no onclick e o parâmetro cor na função? Como cinco botões usam a mesma função?
+2. O que toggle() faz com bernardo_claro e por que contains() é usado na condição que muda o texto do botão?
+3. Por que a cor continua aplicada ao trocar o tema? Qual propriedade a função de tema precisa deixar intacta?
+
+### Pequena alteração realizada pelo aluno
+
+Bernardo trocou o argumento da função no botão Azul de '#79b8ff' para '#9ecbff' nos dois HTML, sem criar outra função. A alteração foi conferida no encerramento. Para defender o exercício, explique como mudar o argumento altera a cor usando a mesma função e por que o novo azul permanece após alternar claro/escuro.
+
+### Testes e estudo
+
+O assistente testou por automação as dez combinações nas duas versões, em 1440, 390 e 320 px: botões, textos, manutenção da cor, foco, contraste, seções visíveis e formulário desabilitado. Também inspecionou três capturas. O mínimo de contraste medido nos textos verificados foi aproximadamente 8,29:1. Não houve navegação manual completa por teclado nem teste em celular físico.
+
+A revisão manual da etapa CSS foi feita por Bernardo, conforme seu relato. A revisão manual desta nova funcionalidade ainda deve ser realizada pelo aluno. Abas, carrossel, modal e validação ainda não estão implementados.
+
+No encerramento de 21/10/2026, o assistente repetiu os 60 casos automatizados com o Azul #9ecbff: todos passaram, com mínimo de contraste aproximadamente 8,29:1. Não houve nova inspeção visual das capturas. A revisão manual informada pelo aluno permanece atribuída a Bernardo; os testes específicos que ele realizou não foram detalhados. As comparações finais confirmaram as versões diferentes apenas nos comentários. O push deste encerramento será manual, pelo aluno.
