@@ -206,3 +206,9 @@ O Chrome foi usado apenas como ferramenta externa de conversão: decodificou cad
 Os caminhos dos arrays agora usam .png, exceto anirap.jpg, que permaneceu intacto. Depois de testar os caminhos novos e conferir ausência de dependências, os WebP foram removidos. A conversão não acrescentou bibliotecas, canvas ou ferramentas ao código do site: a rotina ficou na pasta temporária do sistema.
 
 Após a remoção, o assistente repetiu no Chrome os nove slides, as legendas e alt, contador e os dois limites circulares, em ambas as versões e larguras de 1440 e 390px, além dos 40 estados de preservação de slide/cor/tema. Também inspecionou capturas finais. Os testes passaram sem arquivos quebrados ou exceções JavaScript capturadas. A revisão manual pelo aluno continua distinta desses testes automatizados.
+
+### Como localizar a versão correta no GitHub
+
+Na conferência de 21/10/2026, a consulta direta ao GitHub confirmou main no commit b7a1da2, igual ao estado local inicial e a origin/main. Esse commit contém o carrossel e as nove imagens de cada versão. O commit 9ab1630 é a etapa anterior, somente de abas. Para revisar o carrossel, consulte b7a1da2 ou um descendente dele, incluindo estudo/img/ e apresentacao/img/.
+
+As 18 imagens locais foram conferidas contra os arquivos já commitados em origin/main; os bytes são iguais. Os oito PNG de cada versão têm assinatura real de PNG. Os testes automatizados do carrossel foram repetidos em 1440 e 390px nas duas versões e passaram; nesta conferência não houve nova revisão visual de capturas ou revisão manual atribuída ao assistente. O novo commit de documentação preserva o histórico e o conteúdo existente, e seu push será feito manualmente pelo aluno.

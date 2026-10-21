@@ -407,3 +407,27 @@ Os PNG ocupam mais espaço que os WebP originais, em troca da codificação sem 
 - Reconfirmadas estaticamente a igualdade das versões apenas com diferenças de comentários, as nove imagens JPG/PNG idênticas e os caminhos válidos, sem dependência WebP. Os testes de navegador já realizados estão registrados acima e não foram repetidos nesta solicitação de envio.
 - O commit inclui os seis arquivos HTML/CSS/JS das versões, os dois documentos e as nove imagens de cada versão. Não inclui alterações em referencias/, nem modal ou validação.
 - Registro preparado antes do commit. Identificador e resultado efetivo do push serão informados após a execução e conferência do Git.
+
+## Conferência local e do GitHub — 21/10/2026
+
+- O aluno informou que uma revisão do GitHub encontrou apenas a etapa de abas e solicitou nova conferência, com commit local e push manual.
+- Estado inicial: árvore de trabalho limpa, branch `main`. HEAD e a referência local origin/main apontavam para **b7a1da24d73fe7aea9ea34e84e4c4e71d1a7b666**, sem commits divergentes (0 à frente e 0 atrás).
+- Consulta direta ao remoto por `git ls-remote --heads origin main` confirmou que refs/heads/main no GitHub também apontava para esse mesmo identificador. Não foi feito push nesta conferência.
+- O commit **b7a1da2 — Adiciona carrossel circular com imagens locais em JPG e PNG** já registra os seis arquivos HTML/CSS/JS, os dois documentos e as 18 imagens (nove por versão). Seu anterior **9ab1630** corresponde à etapa de abas, sem o carrossel e as imagens. É possível que a revisão tenha usado o commit anterior; não foi possível confirmar a versão efetivamente usada pelo revisor.
+- Referência para revisar a etapa correta: https://github.com/bernardorbenato/FESTIVAL_MUSICAL/commit/b7a1da24d73fe7aea9ea34e84e4c4e71d1a7b666 . As imagens estão em estudo/img/ e apresentacao/img/ nesse commit.
+
+### Evidências novamente conferidas
+
+- Nove imagens por pasta, oito PNG e um JPG, sem WebP restantes. Assinaturas binárias PNG/JPEG verificadas; os oito PNG são arquivos de fato codificados como PNG, não WebP com extensão trocada. Dimensões: 7minutoz, daarui, enygma e oshaman em 250×250; anny e mistery em 300×300; BLXCK e m4rkim em 860×860. A comparação pixel a pixel com os WebP foi feita na conversão já registrada; não foi repetida agora, pois os originais substituídos foram removidos conforme solicitado.
+- Cada uma das 18 imagens locais foi comparada byte a byte com o blob já registrado em origin/main; todas iguais. A confirmação do identificador no remoto vincula esses arquivos à versão atualmente apontada por main no GitHub.
+- Comparadas as duas versões completas: mesma lista de arquivos; HTML/CSS/JS iguais ao retirar somente comentários de estudo e normalizar CRLF/LF; imagens idênticas. Verificados os nove caminhos reais do array e ausência de dependência .webp no código do site.
+- Primeira legenda “AniRap — foto em um estúdio.” sincronizada nos dois arrays, no alt e na legenda inicial dos dois HTML.
+- Reexecutados no Chrome sem janela os testes em estudo e apresentacao, em 1440 e 390px: 76 observações dos nove slides e 72 cliques de percurso para frente/trás, incluindo os retornos 9→1 e 1→9, mais quatro verificações do último slide. Carregamento e decodificação, caminhos, alt, legenda, contador e object-fit passaram.
+- Reexecutados os 40 estados de preservação de slide, cores e tema ao navegar pelas abas. Uma única seção/botão ativos, formulário desabilitado, foco de 3px e ausência de rolagem horizontal da página. Nenhuma exceção JavaScript capturada. Não houve nova inspeção visual de capturas nesta conferência.
+
+### Registro em commit e pendências
+
+- Como o carrossel e as 18 imagens já estão no commit b7a1da2, não foram recriados nem alterados para produzir um diff artificial. O novo commit solicitado registra esta conferência nos documentos e mantém todos os arquivos e imagens na árvore do projeto, herdados de b7a1da2.
+- Somente docs/progresso.md e docs/roteiro-defesa.md foram editados nesta conferência. Sem arquivos alheios, alterações em referencias/, modal ou validação.
+- O identificador do novo commit será informado após sua criação. O push ficará exclusivamente a cargo do aluno.
+- Continuam pendentes revisão manual atual do aluno, outros navegadores, testes completos de teclado, zoom, leitor de tela, celular físico, fontes/autoria das imagens e validação HTML completa. A conversão JPG/PNG e os caminhos do carrossel estão concluídos.
