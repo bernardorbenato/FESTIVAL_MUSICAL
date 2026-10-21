@@ -1,5 +1,7 @@
 # Estudo e defesa — etapa HTML
 
+Este roteiro registra as etapas em sequência. A etapa atual está em “Validação demonstrativa do formulário”, ao final; instruções antigas sobre formulário desabilitado descrevem as etapas anteriores.
+
 Entrega e defesa previstas para 26/10/2026, conforme orientação do aluno.
 
 ## Como estudar
@@ -291,3 +293,86 @@ No HTML, bernardo_pagina é fechado antes de começar bernardo_modal: são irmã
 **Origem nos materiais:** em referencias/lab dom/Laboratorio_DOM_Base/script.js, linhas 274 e 286, existe campoTarefa.focus(). No modal do professor, abrirModal(titulo, mensagem) usa innerText e style.display; não há controle de foco. A busca nos HTML, CSS e JavaScript fornecidos em referencias/ não encontrou document.activeElement nem inert. Esses dois recursos são complementos novos deste projeto, explicados antes da implementação. classList.add()/remove() vêm dos exemplos de abas. Não se deve atribuir o uso de activeElement/inert ao exemplo de modal do professor.
 
 No encerramento, o assistente repetiu os 72 ciclos, oito testes de substituição/rolagem e 40 verificações de preservação, agora com a mensagem corrigida e a checagem do ancestral inert; todos passaram. Isso é automação no Chrome, não uma revisão manual do aluno. Não houve nova inspeção visual das capturas deste encerramento.
+
+## Validação demonstrativa do formulário — 21/10/2026
+
+O fluxo é: **clique em “Validar demonstração” ou Enter em um input → onsubmit → bernardo_validarFormulario() → leitura dos campos → primeira condição de erro ou sucesso → atualização do parágrafo**. O return false do evento cancela o envio e o recarregamento. Enter no textarea cria uma linha; não é necessário capturar teclas manualmente.
+
+```html
+<form
+  id="bernardo_formulario"
+  aria-describedby="bernardo_aviso_formulario"
+  onsubmit="bernardo_validarFormulario(); return false;"
+  novalidate
+>
+```
+
+O exemplo resolvido do professor usa onclick com type="button"; o exercício de HTML inclui type="submit". Aqui o botão submit usa o evento do formulário para atender também ao Enter. onsubmit e novalidate são complementos explicados nesta etapa: novalidate deixa nossa função executar mesmo quando required, min ou type="email" apontariam um erro nativo. Esses atributos continuam no HTML; as mensagens agora são decididas no JavaScript.
+
+value lê o valor do controle. trim() remove espaços nas pontas do texto lido: “   ” vira vazio para a comparação, mas o campo não é alterado. Assim, os dados continuam disponíveis para corrigir o erro. A idade é lida inicialmente como texto:
+
+```js
+const idadeTexto = document.getElementById("bernardo_idade").value.trim();
+let idade = 0;
+if (idadeTexto !== "") {
+  idade = Number(idadeTexto);
+}
+```
+
+Number("") produziria zero. Por isso a conversão só acontece se o texto não estiver vazio. O zero inicial não substitui a validação: a sequência possui um else if (idadeTexto === "") antes de considerar o número. Number.isInteger(idade) confirma anos inteiros e rejeita frações.
+
+### Regras e origem
+
+| Campo | Regra adotada | Origem/decisão |
+| --- | --- | --- |
+| Nome | Texto não vazio após trim() | Exercício 3 e exemplo de validação. |
+| Idade | Preenchida, inteira, pelo menos 16 | Exercício pede 16; exemplo resolvido usa 18. Seguido o exercício; anos inteiros é decisão do projeto. |
+| E-mail | Não vazio e formato de input type="email" | Exercício exige preenchimento e esse tipo; formato consultado por validity.typeMismatch. Não verifica existência. |
+| Cidade | Texto não vazio após trim() | Regra simples do projeto; sem tamanho mínimo inventado. |
+| Preferência | Opção não vazia do select | Regra simples do projeto. |
+| Mensagem | Texto não vazio após trim() | Regra simples do projeto. |
+| Ciência | Checkbox marcado | Pedido do aluno; .checked retorna true ou false. |
+
+O integrador pede pelo menos seis campos; aqui há seis mais o checkbox. Não foram acrescentadas senhas do cadastro de exemplo porque o festival não possui login. Os 16 anos são uma regra fictícia da demonstração, sem representar ingresso real.
+
+**Complementos aos exemplos fornecidos:** onsubmit, novalidate, Number.isInteger(), validity.typeMismatch e checked não foram encontrados nos HTML/JS consultados. Evitam uma rotina extra de teclado, permitem as mensagens personalizadas, identificam frações, reutilizam a verificação de formato do navegador e leem o checkbox. Não são bibliotecas. role="status" no resultado informa uma atualização às tecnologias assistivas, sem mover o foco; sua leitura real ainda precisa ser testada com leitor de tela.
+
+### Por que os dados só são limpos no sucesso?
+
+Uma cadeia if / else if / else executa apenas um dos caminhos. Se nome estiver vazio, a função mostra esse erro e não verifica os próximos campos naquele clique. Nenhum caminho de erro chama reset(). O else final só é alcançado quando todas as condições de erro foram falsas:
+
+```js
+resultado.innerText = "Demonstração validada com sucesso. Nenhum dado foi enviado ou armazenado neste site de demonstração.";
+resultado.classList.add("bernardo_sucesso");
+document.getElementById("bernardo_formulario").reset();
+```
+
+reset() restaura os valores iniciais do HTML: neste formulário todos ficam vazios, o select volta à opção inicial e o checkbox é desmarcado. A mensagem permanece porque é um parágrafo, não um campo restaurado. Na próxima tentativa, classList.remove("bernardo_sucesso") devolve a aparência de erro antes das condições. O CSS define cores diferentes por tema e foco visível nos controles. Os textos identificam erro e sucesso sem depender apenas da cor.
+
+Não há cadastro real: o código só lê os campos e altera a página. Não usa servidor, envio, armazenamento ou persistência. Os erros preservam o que foi preenchido para correção; isso não equivale a salvar um cadastro.
+
+### Três perguntas de defesa
+
+1. Por que a idade precisa ser conferida como texto antes de Number()? O que ocorre com Number("") e com uma idade de 16,5?
+2. Como onsubmit, return false e novalidate permitem validar pelo botão e por Enter sem envio nem interferência das mensagens automáticas?
+3. Por que if / else if / else mostra apenas o primeiro erro? Onde checked é lido e por que reset() aparece somente no sucesso?
+
+### Pequeno exercício para fazer sozinho
+
+Altere o começo da mensagem de sucesso para “Validação demonstrativa concluída.” nas duas versões, preservando o aviso de que nenhum dado foi enviado ou armazenado. Teste um erro e um sucesso: o erro deve manter os campos e o sucesso deve continuar limpando-os.
+
+### Evidências e prática pendente
+
+O assistente executou 208 casos de validação no Chrome (duas versões, 1440/390px e dois temas), incluindo todos os erros isolados, espaços, checkbox, botão, Enter, preservação no erro e limpeza no sucesso. Também verificou oito layouts e 40 estados de preservação das funcionalidades anteriores; nenhuma requisição adicional durante os casos de validação, recarregamento ou exceção JavaScript. Quatro capturas foram inspecionadas. Contraste das mensagens: pelo menos 7,84:1 no erro e 9,11:1 no sucesso. Versões e imagens equivalentes, diff conferido.
+
+Esses resultados vêm de automação e inspeção de capturas pelo assistente. Revisão manual desta validação por Bernardo, outros navegadores, leitor de tela, zoom e celular físico permanecem pendentes. Não houve commit ou push nesta etapa.
+
+### Encerramento e revisão do aluno — 21/10/2026
+
+A mensagem atual acrescenta “neste site de demonstração” ao aviso de sucesso, preservando que nenhum dado foi enviado ou armazenado. A única correção na alteração do aluno foi trocar “armazenadon” por “armazenado” em apresentacao/script.js, igualando as versões sem modificar o restante do texto. O trecho de código deste roteiro já corresponde à mensagem atual.
+
+A revisão manual é atribuída a Bernardo, conforme o encerramento solicitado. Não foram informados seus casos, navegador ou dispositivo; não se deve apresentar a automação do assistente como uma revisão feita pelo aluno, nem atribuir ao assistente a revisão manual dele.
+
+O assistente repetiu os 208 casos de validação, oito verificações de layout e 40 de preservação no Chrome, com a nova mensagem, nas duas versões e nos dois tamanhos/temas: todos passaram. Conferiu também sintaxe, diff, equivalência do código exceto comentários e imagens idênticas. Não houve nova inspeção visual de capturas neste encerramento. Outros navegadores, leitor de tela, zoom e celular físico continuam pendentes.
+
+Etapa encerrada para commit local com a mensagem “Adiciona validação do formulário demonstrativo do Geek Beats”. O push fica a cargo do aluno; nenhuma nova funcionalidade foi iniciada.

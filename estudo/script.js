@@ -144,3 +144,56 @@ function bernardo_fecharModal() {
     bernardo_focoAnterior.focus();
   }
 }
+
+// value lê os campos; trim() desconsidera espaços nas pontas, sem apagar o que foi digitado.
+// checked informa se a ciência da demonstração foi marcada (true ou false).
+function bernardo_validarFormulario() {
+  const nome = document.getElementById("bernardo_nome").value.trim();
+  const idadeTexto = document.getElementById("bernardo_idade").value.trim();
+  const campoEmail = document.getElementById("bernardo_email");
+  const email = campoEmail.value.trim();
+  const cidade = document.getElementById("bernardo_cidade").value.trim();
+  const preferencia = document.getElementById("bernardo_preferencia").value;
+  const texto = document.getElementById("bernardo_mensagem").value.trim();
+  const ciencia = document.getElementById("bernardo_ciencia").checked;
+  const resultado = document.getElementById("bernardo_resultado");
+
+  // Só convertemos depois de conferir o vazio, pois Number("") seria zero.
+  // O zero inicial não é usado para aceitar uma idade vazia: há uma condição própria abaixo.
+  let idade = 0;
+  if (idadeTexto !== "") {
+    idade = Number(idadeTexto);
+  }
+
+  // Uma nova tentativa começa com aparência de erro, removendo um sucesso anterior.
+  // A sequência mostra somente o primeiro erro; não há reset() nesses caminhos.
+  resultado.classList.remove("bernardo_sucesso");
+  if (nome === "") {
+    resultado.innerText = "Erro: preencha o nome com texto, não apenas espaços.";
+  } else if (idadeTexto === "") {
+    resultado.innerText = "Erro: preencha a idade.";
+  } else if (!Number.isInteger(idade)) {
+    // isInteger() confirma que o número é inteiro, sem aceitar uma idade fracionada.
+    resultado.innerText = "Erro: informe a idade em anos inteiros.";
+  } else if (idade < 16) {
+    resultado.innerText = "Erro: a idade mínima nesta demonstração é 16 anos.";
+  } else if (email === "") {
+    resultado.innerText = "Erro: preencha o e-mail.";
+  } else if (campoEmail.validity.typeMismatch) {
+    // O input type=email fornece essa informação de formato, sem abrir o aviso nativo.
+    resultado.innerText = "Erro: informe um e-mail em formato válido, como nome@exemplo.com.";
+  } else if (cidade === "") {
+    resultado.innerText = "Erro: preencha a cidade com texto, não apenas espaços.";
+  } else if (preferencia === "") {
+    resultado.innerText = "Erro: selecione uma preferência musical.";
+  } else if (texto === "") {
+    resultado.innerText = "Erro: escreva uma mensagem, não apenas espaços.";
+  } else if (!ciencia) {
+    resultado.innerText = "Erro: marque a ciência de que o formulário é uma demonstração acadêmica.";
+  } else {
+    resultado.innerText = "Demonstração validada com sucesso. Nenhum dado foi enviado ou armazenado neste site de demonstração.";
+    resultado.classList.add("bernardo_sucesso");
+    // Somente o sucesso restaura os valores iniciais vazios e desmarca o checkbox.
+    document.getElementById("bernardo_formulario").reset();
+  }
+}

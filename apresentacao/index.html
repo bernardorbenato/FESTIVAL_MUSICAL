@@ -174,8 +174,8 @@
                 Use os botões ou os links do menu para abrir uma seção por vez.
                 As cores e o modo claro/escuro podem ser personalizados na área
                 de avisos. Use “Ver detalhes” nos cards para abrir a proposta de
-                cada atração. A validação do formulário ainda não está
-                implementada.
+                cada atração. Na seção Inscrição, teste a validação demonstrativa
+                do formulário, sem envio ou armazenamento de dados.
               </p>
             </section>
 
@@ -505,16 +505,19 @@
             <section id="bernardo_inscricao" class="bernardo_secao">
               <h2>Inscrição</h2>
               <p id="bernardo_aviso_formulario">
-                Formulário demonstrativo indisponível nesta etapa. Os campos
-                estão desabilitados. Não há inscrição real, envio ou
-                armazenamento de dados.
+                Formulário demonstrativo: utilize dados fictícios. Não há
+                inscrição real, envio ou armazenamento de dados. Preencha todos
+                os campos; a idade mínima nesta demonstração é 16 anos.
               </p>
+
               <form
                 id="bernardo_formulario"
                 aria-describedby="bernardo_aviso_formulario"
+                onsubmit="bernardo_validarFormulario(); return false;"
+                novalidate
               >
                 
-                <fieldset disabled>
+                <fieldset>
                   <legend>Dados de identificação — demonstração</legend>
                   <div class="bernardo_campo">
                     <label for="bernardo_nome">Nome:</label>
@@ -531,7 +534,7 @@
                       type="number"
                       id="bernardo_idade"
                       name="bernardo_idade"
-                      min="0"
+                      min="16"
                       step="1"
                       required
                     />
@@ -555,7 +558,7 @@
                     />
                   </div>
                 </fieldset>
-                <fieldset disabled>
+                <fieldset>
                   <legend>Preferências e ciência da demonstração</legend>
                   <div class="bernardo_campo">
                     <label for="bernardo_preferencia"
@@ -594,10 +597,12 @@
                       acadêmica e não realiza inscrição real.</label
                     >
                   </div>
-                  <button type="button" id="bernardo_validar" disabled>
-                    Validação disponível em etapa futura
+                  <button type="submit" id="bernardo_validar">
+                    Validar demonstração
                   </button>
                 </fieldset>
+
+                <p id="bernardo_resultado" class="bernardo_resultado" role="status"></p>
               </form>
             </section>
           </div>

@@ -1,5 +1,7 @@
 # Progresso — Geek Beats
 
+Estado atual em 21/10/2026: validação demonstrativa implementada; campos habilitados. O registro é cronológico: referências a funcionalidades pendentes nas etapas anteriores descrevem aquele momento. A conferência mais recente está em “Etapa de validação do formulário”, ao final.
+
 ## Sessão de 20/10/2026 — somente HTML
 
 Autor: Bernardo Rodrigues Benato. Entrega e defesa: 26/10/2026, conforme pedido do aluno. Etapa encerrada antes da implementação de CSS e JavaScript.
@@ -487,3 +489,51 @@ Implementada somente a janela de detalhes reutilizada pelos nove cards. Os regis
 - Estes testes são do assistente por automação; não houve nova inspeção visual das capturas nem nova revisão manual atribuída ao aluno neste encerramento. Mantidas as pendências de revisão manual do modal, outros navegadores, leitor de tela, zoom e celular físico.
 - Diff revisado para commit com a mensagem "Adiciona modal dinâmico às atrações do Geek Beats", limitado aos seis arquivos HTML/CSS/JS das versões e aos dois documentos. O identificador será informado após criar o commit. Nenhum push será feito pelo assistente.
 - Nove imagens fornecidas pelo aluno em cada pasta img/, já presentes no início e preservadas. Ainda não foram adicionadas ao índice do Git nem commitadas nesta etapa.
+
+## Etapa de validação do formulário — 21/10/2026
+
+### Preparação e decisões
+
+- Lidos AGENTS.md, o progresso, o formulário, CSS e script atuais, os trechos de validação do enunciado integrador e do PDF de exercícios e o exemplo validarCadastro() em referencias/lab dom/Laboratorio_DOM_Base/script.js. PDFs consultados por extração textual local; os originais não foram alterados. A primeira tentativa de extração desta sessão falhou por aspas no comando, corrigidas antes da leitura efetiva.
+- Git inicialmente limpo em main, sem divergência indicada de origin/main. Remoto configurado conferido: https://github.com/bernardorbenato/FESTIVAL_MUSICAL.git. Não houve consulta de atualização remota, commit ou push nesta etapa.
+- O integrador exige pelo menos seis campos, leitura/conversão, condições, mensagens e reset() após sucesso. O exercício 3 exige idade mínima de 16; o laboratório resolvido usa 18. Adotados **16 anos**, conforme o exercício. Esta é uma regra da demonstração acadêmica, não uma condição de ingresso em evento real.
+- Nome, cidade e mensagem precisam conter texto após trim(), sem exigir tamanho mínimo ou nome completo não definidos nos materiais. Idade deve estar preenchida, ser inteira e ter pelo menos 16 anos; não foi inventado um limite máximo. E-mail precisa estar preenchido e ter o formato aceito por input type="email", sem verificar existência ou domínio. Preferência precisa ser uma das opções disponíveis selecionada; checkbox de ciência precisa estar marcado. Senha e confirmação do exemplo não foram adicionadas, conforme o escopo do aluno.
+- Complementos explicados antes de implementar: onsubmit com return false, novalidate, checked, Number.isInteger() e validity.typeMismatch. O exemplo de validação usa onclick em type="button"; o exercício de formulário também apresenta type="submit". A abordagem deste projeto concentra botão e Enter no evento do formulário, sem rotinas extras de teclado. Estes complementos não foram localizados nos HTML/JS fornecidos; sua finalidade está explicada no roteiro e nos comentários de estudo.
+
+### Implementação concluída
+
+- Dois fieldsets e botão habilitados. Botão “Validar demonstração” com type="submit" e formulário com onsubmit="bernardo_validarFormulario(); return false;". O retorno false cancela a ação padrão de envio/recarregamento; Enter nos inputs usa a mesma função. Enter no textarea continua inserindo uma linha.
+- novalidate impede que a validação automática bloqueie a função e suas mensagens. Mantidos required, type="email", min="16" e step="1" como informações semânticas, com as verificações efetivas no JavaScript. validity.typeMismatch consulta o formato de e-mail oferecido pelo navegador, sem exibir balão nativo.
+- Função externa com value, trim(), Number(), if / else if / else e innerText. O texto vazio da idade é conferido **antes de chamar Number()**, além da condição própria na sequência de erros. Number.isInteger() rejeita frações. checked lê a ciência da demonstração.
+- Mostrado apenas o primeiro erro por tentativa. Nenhum caminho de erro limpa os controles. Apenas o else final mostra sucesso, aplica bernardo_sucesso e executa reset(), restaurando todos os campos vazios, select inicial e checkbox desmarcado. Nova tentativa remove a classe de sucesso anterior.
+- Parágrafo de resultado com ID próprio e role="status", para anunciar mudanças sem deslocar foco; não foi realizado teste com leitor de tela. Mensagens de erro e sucesso identificadas por texto e cores adaptadas aos dois temas. Contorno visível estendido aos campos.
+- Aviso e sucesso informam que não há inscrição real nem envio/armazenamento. Não há API de rede, persistência ou cadastro. Abas, carrossel, modal, cores, temas, Grids, tabela e imagens preservados.
+
+### Verificações realmente realizadas pelo assistente
+
+- **208 casos automatizados no Chrome local sem janela**: 26 por combinação de duas versões × larguras 1440/390px × dois temas. Incluem 17 erros isolados (vazios, espaços, idade 15/negativa/fracionada, formatos de e-mail e ciência desmarcada), formulário todo vazio, erro com Enter, quatro sucessos pelo botão (uma por preferência), sucesso com Enter, erro após sucesso e Enter no textarea.
+- Em erros, comparados os valores e o checkbox antes/depois: preservados. Em todos os sucessos, conferidos mensagem, classe e limpeza completa por reset(). As quatro preferências reais foram aceitas. Idade 16 passou no botão e 17 no Enter. Ao atribuir espaços a input number/email, o próprio Chrome pode normalizar o valor para vazio; nome, cidade e mensagem com espaços foram efetivamente rejeitados por trim().
+- Botão acionado por eventos de mouse e Enter por eventos de teclado no Chrome. Monitoradas requisições do navegador: nenhuma adicional durante os casos de validação. Conferidos URL e marcador de documento preservados, sem navegação/recarregamento. Inspeção do script não encontrou chamadas de envio nem armazenamento. Dados de teste exclusivamente fictícios.
+- **Oito verificações de layout**, uma por versão/largura/tema: sem rolagem horizontal da página, campos habilitados, contorno de foco de 3px no nome. Contraste calculado das mensagens em seus fundos: erro pelo menos 7,84:1, sucesso pelo menos 9,11:1; não representa auditoria completa do site.
+- Quatro capturas de estudo (desktop/390px, claro/escuro), com erro de e-mail, abertas e inspecionadas pelo assistente. Conferidos campo, seleção, checkbox, botão, quebra do texto da mensagem e área lateral. Não equivalem à revisão manual do aluno.
+- **40 verificações de preservação**: cinco cores × duas versões × duas larguras × dois temas. Conferidos tema/cor ao alternar e voltar, uma aba visível/ativa, valores preservados ao sair/voltar a Inscrição, retorno circular do carrossel nos dois sentidos e slide preservado, abertura/fechamento de AniRap, modal fora de inert, bloqueio do fundo e retorno do foco. Não foi repetido nesta etapa o teste completo dos nove cards nem todas as legendas; as evidências dessas etapas anteriores permanecem registradas acima.
+- Nenhuma exceção JavaScript na execução final. A primeira execução parou por acentos corrompidos nas expectativas da rotina temporária; corrigidos esses textos e os escapes da simulação de Enter antes da execução final aprovada. Não foi necessário alterar o site para corrigir essa rotina.
+- node --check nos dois script.js passou. Comparação dos HTML/CSS/JS após retirar comentários e normalizar finais de linha/espaços finais: mesmo código. Imagens comparadas byte a byte: idênticas. Conferidos IDs únicos/prefixados, labels, âncoras, caminhos, seis seções, nove cards, contagens semânticas, tabela de sete linhas, dois estilos inline e ausência de controles desabilitados. Diff revisado e git diff --check sem erros de espaços.
+- Rotinas, resultados e capturas de teste ficaram na pasta temporária do sistema, sem dependências adicionadas ao projeto. Execução do Chrome autorizada pelo ambiente fora do sandbox.
+
+### Arquivos e pendências
+
+- Alterados apenas estudo/index.html, estudo/style.css, estudo/script.js; apresentacao/index.html, apresentacao/style.css, apresentacao/script.js; docs/progresso.md e docs/roteiro-defesa.md. Sem mudanças em AGENTS.md, referencias/ ou imagens.
+- Revisão manual desta validação por Bernardo, outros navegadores, leitor de tela, zoom e celular físico continuam pendentes. Revisões manuais anteriores permanecem atribuídas ao aluno; os testes desta seção são do assistente.
+- Continuam pendentes as fontes das imagens, descrições verificadas e validação HTML completa. A validação do formulário, anteriormente pendente, está agora implementada no escopo solicitado.
+- Etapa concluída sem avançar para outra funcionalidade. Nenhum commit ou push, conforme pedido.
+
+## Encerramento da validação — 21/10/2026
+
+- Conferidos estado local, branch main e remoto origin. O diff contém apenas os seis arquivos HTML/CSS/JS das duas versões e os dois documentos desta etapa; nenhum arquivo alheio, imagem ou material do professor foi alterado.
+- Revisada a mensagem do aluno: “Demonstração validada com sucesso. Nenhum dado foi enviado ou armazenado neste site de demonstração.” Em apresentacao/script.js havia “armazenadon”; corrigido somente esse erro de digitação para igualar ao texto de estudo. Preservados o acréscimo do aluno e o aviso de ausência de envio e armazenamento. O trecho real no roteiro foi atualizado.
+- **Revisão manual do aluno:** registrada como revisão de Bernardo, conforme este encerramento. Não é uma verificação realizada pelo assistente; não foram informados navegador, dispositivo ou uma lista de casos dessa revisão, portanto não são atribuídos resultados específicos a ela.
+- **Verificações do assistente:** comparação dos HTML/CSS/JS retirando comentários e normalizando finais de linha/espaços finais confirmou o mesmo código; listas de imagens e conteúdos binários idênticos. node --check passou nos dois scripts e git diff --check não encontrou erros de espaços.
+- Reexecutada a automação no Chrome com a expectativa da mensagem atualizada: **208 casos de validação, oito verificações de layout e 40 de preservação**, nas duas versões, 1440/390px e ambos os temas. Todos passaram; nenhuma exceção JavaScript, nenhuma requisição adicional durante os casos de validação e nenhum recarregamento. Erros preservaram dados e sucesso limpou os campos. Estes resultados são do assistente e não substituem nem descrevem a revisão manual de Bernardo.
+- Não houve nova inspeção visual das capturas neste encerramento. As quatro capturas inspecionadas pertencem à implementação registrada acima. Permanecem pendentes outros navegadores, leitor de tela, zoom, celular físico, fontes das imagens, descrições verificadas e validação HTML completa.
+- Diff revisado para commit apenas dos oito arquivos desta etapa, com a mensagem “Adiciona validação do formulário demonstrativo do Geek Beats”. O identificador será informado após criar o commit. Nenhuma nova funcionalidade; o push será feito manualmente pelo aluno.
