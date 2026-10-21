@@ -112,3 +112,35 @@ function bernardo_mudarFoto(direcao) {
 
 
 bernardo_atualizarCarrossel();
+
+
+
+let bernardo_focoAnterior = null;
+
+function bernardo_abrirModal(titulo, mensagem) {
+  const modal = document.getElementById("bernardo_modal");
+
+  if (!modal.classList.contains("bernardo_modal_visivel")) {
+    bernardo_focoAnterior = document.activeElement;
+  }
+
+  
+  
+  document.getElementById("bernardo_titulo_modal").innerText = titulo;
+  document.getElementById("bernardo_mensagem_modal").innerText = mensagem;
+
+  
+  modal.classList.add("bernardo_modal_visivel");
+  
+  document.getElementById("bernardo_pagina").inert = true;
+  document.getElementById("bernardo_fechar_modal").focus();
+}
+
+function bernardo_fecharModal() {
+  document.getElementById("bernardo_modal").classList.remove("bernardo_modal_visivel");
+  document.getElementById("bernardo_pagina").inert = false;
+
+  if (bernardo_focoAnterior !== null) {
+    bernardo_focoAnterior.focus();
+  }
+}

@@ -212,3 +212,82 @@ Após a remoção, o assistente repetiu no Chrome os nove slides, as legendas e 
 Na conferência de 21/10/2026, a consulta direta ao GitHub confirmou main no commit b7a1da2, igual ao estado local inicial e a origin/main. Esse commit contém o carrossel e as nove imagens de cada versão. O commit 9ab1630 é a etapa anterior, somente de abas. Para revisar o carrossel, consulte b7a1da2 ou um descendente dele, incluindo estudo/img/ e apresentacao/img/.
 
 As 18 imagens locais foram conferidas contra os arquivos já commitados em origin/main; os bytes são iguais. Os oito PNG de cada versão têm assinatura real de PNG. Os testes automatizados do carrossel foram repetidos em 1440 e 390px nas duas versões e passaram; nesta conferência não houve nova revisão visual de capturas ou revisão manual atribuída ao assistente. O novo commit de documentação preserva o histórico e o conteúdo existente, e seu push será feito manualmente pelo aluno.
+
+## Modal dinâmico dos nove cards
+
+Os registros de modal pendente pertencem às etapas anteriores. Agora existe uma única janela de detalhes; o formulário ainda não possui validação e permanece desabilitado.
+
+### Clique → parâmetros → texto → exibição
+
+Cada botão “Ver detalhes” é type="button" e usa onclick para chamar bernardo_abrirModal(titulo, mensagem). O nome do artista é enviado como primeiro argumento; o segundo descreve somente sua seleção para o conceito acadêmico do Geek Beats, sem participação confirmada. Não são biografias verificadas.
+
+A função coloca os parâmetros nos elementos bernardo_titulo_modal e bernardo_mensagem_modal com innerText. Isso substitui o conteúdo como texto, sem interpretar tags HTML. Depois, classList.add("bernardo_modal_visivel") faz valer a regra .bernardo_modal.bernardo_modal_visivel, que mostra a camada. A regra base .bernardo_modal usa display: none, por isso a página começa com a janela fechada.
+
+bernardo_fecharModal() usa classList.remove() para esconder a mesma estrutura. Ao abrir outro artista, os textos anteriores são substituídos, sem criar outra janela. O modal fica fora das abas para não depender da visibilidade de uma section.
+
+### Foco, fundo e telas pequenas
+
+focus() já aparece nos materiais do professor. Dois complementos foram explicados antes do uso: document.activeElement informa qual elemento tinha foco ao abrir; a variável bernardo_focoAnterior guarda essa referência para o retorno ao fechar. A verificação da classe evita substituir a referência de origem se a janela já estiver aberta e receber apenas outro conteúdo.
+
+O grupo bernardo_pagina reúne o conteúdo existente de fundo. Sua propriedade inert recebe true ao abrir e false ao fechar. Enquanto estiver true, seus controles não recebem foco nem interação normal. O modal fica fora desse grupo, e o foco vai para “Fechar detalhes”. Após fechar e reativar o fundo, focus() devolve a navegação ao botão de origem. Não há um gerenciador próprio de eventos de teclado.
+
+role="dialog" identifica a caixa como diálogo; aria-modal indica sua modalidade. aria-labelledby e aria-describedby apontam aos IDs do título e da mensagem para nomear e descrever a janela nas tecnologias assistivas. A marcação não substitui os testes manuais com leitor de tela, ainda pendentes.
+
+O fundo usa position: fixed e inset: 0, como a camada do exemplo. A caixa usa width: min(100%, 520px) e max-height: 80vh: vh representa uma fração da altura da janela. overflow-y: auto permite rolar quando o texto for maior que o limite. Temas claro/escuro têm fundos e textos próprios; os nomes dos artistas mantêm sua grafia original no título.
+
+### Três perguntas de defesa
+
+1. Como os parâmetros titulo e mensagem permitem reutilizar uma única estrutura para nove artistas? Por que usar innerText?
+2. Qual classe mostra a janela e como classList.add()/remove() se relacionam às duas regras de display do CSS?
+3. Para que servem bernardo_focoAnterior e inert? O que acontece com o foco ao abrir e fechar?
+
+### Pequeno exercício para fazer sozinho
+
+Acrescente “Conteúdo demonstrativo.” ao final da mensagem enviada pelo botão de AniRap, nas duas versões. Preserve nome, função e quantidade de argumentos. Abra AniRap, feche e abra outro artista: confira que só a mensagem de AniRap mudou e que a mesma janela continua sendo usada.
+
+### Testes e prática pendente
+
+O assistente realizou 72 ciclos pelos nove cards nas duas versões, em 1440/390px e nos dois temas, verificando abertura, conteúdo, fechamento por Enter, foco e bloqueio do fundo. Também testou oito casos de substituição/rolagem com mensagem longa e 40 casos de preservação de abas, slide, cores e tema. Quatro capturas foram inspecionadas, e o contraste texto/fundo da caixa foi pelo menos aproximadamente 13,50:1. Não houve exceções JavaScript na execução final.
+
+A revisão manual desta janela pelo aluno, outros navegadores, leitores de tela, zoom e dispositivo físico continuam pendentes. O fechamento disponível é o botão “Fechar detalhes”; não foram implementados Escape ou clique na máscara. Não implemente validação nesta etapa.
+
+### Revisão de AniRap e origem dos recursos de foco
+
+No encerramento, “Conteúdo demonstrativo” havia sido acrescentado como parágrafo nos dois cards. No onclick de apresentação, havia também um terceiro argumento; em estudo, o onclick ainda recebia apenas a mensagem antiga. Como bernardo_abrirModal(titulo, mensagem) recebe e usa somente dois parâmetros, o terceiro argumento era ignorado. A correção preservou o parágrafo do aluno e acrescentou o texto, sem mudar suas palavras, ao final do segundo argumento nos dois HTML. Os outros oito artistas não receberam esse complemento.
+
+Os trechos abaixo são do script.js real das duas versões. A referência de foco começa em null e recebe o controle ativo somente ao abrir uma janela que estava fechada:
+
+```js
+let bernardo_focoAnterior = null;
+
+if (!modal.classList.contains("bernardo_modal_visivel")) {
+  bernardo_focoAnterior = document.activeElement;
+}
+```
+
+A condição impede que uma substituição de conteúdo com a janela já aberta troque a referência de origem pelo botão interno de fechamento. activeElement é o elemento que possui foco naquele momento; não é uma cópia do card nem um texto com seu ID.
+
+Na abertura, após atualizar os textos, a classe mostra a janela, inert bloqueia o grupo de fundo e focus() entra no modal pelo botão de fechar:
+
+```js
+modal.classList.add("bernardo_modal_visivel");
+document.getElementById("bernardo_pagina").inert = true;
+document.getElementById("bernardo_fechar_modal").focus();
+```
+
+No fechamento, a classe é retirada, inert recebe false e o controle guardado recupera o foco. Aqui “remover inert” significa desativar a propriedade com false:
+
+```js
+document.getElementById("bernardo_modal").classList.remove("bernardo_modal_visivel");
+document.getElementById("bernardo_pagina").inert = false;
+
+if (bernardo_focoAnterior !== null) {
+  bernardo_focoAnterior.focus();
+}
+```
+
+No HTML, bernardo_pagina é fechado antes de começar bernardo_modal: são irmãos no body. Colocar o modal dentro do grupo inert bloquearia a própria janela e seu botão. A verificação no Chrome confirmou, durante as aberturas, que o modal não tem ancestral [inert].
+
+**Origem nos materiais:** em referencias/lab dom/Laboratorio_DOM_Base/script.js, linhas 274 e 286, existe campoTarefa.focus(). No modal do professor, abrirModal(titulo, mensagem) usa innerText e style.display; não há controle de foco. A busca nos HTML, CSS e JavaScript fornecidos em referencias/ não encontrou document.activeElement nem inert. Esses dois recursos são complementos novos deste projeto, explicados antes da implementação. classList.add()/remove() vêm dos exemplos de abas. Não se deve atribuir o uso de activeElement/inert ao exemplo de modal do professor.
+
+No encerramento, o assistente repetiu os 72 ciclos, oito testes de substituição/rolagem e 40 verificações de preservação, agora com a mensagem corrigida e a checagem do ancestral inert; todos passaram. Isso é automação no Chrome, não uma revisão manual do aluno. Não houve nova inspeção visual das capturas deste encerramento.

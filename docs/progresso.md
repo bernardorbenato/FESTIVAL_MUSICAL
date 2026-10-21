@@ -350,7 +350,6 @@ Há um JPG e oito WebP reais. O pedido desta etapa determina usar os nomes e ext
 ### Arquivos desta etapa
 
 - estudo/index.html, estudo/style.css e estudo/script.js; apresentacao/index.html, apresentacao/style.css e apresentacao/script.js; docs/progresso.md e docs/roteiro-defesa.md.
-- Nove imagens fornecidas pelo aluno em cada pasta img/, já presentes no início e preservadas. Ainda não foram adicionadas ao índice do Git nem commitadas nesta etapa.
 
 ## Adequação das imagens para JPG/PNG — 21/10/2026
 
@@ -431,3 +430,60 @@ Os PNG ocupam mais espaço que os WebP originais, em troca da codificação sem 
 - Somente docs/progresso.md e docs/roteiro-defesa.md foram editados nesta conferência. Sem arquivos alheios, alterações em referencias/, modal ou validação.
 - O identificador do novo commit será informado após sua criação. O push ficará exclusivamente a cargo do aluno.
 - Continuam pendentes revisão manual atual do aluno, outros navegadores, testes completos de teclado, zoom, leitor de tela, celular físico, fontes/autoria das imagens e validação HTML completa. A conversão JPG/PNG e os caminhos do carrossel estão concluídos.
+
+## Modal dinâmico — 21/10/2026
+
+Implementada somente a janela de detalhes reutilizada pelos nove cards. Os registros anteriores de modal pendente são históricos. A validação do formulário continua sem implementação. Não houve commit ou push.
+
+### Preparação e escolhas
+
+- Lidos AGENTS.md, progresso, código atual e o exemplo de modal do professor em HTML/CSS/JavaScript. Conferidos Git, branch `main` e remoto origin; a árvore de trabalho estava limpa, sem alterações locais a preservar.
+- Mantido o padrão do professor: uma estrutura única, parâmetros de título e mensagem e atualização de textos com innerText. A exibição usa classList.add()/remove(), já estudados nas abas, em vez de alterar display diretamente pelo JavaScript.
+- Antes de implementar, explicados dois complementos de foco: document.activeElement guarda o botão de origem, e inert impede interagir com o fundo enquanto o modal estiver aberto. focus() já aparece no script do professor para a lista de tarefas. Os recursos novos foram explicados nos comentários e no roteiro; não há biblioteca ou rotina de teclado adicional.
+
+### Implementação
+
+- Adicionado um botão “Ver detalhes”, type="button", em cada um dos nove articles. Cada onclick chama bernardo_abrirModal(titulo, mensagem), enviando o nome do artista e uma mensagem sobre sua seleção para o conceito acadêmico, programação fictícia e participação não confirmada.
+- Nenhuma biografia, música ou informação pessoal foi acrescentada. As descrições pendentes dos cards e os avisos acadêmicos permanecem.
+- Uma única div bernardo_modal, fora das seções de abas, contém a caixa, o título, a mensagem e o botão “Fechar detalhes”. O CSS começa com display: none; a combinação .bernardo_modal.bernardo_modal_visivel aplica display: block.
+- A função de abertura coloca titulo e mensagem nos elementos correspondentes com innerText e adiciona bernardo_modal_visivel. Quando já está aberta, uma nova chamada substitui os textos na mesma estrutura, preservando a origem do foco.
+- A função de fechamento remove a classe de exibição, reativa o fundo e devolve o foco ao botão de origem. Os elementos existentes da página foram apenas agrupados em bernardo_pagina para controlar inert; não foram substituídos ou duplicados.
+- A caixa usa role="dialog", aria-modal="true", aria-labelledby e aria-describedby para identificar sua função e associar título e mensagem. Ao abrir, o foco vai para “Fechar detalhes”; tentativas de foco nos controles de fundo ficam bloqueadas por inert. Não há fechamento por clique na máscara ou Escape nesta implementação.
+- Fundo fixo escurecido, largura máxima de 520px limitada a 100% do espaço disponível, altura máxima de 80vh e overflow-y: auto. A camada externa também permite rolagem. O modal fica dentro da largura de 390px; textos longos não impedem acessar o fechamento por rolagem.
+- Texto e fundo se adaptam aos modos claro e escuro. A grafia dos nomes dos artistas é preservada no título; a regra global de títulos em maiúsculas foi desativada apenas dentro da caixa.
+- Preservados abas, carrossel, cinco cores, tema, dois Grids, tabela, formulário desabilitado, caminhos e imagens. A introdução foi atualizada para informar a existência de “Ver detalhes”.
+
+### Verificações realizadas pelo assistente
+
+- Chrome local sem janela em estudo e apresentacao, nas larguras de 1440 e 390px, nos dois temas. Conferido modal inicialmente fechado e fundo inicialmente disponível a cada abertura de página.
+- **72 ciclos principais de abertura e fechamento**: nove cards × duas versões × duas larguras × dois temas. Os botões dos cards foram acionados por eventos de mouse no Chrome; o fechamento foi acionado com Enter no botão “Fechar detalhes”. Conferidos título correto, mensagem fictícia e participação não confirmada, uma única estrutura e fechamento efetivo.
+- Em cada ciclo: fundo inert, foco inicial no fechamento, tentativa de foco em botão de fundo bloqueada e devolução ao botão do card após fechar. Conferidos contorno de 3px e caixa dentro dos limites da largura/altura da janela.
+- O contraste calculado entre texto e fundo da caixa foi no mínimo aproximadamente **13,50:1** nos estados verificados. Essa verificação não é uma auditoria completa de acessibilidade nem mede todos os estados e controles do site.
+- **Oito testes adicionais**: uma abertura foi seguida por nova chamada da função com outro título e mensagem sem fechar a janela, confirmando substituição na estrutura única; depois, uma mensagem longa artificial confirmou altura limitada, rolagem interna e acesso ao fechamento. O texto de teste não entrou no HTML do projeto.
+- **Quarenta verificações de preservação**: cinco cores × dois temas × duas versões × duas larguras. Depois de navegar para Galeria, mudar o slide e abrir/fechar detalhes em Atrações, conferidos cor/tema e índice do carrossel preservados, uma aba visível e um botão ativo, formulário desabilitado e ausência de rolagem horizontal da página.
+- Nenhuma exceção JavaScript capturada na execução final. As primeiras conferências detectaram a transformação visual dos títulos em maiúsculas, corrigida apenas no título do modal, e escapes incorretos da rotina temporária, corrigidos antes da execução final aprovada.
+- Quatro capturas da janela Mistery foram abertas e inspecionadas: desktop/celular simulado nos temas claro/escuro. Testes realizados fora do sandbox com autorização do ambiente; scripts, capturas e resultados ficaram na pasta temporária, sem dependências adicionadas ao site.
+- Comparação completa das versões: mesma lista de arquivos, código HTML/CSS/JS igual ao remover somente comentários e normalizar CRLF/LF, imagens idênticas. Conferidos IDs únicos e prefixados, nove botões, uma janela, tags fechadas corretamente, contagens semânticas, labels, âncoras, caminhos locais, dois fieldsets desabilitados e duas aplicações inline. Imagens e materiais de referencias/ sem alterações.
+- A revisão manual anterior continua atribuída a Bernardo. Os testes desta etapa foram automação e inspeção de capturas pelo assistente; não representam uma revisão manual do novo modal pelo aluno.
+
+### Pendências e limite da etapa
+
+- Revisão manual do modal pelo aluno, leitor de tela, outros navegadores, zoom e celular físico. inert foi verificado no Chrome usado nos testes; compatibilidade e comportamento com outras tecnologias assistivas não foram auditados.
+- Não foram adicionados atalhos Escape ou fechamento por clique fora da caixa. A ação disponível é o botão de fechamento, que também funciona pelo teclado.
+- Validação do formulário, fontes das imagens, descrições verificadas e validação HTML completa permanecem pendentes. Nenhuma próxima funcionalidade deve ser iniciada automaticamente.
+
+### Arquivos alterados
+
+- estudo/index.html, estudo/style.css e estudo/script.js; apresentacao/index.html, apresentacao/style.css e apresentacao/script.js; docs/progresso.md e docs/roteiro-defesa.md.
+
+## Encerramento do modal — 21/10/2026
+
+- Conferidos Git, branch `main`, remoto origin e alterações dos oito arquivos desta etapa. Sem avanço para validação. O aluno reservou o push para execução manual.
+- Na revisão da alteração do aluno, encontrado “Conteúdo demonstrativo” como parágrafo adicional nos dois cards de AniRap. O HTML de apresentação também passava esse texto como terceiro argumento, ignorado pela função de dois parâmetros, enquanto o onclick de estudo não o incluía. Foi corrigido para acrescentar exatamente o texto ao segundo argumento em ambas as versões; o parágrafo foi preservado e os outros oito artistas permaneceram sem esse acréscimo.
+- Preservada a formatação atual do HTML de apresentação ao sincronizar estudo, com seus comentários explicativos. Conferida igualdade das versões após retirar somente comentários e normalizar CRLF/LF.
+- Localizados os trechos reais de bernardo_focoAnterior, document.activeElement, inert e focus() e registrados no roteiro. A busca nos arquivos de código de referencias/ confirmou focus() no exemplo de tarefas (linhas 274 e 286); activeElement e inert não foram encontrados nesses exemplos e estão identificados como complementos novos. O modal do professor usa innerText e style.display, enquanto classList vem das abas.
+- Reexecutados os testes automatizados no Chrome nas duas versões, em 1440/390px e nos dois temas: 72 ciclos pelos nove cards, oito casos de substituição/rolagem e 40 verificações de preservação de abas, slide, cores e tema. Conferido também que apenas AniRap termina sua mensagem com “Conteúdo demonstrativo”. Todos passaram; nenhuma exceção JavaScript capturada.
+- Em cada abertura, comprovado que bernardo_modal não pertence a bernardo_pagina nem tem ancestral [inert]. Foco entrou no fechamento, foco no fundo foi bloqueado e retornou ao botão de origem após fechar. A caixa começa fechada e o grupo de fundo começa sem inert.
+- Estes testes são do assistente por automação; não houve nova inspeção visual das capturas nem nova revisão manual atribuída ao aluno neste encerramento. Mantidas as pendências de revisão manual do modal, outros navegadores, leitor de tela, zoom e celular físico.
+- Diff revisado para commit com a mensagem "Adiciona modal dinâmico às atrações do Geek Beats", limitado aos seis arquivos HTML/CSS/JS das versões e aos dois documentos. O identificador será informado após criar o commit. Nenhum push será feito pelo assistente.
+- Nove imagens fornecidas pelo aluno em cada pasta img/, já presentes no início e preservadas. Ainda não foram adicionadas ao índice do Git nem commitadas nesta etapa.

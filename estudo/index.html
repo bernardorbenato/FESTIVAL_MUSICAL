@@ -25,525 +25,668 @@
   </head>
 
   <body id="bernardo_topo">
-    <!-- O único header apresenta o portal e funciona como banner textual nesta etapa. -->
-    <header class="bernardo_cabecalho">
-      <div class="bernardo_banner">
-        <p class="bernardo_etiqueta">Festival fictício de música geek</p>
-        <h1>Geek Beats</h1>
-        <p class="bernardo_slogan">A cultura geek ganha voz.</p>
-        <p>Uma proposta de encontro entre música geek e arte urbana.</p>
-        <p class="bernardo_aviso_academico">
-          <strong
-            >Projeto acadêmico: programação fictícia, sem participações
-            confirmadas.</strong
-          >
-        </p>
-        <p class="bernardo_imagem_pendente">
-          Espaço para o banner: imagem local JPG ou PNG pendente.
-        </p>
-      </div>
-    </header>
+    <!-- Este grupo recebe inert enquanto o modal esta aberto, bloqueando o fundo. -->
+    <div id="bernardo_pagina">
+      <!-- O único header apresenta o portal e funciona como banner textual nesta etapa. -->
+      <header class="bernardo_cabecalho">
+        <div class="bernardo_banner">
+          <p class="bernardo_etiqueta">Festival fictício de música geek</p>
+          <h1>Geek Beats</h1>
+          <p class="bernardo_slogan">A cultura geek ganha voz.</p>
+          <p>Uma proposta de encontro entre música geek e arte urbana.</p>
+          <p class="bernardo_aviso_academico">
+            <strong
+              >Projeto acadêmico: programação fictícia, sem participações
+              confirmadas.</strong
+            >
+          </p>
+          <p class="bernardo_imagem_pendente">
+            Espaço para o banner: imagem local JPG ou PNG pendente.
+          </p>
+        </div>
+      </header>
 
-    <!-- onclick abre a seção antes da navegação normal até o ID do href.
+      <!-- onclick abre a seção antes da navegação normal até o ID do href.
          O menu com links permanece separado dos botões de abas. -->
-    <nav class="bernardo_menu" aria-label="Navegação principal">
-      <ul>
-        <li>
-          <a href="#bernardo_festival" onclick="bernardo_mostrarAba('festival')"
-            >Festival</a
-          >
-        </li>
-        <li>
-          <a href="#bernardo_atracoes" onclick="bernardo_mostrarAba('atracoes')"
-            >Atrações</a
-          >
-        </li>
-        <li>
-          <a
-            href="#bernardo_programacao"
-            onclick="bernardo_mostrarAba('programacao')"
-            >Programação</a
-          >
-        </li>
-        <li>
-          <a
-            href="#bernardo_estrutura"
-            onclick="bernardo_mostrarAba('estrutura')"
-            >Estrutura</a
-          >
-        </li>
-        <li>
-          <a href="#bernardo_galeria" onclick="bernardo_mostrarAba('galeria')"
-            >Galeria</a
-          >
-        </li>
-        <li>
-          <a
-            href="#bernardo_inscricao"
-            onclick="bernardo_mostrarAba('inscricao')"
-            >Inscrição</a
-          >
-        </li>
-      </ul>
-    </nav>
+      <nav class="bernardo_menu" aria-label="Navegação principal">
+        <ul>
+          <li>
+            <a
+              href="#bernardo_festival"
+              onclick="bernardo_mostrarAba('festival')"
+              >Festival</a
+            >
+          </li>
+          <li>
+            <a
+              href="#bernardo_atracoes"
+              onclick="bernardo_mostrarAba('atracoes')"
+              >Atrações</a
+            >
+          </li>
+          <li>
+            <a
+              href="#bernardo_programacao"
+              onclick="bernardo_mostrarAba('programacao')"
+              >Programação</a
+            >
+          </li>
+          <li>
+            <a
+              href="#bernardo_estrutura"
+              onclick="bernardo_mostrarAba('estrutura')"
+              >Estrutura</a
+            >
+          </li>
+          <li>
+            <a href="#bernardo_galeria" onclick="bernardo_mostrarAba('galeria')"
+              >Galeria</a
+            >
+          </li>
+          <li>
+            <a
+              href="#bernardo_inscricao"
+              onclick="bernardo_mostrarAba('inscricao')"
+              >Inscrição</a
+            >
+          </li>
+        </ul>
+      </nav>
 
-    <main id="bernardo_principal">
-      <!-- O parâmetro é o sufixo que relaciona cada botão ao ID da seção.
+      <main id="bernardo_principal">
+        <!-- O parâmetro é o sufixo que relaciona cada botão ao ID da seção.
            Festival já começa destacado, assim como seu conteúdo começa visível. -->
-      <div class="bernardo_abas">
-        <button
-          type="button"
-          id="bernardo_botao_festival"
-          class="bernardo_botao_aba bernardo_ativo"
-          onclick="bernardo_mostrarAba('festival')"
-        >
-          Festival
-        </button>
-        <button
-          type="button"
-          id="bernardo_botao_atracoes"
-          class="bernardo_botao_aba"
-          onclick="bernardo_mostrarAba('atracoes')"
-        >
-          Atrações
-        </button>
-        <button
-          type="button"
-          id="bernardo_botao_programacao"
-          class="bernardo_botao_aba"
-          onclick="bernardo_mostrarAba('programacao')"
-        >
-          Programação
-        </button>
-        <button
-          type="button"
-          id="bernardo_botao_estrutura"
-          class="bernardo_botao_aba"
-          onclick="bernardo_mostrarAba('estrutura')"
-        >
-          Estrutura
-        </button>
-        <button
-          type="button"
-          id="bernardo_botao_galeria"
-          class="bernardo_botao_aba"
-          onclick="bernardo_mostrarAba('galeria')"
-        >
-          Galeria
-        </button>
-        <button
-          type="button"
-          id="bernardo_botao_inscricao"
-          class="bernardo_botao_aba"
-          onclick="bernardo_mostrarAba('inscricao')"
-        >
-          Inscrição
-        </button>
-      </div>
-
-      <!-- O Grid externo distribui conteúdo e avisos em colunas de proporções diferentes. -->
-      <div class="bernardo_layout">
-        <div class="bernardo_conteudo">
-          <!-- Apenas a seção com bernardo_exibida aparece; os demais conteúdos são preservados no HTML. -->
-          <section
-            id="bernardo_festival"
-            class="bernardo_secao bernardo_exibida"
+        <div class="bernardo_abas">
+          <button
+            type="button"
+            id="bernardo_botao_festival"
+            class="bernardo_botao_aba bernardo_ativo"
+            onclick="bernardo_mostrarAba('festival')"
           >
-            <!-- CSS inline: um destaque local, sem concentrar o layout no HTML. -->
-            <h2 style="font-style: italic">Sobre o Festival</h2>
-            <p>Quero aprender mais sobre css e javascript</p>
-            <p>
-              Geek Beats é um portal criado para estudar HTML, CSS e JavaScript
-              a partir de um festival imaginário de música geek.
-            </p>
-            <p>
-              A proposta visual será inspirada em cartazes de shows, grafite e
-              concreto, aproximando a cultura geek da arte urbana.
-            </p>
-            <h3>Sobre esta demonstração</h3>
-            <p>
-              Os nomes das atrações fazem parte da proposta acadêmica. Não há
-              anúncio de evento real, venda de ingressos ou confirmação de
-              artistas.
-            </p>
-            <p>
-              Use os botões ou os links do menu para abrir uma seção por vez. As
-              cores e o modo claro/escuro podem ser personalizados na área de
-              avisos. Modal e validação ainda não estão implementados.
-            </p>
-          </section>
-
-          <section id="bernardo_atracoes" class="bernardo_secao">
-            <h2>Atrações</h2>
-            <p>
-              Seleção proposta para a programação fictícia. Nenhuma participação
-              está confirmada.
-            </p>
-
-            <!-- Cada article é um card de conteúdo independente, com título h3 dentro da seção h2. -->
-            <div class="bernardo_cards">
-              <article id="bernardo_anirap" class="bernardo_card">
-                <h3>AniRap</h3>
-                <p class="bernardo_imagem_pendente">
-                  Espaço para imagem local de AniRap.
-                </p>
-                <p>Descrição pendente de fonte verificada.</p>
-              </article>
-              <article id="bernardo_m4rkim" class="bernardo_card">
-                <h3>M4rkim</h3>
-                <p class="bernardo_imagem_pendente">
-                  Espaço para imagem local de M4rkim.
-                </p>
-                <p>Descrição pendente de fonte verificada.</p>
-              </article>
-              <article id="bernardo_oshaman" class="bernardo_card">
-                <h3>oShaman</h3>
-                <p class="bernardo_imagem_pendente">
-                  Espaço para imagem local de oShaman.
-                </p>
-                <p>Descrição pendente de fonte verificada.</p>
-              </article>
-              <article id="bernardo_7minutoz" class="bernardo_card">
-                <h3>7 Minutoz</h3>
-                <p class="bernardo_imagem_pendente">
-                  Espaço para imagem local de 7 Minutoz.
-                </p>
-                <p>Descrição pendente de fonte verificada.</p>
-              </article>
-              <article id="bernardo_blxck" class="bernardo_card">
-                <h3>BLXCK</h3>
-                <p class="bernardo_imagem_pendente">
-                  Espaço para imagem local de BLXCK.
-                </p>
-                <p>Descrição pendente de fonte verificada.</p>
-              </article>
-              <article id="bernardo_enygma" class="bernardo_card">
-                <h3>Enygma</h3>
-                <p class="bernardo_imagem_pendente">
-                  Espaço para imagem local de Enygma.
-                </p>
-                <p>Descrição pendente de fonte verificada.</p>
-              </article>
-              <article id="bernardo_daarui" class="bernardo_card">
-                <h3>Daarui</h3>
-                <p class="bernardo_imagem_pendente">
-                  Espaço para imagem local de Daarui.
-                </p>
-                <p>Descrição pendente de fonte verificada.</p>
-              </article>
-              <article id="bernardo_anny" class="bernardo_card">
-                <h3>Anny</h3>
-                <p class="bernardo_imagem_pendente">
-                  Espaço para imagem local de Anny.
-                </p>
-                <p>Descrição pendente de fonte verificada.</p>
-              </article>
-              <article id="bernardo_mistery" class="bernardo_card">
-                <h3>Mistery</h3>
-                <p class="bernardo_imagem_pendente">
-                  Espaço para imagem local de Mistery.
-                </p>
-                <p>Descrição pendente de fonte verificada.</p>
-              </article>
-            </div>
-          </section>
-
-          <section id="bernardo_programacao" class="bernardo_secao">
-            <h2>Programação</h2>
-            <p>
-              Simulação acadêmica de distribuição das atrações em dois palcos
-              imaginários. Os blocos indicam uma sequência proposta, sem datas
-              ou horários reais.
-            </p>
-
-            <!-- 7×5: uma linha de cabeçalho e seis de dados, com cinco células por linha, sem mesclagem. -->
-            <!-- A caixa pode receber foco pelo teclado e rolar horizontalmente em telas pequenas. -->
-            <div
-              class="bernardo_tabela_area"
-              tabindex="0"
-              role="region"
-              aria-label="Programação fictícia: tabela com rolagem horizontal"
-            >
-              <table id="bernardo_tabela">
-                <caption>
-                  Programação fictícia do Geek Beats — participações não
-                  confirmadas
-                </caption>
-                <thead>
-                  <tr>
-                    <th scope="col">Bloco</th>
-                    <th scope="col">Palco Concreto</th>
-                    <th scope="col">Palco Grafite</th>
-                    <th scope="col">Momento</th>
-                    <th scope="col">Observação</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th scope="row">Abertura</th>
-                    <td>Apresentação da proposta</td>
-                    <td>Sem atração neste bloco</td>
-                    <td>Boas-vindas</td>
-                    <td>Simulação acadêmica</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">Bloco 1</th>
-                    <td>AniRap</td>
-                    <td>M4rkim</td>
-                    <td>Atrações propostas</td>
-                    <td>Sem confirmação de participação</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">Bloco 2</th>
-                    <td>oShaman</td>
-                    <td>7 Minutoz</td>
-                    <td>Atrações propostas</td>
-                    <td>Sem confirmação de participação</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">Bloco 3</th>
-                    <td>BLXCK</td>
-                    <td>Enygma</td>
-                    <td>Atrações propostas</td>
-                    <td>Sem confirmação de participação</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">Bloco 4</th>
-                    <td>Daarui</td>
-                    <td>Anny</td>
-                    <td>Atrações propostas</td>
-                    <td>Sem confirmação de participação</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">Encerramento</th>
-                    <td>Mistery</td>
-                    <td>Sem atração neste bloco</td>
-                    <td>Última atração proposta</td>
-                    <td>Sem confirmação de participação</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </section>
-
-          <section id="bernardo_estrutura" class="bernardo_secao">
-            <h2>Estrutura</h2>
-            <p>
-              Ambientes imaginados para o festival. Esta proposta não descreve
-              um espaço real nem serviços disponíveis.
-            </p>
-            <h3>Palcos Concreto e Grafite</h3>
-            <p>
-              Dois espaços fictícios organizam as atrações na tabela de
-              programação.
-            </p>
-            <h3>Convivência e arte urbana</h3>
-            <p>
-              Uma área de convivência e um mural de arte fazem parte do conceito
-              do projeto.
-            </p>
-            <h3>Informações do evento</h3>
-            <p>
-              Não há local, data ou horário de festival real definidos nesta
-              demonstração.
-            </p>
-          </section>
-
-          <section id="bernardo_galeria" class="bernardo_secao">
-            <h2>Galeria</h2>
-            <p>
-              Imagens da seleção proposta para o festival fictício. Nenhuma
-              participação está confirmada.
-            </p>
-
-            <!-- Uma mesma imagem recebe o caminho e a legenda da posicao atual dos arrays. -->
-            <div class="bernardo_carrossel">
-              <figure>
-                <img
-                  id="bernardo_foto_carrossel"
-                  src="img/anirap.jpg"
-                  alt="AniRap — foto em um estúdio."
-                />
-                <figcaption id="bernardo_legenda_carrossel">
-                  AniRap — foto em um estúdio.
-                </figcaption>
-              </figure>
-              <p id="bernardo_contador_carrossel">1 de 9</p>
-              <div class="bernardo_controles_carrossel">
-                <!-- O parametro direcao vale -1 para voltar e 1 para avancar. -->
-                <button
-                  type="button"
-                  id="bernardo_anterior"
-                  onclick="bernardo_mudarFoto(-1)"
-                >
-                  Anterior
-                </button>
-                <button
-                  type="button"
-                  id="bernardo_proximo"
-                  onclick="bernardo_mudarFoto(1)"
-                >
-                  Próximo
-                </button>
-              </div>
-            </div>
-          </section>
-
-          <section id="bernardo_inscricao" class="bernardo_secao">
-            <h2>Inscrição</h2>
-            <p id="bernardo_aviso_formulario">
-              Formulário demonstrativo indisponível nesta etapa. Os campos estão
-              desabilitados. Não há inscrição real, envio ou armazenamento de
-              dados.
-            </p>
-            <form
-              id="bernardo_formulario"
-              aria-describedby="bernardo_aviso_formulario"
-            >
-              <!-- disabled impede preencher e submeter estes controles até a etapa de validação.
-                 Os dois fieldsets organizam dados e preferências; legend nomeia cada grupo.
-                 for e id iguais ligam o label ao campo. name identifica o controle do formulário. -->
-              <fieldset disabled>
-                <legend>Dados de identificação — demonstração</legend>
-                <div class="bernardo_campo">
-                  <label for="bernardo_nome">Nome:</label>
-                  <input
-                    type="text"
-                    id="bernardo_nome"
-                    name="bernardo_nome"
-                    required
-                  />
-                </div>
-                <div class="bernardo_campo">
-                  <label for="bernardo_idade">Idade:</label>
-                  <input
-                    type="number"
-                    id="bernardo_idade"
-                    name="bernardo_idade"
-                    min="0"
-                    step="1"
-                    required
-                  />
-                </div>
-                <div class="bernardo_campo">
-                  <label for="bernardo_email">E-mail:</label>
-                  <input
-                    type="email"
-                    id="bernardo_email"
-                    name="bernardo_email"
-                    required
-                  />
-                </div>
-                <div class="bernardo_campo">
-                  <label for="bernardo_cidade">Cidade:</label>
-                  <input
-                    type="text"
-                    id="bernardo_cidade"
-                    name="bernardo_cidade"
-                    required
-                  />
-                </div>
-              </fieldset>
-              <fieldset disabled>
-                <legend>Preferências e ciência da demonstração</legend>
-                <div class="bernardo_campo">
-                  <label for="bernardo_preferencia">Preferência musical:</label>
-                  <select
-                    id="bernardo_preferencia"
-                    name="bernardo_preferencia"
-                    required
-                  >
-                    <option value="">Selecione uma opção</option>
-                    <option value="rap_geek">Rap geek</option>
-                    <option value="trilhas_jogos">Trilhas de jogos</option>
-                    <option value="trilhas_animes">Trilhas de animes</option>
-                    <option value="outra">Outra preferência</option>
-                  </select>
-                </div>
-                <div class="bernardo_campo">
-                  <label for="bernardo_mensagem">Mensagem:</label>
-                  <textarea
-                    id="bernardo_mensagem"
-                    name="bernardo_mensagem"
-                    rows="4"
-                    required
-                  ></textarea>
-                </div>
-                <div class="bernardo_campo">
-                  <input
-                    type="checkbox"
-                    id="bernardo_ciencia"
-                    name="bernardo_ciencia"
-                    required
-                  />
-                  <label for="bernardo_ciencia"
-                    >Estou ciente de que este formulário é uma demonstração
-                    acadêmica e não realiza inscrição real.</label
-                  >
-                </div>
-                <button type="button" id="bernardo_validar" disabled>
-                  Validação disponível em etapa futura
-                </button>
-              </fieldset>
-            </form>
-          </section>
+            Festival
+          </button>
+          <button
+            type="button"
+            id="bernardo_botao_atracoes"
+            class="bernardo_botao_aba"
+            onclick="bernardo_mostrarAba('atracoes')"
+          >
+            Atrações
+          </button>
+          <button
+            type="button"
+            id="bernardo_botao_programacao"
+            class="bernardo_botao_aba"
+            onclick="bernardo_mostrarAba('programacao')"
+          >
+            Programação
+          </button>
+          <button
+            type="button"
+            id="bernardo_botao_estrutura"
+            class="bernardo_botao_aba"
+            onclick="bernardo_mostrarAba('estrutura')"
+          >
+            Estrutura
+          </button>
+          <button
+            type="button"
+            id="bernardo_botao_galeria"
+            class="bernardo_botao_aba"
+            onclick="bernardo_mostrarAba('galeria')"
+          >
+            Galeria
+          </button>
+          <button
+            type="button"
+            id="bernardo_botao_inscricao"
+            class="bernardo_botao_aba"
+            onclick="bernardo_mostrarAba('inscricao')"
+          >
+            Inscrição
+          </button>
         </div>
 
-        <!-- aside contém informações complementares; o CSS o coloca ao lado ou abaixo do conteúdo. -->
-        <aside id="bernardo_lateral">
-          <h2>Avisos do projeto</h2>
-          <div class="bernardo_personalizacao">
-            <h3>Personalização</h3>
-            <p>As cores mudam o fundo ao redor dos blocos de conteúdo.</p>
+        <!-- O Grid externo distribui conteúdo e avisos em colunas de proporções diferentes. -->
+        <div class="bernardo_layout">
+          <div class="bernardo_conteudo">
+            <!-- Apenas a seção com bernardo_exibida aparece; os demais conteúdos são preservados no HTML. -->
+            <section
+              id="bernardo_festival"
+              class="bernardo_secao bernardo_exibida"
+            >
+              <!-- CSS inline: um destaque local, sem concentrar o layout no HTML. -->
+              <h2 style="font-style: italic">Sobre o Festival</h2>
+              <p>Quero aprender mais sobre css e javascript</p>
+              <p>
+                Geek Beats é um portal criado para estudar HTML, CSS e
+                JavaScript a partir de um festival imaginário de música geek.
+              </p>
+              <p>
+                A proposta visual será inspirada em cartazes de shows, grafite e
+                concreto, aproximando a cultura geek da arte urbana.
+              </p>
+              <h3>Sobre esta demonstração</h3>
+              <p>
+                Os nomes das atrações fazem parte da proposta acadêmica. Não há
+                anúncio de evento real, venda de ingressos ou confirmação de
+                artistas.
+              </p>
+              <p>
+                Use os botões ou os links do menu para abrir uma seção por vez.
+                As cores e o modo claro/escuro podem ser personalizados na área
+                de avisos. Use “Ver detalhes” nos cards para abrir a proposta de
+                cada atração. A validação do formulário ainda não está
+                implementada.
+              </p>
+            </section>
 
-            <!-- onclick chama a função quando o botão é clicado.
+            <section id="bernardo_atracoes" class="bernardo_secao">
+              <h2>Atrações</h2>
+              <p>
+                Seleção proposta para a programação fictícia. Nenhuma
+                participação está confirmada.
+              </p>
+
+              <!-- Cada article é um card de conteúdo independente, com título h3 dentro da seção h2. -->
+              <div class="bernardo_cards">
+                <article id="bernardo_anirap" class="bernardo_card">
+                  <h3>AniRap</h3>
+                  <p class="bernardo_imagem_pendente">
+                    Espaço para imagem local de AniRap.
+                  </p>
+                  <p>Descrição pendente de fonte verificada.</p>
+                  <p>Conteúdo demonstrativo</p>
+
+                  <button
+                    type="button"
+                    class="bernardo_detalhes"
+                    onclick="
+                      bernardo_abrirModal('AniRap', 'AniRap foi selecionado para compor o conceito acadêmico do Geek Beats. Programação fictícia, sem participação confirmada. Conteúdo demonstrativo')
+                    "
+                  >
+                    Ver detalhes
+                  </button>
+                </article>
+                <article id="bernardo_m4rkim" class="bernardo_card">
+                  <h3>M4rkim</h3>
+                  <p class="bernardo_imagem_pendente">
+                    Espaço para imagem local de M4rkim.
+                  </p>
+                  <p>Descrição pendente de fonte verificada.</p>
+                  <button
+                    type="button"
+                    class="bernardo_detalhes"
+                    onclick="
+                      bernardo_abrirModal(
+                        'M4rkim',
+                        'M4rkim foi selecionado para compor o conceito acadêmico do Geek Beats. Programação fictícia, sem participação confirmada.',
+                      )
+                    "
+                  >
+                    Ver detalhes
+                  </button>
+                </article>
+                <article id="bernardo_oshaman" class="bernardo_card">
+                  <h3>oShaman</h3>
+                  <p class="bernardo_imagem_pendente">
+                    Espaço para imagem local de oShaman.
+                  </p>
+                  <p>Descrição pendente de fonte verificada.</p>
+                  <button
+                    type="button"
+                    class="bernardo_detalhes"
+                    onclick="
+                      bernardo_abrirModal(
+                        'oShaman',
+                        'oShaman foi selecionado para compor o conceito acadêmico do Geek Beats. Programação fictícia, sem participação confirmada.',
+                      )
+                    "
+                  >
+                    Ver detalhes
+                  </button>
+                </article>
+                <article id="bernardo_7minutoz" class="bernardo_card">
+                  <h3>7 Minutoz</h3>
+                  <p class="bernardo_imagem_pendente">
+                    Espaço para imagem local de 7 Minutoz.
+                  </p>
+                  <p>Descrição pendente de fonte verificada.</p>
+                  <button
+                    type="button"
+                    class="bernardo_detalhes"
+                    onclick="
+                      bernardo_abrirModal(
+                        '7 Minutoz',
+                        '7 Minutoz foi selecionado para compor o conceito acadêmico do Geek Beats. Programação fictícia, sem participação confirmada.',
+                      )
+                    "
+                  >
+                    Ver detalhes
+                  </button>
+                </article>
+                <article id="bernardo_blxck" class="bernardo_card">
+                  <h3>BLXCK</h3>
+                  <p class="bernardo_imagem_pendente">
+                    Espaço para imagem local de BLXCK.
+                  </p>
+                  <p>Descrição pendente de fonte verificada.</p>
+                  <button
+                    type="button"
+                    class="bernardo_detalhes"
+                    onclick="
+                      bernardo_abrirModal(
+                        'BLXCK',
+                        'BLXCK foi selecionado para compor o conceito acadêmico do Geek Beats. Programação fictícia, sem participação confirmada.',
+                      )
+                    "
+                  >
+                    Ver detalhes
+                  </button>
+                </article>
+                <article id="bernardo_enygma" class="bernardo_card">
+                  <h3>Enygma</h3>
+                  <p class="bernardo_imagem_pendente">
+                    Espaço para imagem local de Enygma.
+                  </p>
+                  <p>Descrição pendente de fonte verificada.</p>
+                  <button
+                    type="button"
+                    class="bernardo_detalhes"
+                    onclick="
+                      bernardo_abrirModal(
+                        'Enygma',
+                        'Enygma foi selecionado para compor o conceito acadêmico do Geek Beats. Programação fictícia, sem participação confirmada.',
+                      )
+                    "
+                  >
+                    Ver detalhes
+                  </button>
+                </article>
+                <article id="bernardo_daarui" class="bernardo_card">
+                  <h3>Daarui</h3>
+                  <p class="bernardo_imagem_pendente">
+                    Espaço para imagem local de Daarui.
+                  </p>
+                  <p>Descrição pendente de fonte verificada.</p>
+                  <button
+                    type="button"
+                    class="bernardo_detalhes"
+                    onclick="
+                      bernardo_abrirModal(
+                        'Daarui',
+                        'Daarui foi selecionado para compor o conceito acadêmico do Geek Beats. Programação fictícia, sem participação confirmada.',
+                      )
+                    "
+                  >
+                    Ver detalhes
+                  </button>
+                </article>
+                <article id="bernardo_anny" class="bernardo_card">
+                  <h3>Anny</h3>
+                  <p class="bernardo_imagem_pendente">
+                    Espaço para imagem local de Anny.
+                  </p>
+                  <p>Descrição pendente de fonte verificada.</p>
+                  <button
+                    type="button"
+                    class="bernardo_detalhes"
+                    onclick="
+                      bernardo_abrirModal(
+                        'Anny',
+                        'Anny foi selecionado para compor o conceito acadêmico do Geek Beats. Programação fictícia, sem participação confirmada.',
+                      )
+                    "
+                  >
+                    Ver detalhes
+                  </button>
+                </article>
+                <article id="bernardo_mistery" class="bernardo_card">
+                  <h3>Mistery</h3>
+                  <p class="bernardo_imagem_pendente">
+                    Espaço para imagem local de Mistery.
+                  </p>
+                  <p>Descrição pendente de fonte verificada.</p>
+                  <button
+                    type="button"
+                    class="bernardo_detalhes"
+                    onclick="
+                      bernardo_abrirModal(
+                        'Mistery',
+                        'Mistery foi selecionado para compor o conceito acadêmico do Geek Beats. Programação fictícia, sem participação confirmada.',
+                      )
+                    "
+                  >
+                    Ver detalhes
+                  </button>
+                </article>
+              </div>
+            </section>
+
+            <section id="bernardo_programacao" class="bernardo_secao">
+              <h2>Programação</h2>
+              <p>
+                Simulação acadêmica de distribuição das atrações em dois palcos
+                imaginários. Os blocos indicam uma sequência proposta, sem datas
+                ou horários reais.
+              </p>
+
+              <!-- 7×5: uma linha de cabeçalho e seis de dados, com cinco células por linha, sem mesclagem. -->
+              <!-- A caixa pode receber foco pelo teclado e rolar horizontalmente em telas pequenas. -->
+              <div
+                class="bernardo_tabela_area"
+                tabindex="0"
+                role="region"
+                aria-label="Programação fictícia: tabela com rolagem horizontal"
+              >
+                <table id="bernardo_tabela">
+                  <caption>
+                    Programação fictícia do Geek Beats — participações não
+                    confirmadas
+                  </caption>
+                  <thead>
+                    <tr>
+                      <th scope="col">Bloco</th>
+                      <th scope="col">Palco Concreto</th>
+                      <th scope="col">Palco Grafite</th>
+                      <th scope="col">Momento</th>
+                      <th scope="col">Observação</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">Abertura</th>
+                      <td>Apresentação da proposta</td>
+                      <td>Sem atração neste bloco</td>
+                      <td>Boas-vindas</td>
+                      <td>Simulação acadêmica</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Bloco 1</th>
+                      <td>AniRap</td>
+                      <td>M4rkim</td>
+                      <td>Atrações propostas</td>
+                      <td>Sem confirmação de participação</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Bloco 2</th>
+                      <td>oShaman</td>
+                      <td>7 Minutoz</td>
+                      <td>Atrações propostas</td>
+                      <td>Sem confirmação de participação</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Bloco 3</th>
+                      <td>BLXCK</td>
+                      <td>Enygma</td>
+                      <td>Atrações propostas</td>
+                      <td>Sem confirmação de participação</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Bloco 4</th>
+                      <td>Daarui</td>
+                      <td>Anny</td>
+                      <td>Atrações propostas</td>
+                      <td>Sem confirmação de participação</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Encerramento</th>
+                      <td>Mistery</td>
+                      <td>Sem atração neste bloco</td>
+                      <td>Última atração proposta</td>
+                      <td>Sem confirmação de participação</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            <section id="bernardo_estrutura" class="bernardo_secao">
+              <h2>Estrutura</h2>
+              <p>
+                Ambientes imaginados para o festival. Esta proposta não descreve
+                um espaço real nem serviços disponíveis.
+              </p>
+              <h3>Palcos Concreto e Grafite</h3>
+              <p>
+                Dois espaços fictícios organizam as atrações na tabela de
+                programação.
+              </p>
+              <h3>Convivência e arte urbana</h3>
+              <p>
+                Uma área de convivência e um mural de arte fazem parte do
+                conceito do projeto.
+              </p>
+              <h3>Informações do evento</h3>
+              <p>
+                Não há local, data ou horário de festival real definidos nesta
+                demonstração.
+              </p>
+            </section>
+
+            <section id="bernardo_galeria" class="bernardo_secao">
+              <h2>Galeria</h2>
+              <p>
+                Imagens da seleção proposta para o festival fictício. Nenhuma
+                participação está confirmada.
+              </p>
+
+              <!-- Uma mesma imagem recebe o caminho e a legenda da posicao atual dos arrays. -->
+              <div class="bernardo_carrossel">
+                <figure>
+                  <img
+                    id="bernardo_foto_carrossel"
+                    src="img/anirap.jpg"
+                    alt="AniRap — foto em um estúdio."
+                  />
+                  <figcaption id="bernardo_legenda_carrossel">
+                    AniRap — foto em um estúdio.
+                  </figcaption>
+                </figure>
+                <p id="bernardo_contador_carrossel">1 de 9</p>
+                <div class="bernardo_controles_carrossel">
+                  <!-- O parametro direcao vale -1 para voltar e 1 para avancar. -->
+                  <button
+                    type="button"
+                    id="bernardo_anterior"
+                    onclick="bernardo_mudarFoto(-1)"
+                  >
+                    Anterior
+                  </button>
+                  <button
+                    type="button"
+                    id="bernardo_proximo"
+                    onclick="bernardo_mudarFoto(1)"
+                  >
+                    Próximo
+                  </button>
+                </div>
+              </div>
+            </section>
+
+            <section id="bernardo_inscricao" class="bernardo_secao">
+              <h2>Inscrição</h2>
+              <p id="bernardo_aviso_formulario">
+                Formulário demonstrativo indisponível nesta etapa. Os campos
+                estão desabilitados. Não há inscrição real, envio ou
+                armazenamento de dados.
+              </p>
+              <form
+                id="bernardo_formulario"
+                aria-describedby="bernardo_aviso_formulario"
+              >
+                <!-- disabled impede preencher e submeter estes controles até a etapa de validação.
+                 Os dois fieldsets organizam dados e preferências; legend nomeia cada grupo.
+                 for e id iguais ligam o label ao campo. name identifica o controle do formulário. -->
+                <fieldset disabled>
+                  <legend>Dados de identificação — demonstração</legend>
+                  <div class="bernardo_campo">
+                    <label for="bernardo_nome">Nome:</label>
+                    <input
+                      type="text"
+                      id="bernardo_nome"
+                      name="bernardo_nome"
+                      required
+                    />
+                  </div>
+                  <div class="bernardo_campo">
+                    <label for="bernardo_idade">Idade:</label>
+                    <input
+                      type="number"
+                      id="bernardo_idade"
+                      name="bernardo_idade"
+                      min="0"
+                      step="1"
+                      required
+                    />
+                  </div>
+                  <div class="bernardo_campo">
+                    <label for="bernardo_email">E-mail:</label>
+                    <input
+                      type="email"
+                      id="bernardo_email"
+                      name="bernardo_email"
+                      required
+                    />
+                  </div>
+                  <div class="bernardo_campo">
+                    <label for="bernardo_cidade">Cidade:</label>
+                    <input
+                      type="text"
+                      id="bernardo_cidade"
+                      name="bernardo_cidade"
+                      required
+                    />
+                  </div>
+                </fieldset>
+                <fieldset disabled>
+                  <legend>Preferências e ciência da demonstração</legend>
+                  <div class="bernardo_campo">
+                    <label for="bernardo_preferencia"
+                      >Preferência musical:</label
+                    >
+                    <select
+                      id="bernardo_preferencia"
+                      name="bernardo_preferencia"
+                      required
+                    >
+                      <option value="">Selecione uma opção</option>
+                      <option value="rap_geek">Rap geek</option>
+                      <option value="trilhas_jogos">Trilhas de jogos</option>
+                      <option value="trilhas_animes">Trilhas de animes</option>
+                      <option value="outra">Outra preferência</option>
+                    </select>
+                  </div>
+                  <div class="bernardo_campo">
+                    <label for="bernardo_mensagem">Mensagem:</label>
+                    <textarea
+                      id="bernardo_mensagem"
+                      name="bernardo_mensagem"
+                      rows="4"
+                      required
+                    ></textarea>
+                  </div>
+                  <div class="bernardo_campo">
+                    <input
+                      type="checkbox"
+                      id="bernardo_ciencia"
+                      name="bernardo_ciencia"
+                      required
+                    />
+                    <label for="bernardo_ciencia"
+                      >Estou ciente de que este formulário é uma demonstração
+                      acadêmica e não realiza inscrição real.</label
+                    >
+                  </div>
+                  <button type="button" id="bernardo_validar" disabled>
+                    Validação disponível em etapa futura
+                  </button>
+                </fieldset>
+              </form>
+            </section>
+          </div>
+
+          <!-- aside contém informações complementares; o CSS o coloca ao lado ou abaixo do conteúdo. -->
+          <aside id="bernardo_lateral">
+            <h2>Avisos do projeto</h2>
+            <div class="bernardo_personalizacao">
+              <h3>Personalização</h3>
+              <p>As cores mudam o fundo ao redor dos blocos de conteúdo.</p>
+
+              <!-- onclick chama a função quando o botão é clicado.
                Cada botão envia uma cor diferente para o mesmo parâmetro cor. -->
-            <div class="bernardo_botoes_cores">
-              <button type="button" onclick="bernardo_trocarCor('#c5f35b')">
-                Verde-lima
-              </button>
-              <button type="button" onclick="bernardo_trocarCor('#b994ed')">
-                Roxo
-              </button>
-              <button type="button" onclick="bernardo_trocarCor('#9ecbff')">
-                Azul
-              </button>
-              <button type="button" onclick="bernardo_trocarCor('#ff8c91')">
-                Vermelho
-              </button>
-              <button type="button" onclick="bernardo_trocarCor('#ffb56b')">
-                Laranja
+              <div class="bernardo_botoes_cores">
+                <button type="button" onclick="bernardo_trocarCor('#c5f35b')">
+                  Verde-lima
+                </button>
+                <button type="button" onclick="bernardo_trocarCor('#b994ed')">
+                  Roxo
+                </button>
+                <button type="button" onclick="bernardo_trocarCor('#9ecbff')">
+                  Azul
+                </button>
+                <button type="button" onclick="bernardo_trocarCor('#ff8c91')">
+                  Vermelho
+                </button>
+                <button type="button" onclick="bernardo_trocarCor('#ffb56b')">
+                  Laranja
+                </button>
+              </div>
+              <button
+                type="button"
+                id="bernardo_botao_tema"
+                onclick="bernardo_alternarTema()"
+              >
+                Ativar modo claro
               </button>
             </div>
-            <button
-              type="button"
-              id="bernardo_botao_tema"
-              onclick="bernardo_alternarTema()"
-            >
-              Ativar modo claro
-            </button>
-          </div>
-          <p>Portal acadêmico de Bernardo Rodrigues Benato.</p>
-          <p>Programação inteiramente fictícia, sem artistas confirmados.</p>
-          <p>Descrições das atrações aguardam fontes verificadas.</p>
-          <a href="#bernardo_topo">Voltar ao topo</a>
-        </aside>
+            <p>Portal acadêmico de Bernardo Rodrigues Benato.</p>
+            <p>Programação inteiramente fictícia, sem artistas confirmados.</p>
+            <p>Descrições das atrações aguardam fontes verificadas.</p>
+            <a href="#bernardo_topo">Voltar ao topo</a>
+          </aside>
+        </div>
+      </main>
+
+      <footer class="bernardo_rodape">
+        <!-- Segunda aplicação inline: reforça a assinatura textual do rodapé. -->
+        <p style="font-weight: 700">Geek Beats — A cultura geek ganha voz.</p>
+        <p>
+          Desenvolvido por Bernardo Rodrigues Benato para estudo de Front End.
+        </p>
+        <p>
+          Projeto acadêmico e festival fictício. As participações citadas não
+          estão confirmadas.
+        </p>
+      </footer>
+    </div>
+
+    <!-- Uma unica estrutura atende aos nove cards; o CSS a mantem fechada inicialmente.
+         aria-labelledby e aria-describedby associam a janela aos seus textos. -->
+    <div id="bernardo_modal" class="bernardo_modal">
+      <div
+        class="bernardo_caixa_modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="bernardo_titulo_modal"
+        aria-describedby="bernardo_mensagem_modal"
+      >
+        <h2 id="bernardo_titulo_modal">Detalhes da atração</h2>
+        <p id="bernardo_mensagem_modal">
+          Seleção fictícia do projeto acadêmico.
+        </p>
+        <button
+          type="button"
+          id="bernardo_fechar_modal"
+          class="bernardo_fechar_modal"
+          onclick="bernardo_fecharModal()"
+        >
+          Fechar detalhes
+        </button>
       </div>
-    </main>
+    </div>
 
-    <footer class="bernardo_rodape">
-      <!-- Segunda aplicação inline: reforça a assinatura textual do rodapé. -->
-      <p style="font-weight: 700">Geek Beats — A cultura geek ganha voz.</p>
-      <p>
-        Desenvolvido por Bernardo Rodrigues Benato para estudo de Front End.
-      </p>
-      <p>
-        Projeto acadêmico e festival fictício. As participações citadas não
-        estão confirmadas.
-      </p>
-    </footer>
-
-    <!-- O arquivo implementa cores, tema, seis abas e carrossel. -->
+    <!-- O arquivo implementa cores, tema, seis abas, carrossel e modal. -->
     <script src="script.js"></script>
   </body>
 </html>

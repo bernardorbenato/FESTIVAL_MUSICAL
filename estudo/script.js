@@ -112,3 +112,35 @@ function bernardo_mudarFoto(direcao) {
 
 // O script fica no fim do body; os elementos já existem para a atualização inicial.
 bernardo_atualizarCarrossel();
+
+// activeElement identifica o controle que tinha foco antes de abrir a janela.
+// Guardamos esse elemento para devolver o foco ao fechar, sem perder o lugar no card.
+let bernardo_focoAnterior = null;
+
+function bernardo_abrirModal(titulo, mensagem) {
+  const modal = document.getElementById("bernardo_modal");
+
+  if (!modal.classList.contains("bernardo_modal_visivel")) {
+    bernardo_focoAnterior = document.activeElement;
+  }
+
+  // Os dois parâmetros vêm do onclick do card e substituem os textos da mesma janela.
+  // innerText trata esses valores como texto, sem inserir novas tags HTML.
+  document.getElementById("bernardo_titulo_modal").innerText = titulo;
+  document.getElementById("bernardo_mensagem_modal").innerText = mensagem;
+
+  // Esta classe faz o CSS trocar display: none por display: block.
+  modal.classList.add("bernardo_modal_visivel");
+  // inert impede interagir com os elementos de fundo, inclusive pelo teclado.
+  document.getElementById("bernardo_pagina").inert = true;
+  document.getElementById("bernardo_fechar_modal").focus();
+}
+
+function bernardo_fecharModal() {
+  document.getElementById("bernardo_modal").classList.remove("bernardo_modal_visivel");
+  document.getElementById("bernardo_pagina").inert = false;
+
+  if (bernardo_focoAnterior !== null) {
+    bernardo_focoAnterior.focus();
+  }
+}
