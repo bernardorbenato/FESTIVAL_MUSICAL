@@ -73,12 +73,16 @@ As fontes são locais e podem variar conforme o sistema: Arial/Helvetica para le
 2. Por que repeat(3, 1fr) cria cards de larguras iguais, enquanto 3fr 1fr cria colunas diferentes? O que acontece com o espaço reservado ao gap?
 3. Quais regras passam a valer em uma tela de 390 px? Por que o aside fica abaixo, os cards usam uma coluna e a tabela pode rolar sem alargar a página?
 
-### Pequeno exercício de CSS para fazer sozinho
+### Exercício de CSS realizado pelo aluno
 
-Mude apenas o gap de .bernardo_cards e .bernardo_fotos de 16px para 20px nas duas versões de style.css. Abra as páginas em desktop e celular e compare o espaço entre os cards. Não altere grid-template-columns. Explique por que as três colunas continuam iguais, mas ficam um pouco mais estreitas no desktop.
+O aluno alterou o gap de .bernardo_cards e .bernardo_fotos de 16px para 20px nas duas versões de style.css. O valor foi reconferido no encerramento de 21/10/2026. Para a defesa, explique por que as três colunas continuam iguais, mas ficam um pouco mais estreitas no desktop: o Grid distribui o espaço que resta depois dos intervalos.
 
 ### O que já foi verificado e o que praticar
 
 O Chrome foi usado sem janela para medir as duas versões em desktop e celular simulado. A versão estudo também foi medida em 1024, 768 e 320 px. Os Grids mudaram como previsto, não houve rolagem horizontal da página, as seis seções ficaram visíveis e os controles permaneceram desabilitados. Foram inspecionadas capturas do topo e dos cards em 1440 e 390 px. O foco foi conferido por automação; não foi feita uma navegação manual completa por Tab.
 
-Para praticar, abra a página, percorra os links usando Tab, confirme o contorno de foco e teste a área rolável da tabela no teclado. Examine também tabela, galeria, formulário e rodapé, teste zoom de 200% e compare em outro navegador. Essas verificações manuais continuam pendentes. Não ative o formulário nem acrescente JavaScript neste exercício.
+Em 21/10/2026, Bernardo informou que realizou a revisão manual no navegador. Essa revisão foi feita pelo aluno, não pelo assistente. O relato não detalha os testes individuais; portanto, não permite afirmar que todos os itens do roteiro foram testados.
+
+Como roteiro para aprofundar ou registrar os resultados, percorra os links usando Tab, confirme o contorno de foco e teste a área rolável da tabela no teclado. Examine também tabela, galeria, formulário e rodapé, teste zoom de 200% e compare em outro navegador. Não ative o formulário nem acrescente JavaScript neste exercício.
+
+No encerramento, o assistente conferiu estaticamente o gap de 20px e a igualdade entre todos os arquivos das versões, com diferenças apenas nos comentários explicativos. Não houve nova verificação do navegador pelo assistente. O push deste encerramento será feito manualmente pelo aluno.

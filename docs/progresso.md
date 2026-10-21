@@ -181,3 +181,13 @@ O HTML recebeu apenas classes para os três alvos do CSS interno, duas aplicaç�
 - Reexecutadas verificações estáticas de igualdade entre as versões, gap de 20px, dois Grids, seis seções, nove cards, formulário desabilitado, IDs únicos, labels, âncoras, arquivos relativos e preservação do parágrafo do aluno. Todas passaram.
 - Não foram repetidos os testes no Chrome nesta solicitação de commit. As medições e capturas da etapa anterior correspondem ao gap de 16px; o ajuste para 20px foi conferido estaticamente. As verificações manuais pendentes listadas acima continuam pendentes.
 - Nenhuma interação JavaScript foi implementada. Este registro é preparado antes do commit; o identificador e o resultado real do push serão informados após a execução e conferência do Git.
+
+## Encerramento da etapa CSS — 21/10/2026
+
+- Bernardo informou que realizou a revisão manual no navegador. A autoria dessa revisão é do aluno; ela não foi executada pelo assistente neste encerramento. Como os testes específicos não foram detalhados, este registro não presume resultados individuais de teclado, zoom, outros navegadores ou dispositivo físico.
+- Reconfirmado `gap: 20px` na regra compartilhada dos cards e da galeria em estudo/style.css e apresentacao/style.css.
+- Comparados todos os arquivos de estudo/ e apresentacao/: mesma lista de arquivos; HTML, CSS e JavaScript iguais após retirar somente comentários da versão estudo, normalizando CRLF/LF na comparação; demais arquivos idênticos. Nenhum código de interação foi adicionado.
+- As verificações deste encerramento foram estáticas. Não houve nova execução do Chrome pelo assistente; os testes automatizados anteriores permanecem identificados no histórico.
+- A inspeção inicial encontrou árvore de trabalho limpa na branch `main`: os estilos já estavam registrados no commit `bd59fd1`. Para preservar o histórico, o novo commit de encerramento inclui somente as atualizações de docs/progresso.md e docs/roteiro-defesa.md, com a mensagem solicitada: "Adiciona identidade visual urbana e layouts responsivos do Geek Beats".
+- O aluno reservou o push para execução manual. Nenhum push será feito pelo assistente neste encerramento. A conferência do diff precede o commit; seu identificador será informado após a criação.
+- Continuam pendentes imagens locais reais, descrições verificadas dos artistas e validação HTML completa. As interações JavaScript dependem de uma próxima etapa autorizada. Testes específicos não detalhados na revisão manual do aluno continuam sem resultado registrado.
