@@ -141,11 +141,49 @@ main {
 }
 
 .bernardo_secao {
+  display: none;
   margin-bottom: 24px;
   padding: 28px;
   border: 1px solid #434b4c;
   border-top: 4px solid #c5f35b;
   background-color: #202426;
+}
+
+/* A classe de exibição é controlada pela função de abas.
+   A regra com duas classes corresponde a uma seção que também está exibida. */
+.bernardo_secao.bernardo_exibida {
+  display: block;
+}
+
+.bernardo_abas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 24px;
+  padding: 12px;
+  border: 1px solid #667073;
+  background-color: #202426;
+}
+
+.bernardo_botao_aba {
+  padding: 10px 12px;
+  border: 1px solid #8c9899;
+  background-color: #292f31;
+  color: #f0f1e9;
+  font-family: inherit;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.bernardo_botao_aba:hover {
+  background-color: #434b4c;
+}
+
+/* O destaque só aparece no botão escolhido; o foco de teclado tem contorno próprio. */
+.bernardo_botao_aba.bernardo_ativo {
+  background-color: #c5f35b;
+  color: #141617;
+  font-weight: 700;
 }
 
 /* Grid A: repeat(3, 1fr) cria três colunas iguais para os nove cards.
@@ -324,6 +362,7 @@ body.bernardo_claro {
 
 body.bernardo_claro .bernardo_cabecalho,
 body.bernardo_claro .bernardo_menu,
+body.bernardo_claro .bernardo_abas,
 body.bernardo_claro .bernardo_secao,
 body.bernardo_claro #bernardo_lateral,
 body.bernardo_claro .bernardo_rodape {
@@ -361,8 +400,14 @@ body.bernardo_claro tbody th {
 }
 
 body.bernardo_claro .bernardo_menu a:hover,
+body.bernardo_claro .bernardo_botao_aba:hover,
 body.bernardo_claro .bernardo_personalizacao button:hover {
   background-color: #d2dcc4;
+}
+
+body.bernardo_claro .bernardo_botao_aba.bernardo_ativo {
+  background-color: #c5f35b;
+  color: #141617;
 }
 
 body.bernardo_claro caption {

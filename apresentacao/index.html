@@ -47,24 +47,33 @@
     
     <nav class="bernardo_menu" aria-label="Navegação principal">
       <ul>
-        <li><a href="#bernardo_festival">Festival</a></li>
-        <li><a href="#bernardo_atracoes">Atrações</a></li>
-        <li><a href="#bernardo_programacao">Programação</a></li>
-        <li><a href="#bernardo_estrutura">Estrutura</a></li>
-        <li><a href="#bernardo_galeria">Galeria</a></li>
-        <li><a href="#bernardo_inscricao">Inscrição</a></li>
+        <li><a href="#bernardo_festival" onclick="bernardo_mostrarAba('festival')">Festival</a></li>
+        <li><a href="#bernardo_atracoes" onclick="bernardo_mostrarAba('atracoes')">Atrações</a></li>
+        <li><a href="#bernardo_programacao" onclick="bernardo_mostrarAba('programacao')">Programação</a></li>
+        <li><a href="#bernardo_estrutura" onclick="bernardo_mostrarAba('estrutura')">Estrutura</a></li>
+        <li><a href="#bernardo_galeria" onclick="bernardo_mostrarAba('galeria')">Galeria</a></li>
+        <li><a href="#bernardo_inscricao" onclick="bernardo_mostrarAba('inscricao')">Inscrição</a></li>
       </ul>
     </nav>
 
     <main id="bernardo_principal">
       
+      <div class="bernardo_abas">
+        <button type="button" id="bernardo_botao_festival" class="bernardo_botao_aba bernardo_ativo" onclick="bernardo_mostrarAba('festival')">Festival</button>
+        <button type="button" id="bernardo_botao_atracoes" class="bernardo_botao_aba" onclick="bernardo_mostrarAba('atracoes')">Atrações</button>
+        <button type="button" id="bernardo_botao_programacao" class="bernardo_botao_aba" onclick="bernardo_mostrarAba('programacao')">Programação</button>
+        <button type="button" id="bernardo_botao_estrutura" class="bernardo_botao_aba" onclick="bernardo_mostrarAba('estrutura')">Estrutura</button>
+        <button type="button" id="bernardo_botao_galeria" class="bernardo_botao_aba" onclick="bernardo_mostrarAba('galeria')">Galeria</button>
+        <button type="button" id="bernardo_botao_inscricao" class="bernardo_botao_aba" onclick="bernardo_mostrarAba('inscricao')">Inscrição</button>
+      </div>
+      
       <div class="bernardo_layout">
         <div class="bernardo_conteudo">
           
-          <section id="bernardo_festival" class="bernardo_secao">
+          <section id="bernardo_festival" class="bernardo_secao bernardo_exibida">
             
-            <h2 style="font-style: italic">Festival</h2>
-            <p>quero aprender mais sobre css e javascript</p>
+            <h2 style="font-style: italic">Sobre o Festival</h2>
+            <p>Quero aprender mais sobre css e javascript</p>
             <p>
               Geek Beats é um portal criado para estudar HTML, CSS e JavaScript
               a partir de um festival imaginário de música geek.
@@ -80,9 +89,9 @@
               artistas.
             </p>
             <p>
-              Todas as seções estão disponíveis para leitura. As cores e o modo
-              claro/escuro podem ser personalizados na área de avisos. Abas,
-              modal e carrossel ainda não estão implementados.
+              Use os botões ou os links do menu para abrir uma seção por vez.
+              As cores e o modo claro/escuro podem ser personalizados na área
+              de avisos. Modal e carrossel ainda não estão implementados.
             </p>
           </section>
 

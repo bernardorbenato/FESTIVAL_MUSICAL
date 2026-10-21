@@ -244,3 +244,54 @@ Esta etapa implementa somente cinco opções de cor e a alternância claro/escur
 - **Revisão manual do aluno:** a revisão manual informada é atribuída a Bernardo, não ao assistente. Não foram especificados resultados individuais de teclado, zoom, outros navegadores ou celular físico; os testes automatizados acima não são apresentados como revisão manual.
 - Diff revisado antes do commit. Escopo limitado aos nove arquivos da personalização: AGENTS.md, os seis arquivos HTML/CSS/JS das versões e os dois documentos. Materiais de referencias/ e imagens não foram alterados. Nenhuma aba, carrossel, modal ou validação foi implementada.
 - Commit autorizado com a mensagem "Adiciona cinco cores e alternância de tema ao Geek Beats". Este registro é preparado antes da criação; o identificador será informado após a conferência final. O push será feito manualmente pelo aluno e não será executado pelo assistente.
+
+## Sistema de abas — 21/10/2026
+
+Esta etapa implementa somente as seis abas. Os registros anteriores de seis seções simultaneamente visíveis descrevem as etapas anteriores: agora **apenas Festival começa visível e selecionado**. Não houve commit ou push.
+
+### Preparação e implementação
+
+- Lidos AGENTS.md, progresso, HTML/CSS/JavaScript atuais e o exemplo de abas do professor em Laboratorio_DOM_Base (HTML, CSS e funções de limpeza/abertura). Conferidos branch `main`, remoto origin e alterações existentes. Havia apenas remoção de linhas em branco em apresentacao/index.html; nenhum texto ou comportamento dessa alteração foi descartado ao sincronizar as versões.
+- Mantidos os seis IDs das seções: bernardo_festival, bernardo_atracoes, bernardo_programacao, bernardo_estrutura, bernardo_galeria e bernardo_inscricao. Criados seis botões type="button" em uma div acima do Grid principal, separados do único nav com links.
+- bernardo_limparAbas() remove bernardo_exibida das seis seções e bernardo_ativo dos seis botões, com chamadas explícitas como no exemplo de aula. bernardo_mostrarAba(nome) chama a limpeza, localiza a seção por "bernardo_" + nome e o botão por "bernardo_botao_" + nome e adiciona as respectivas classes.
+- O parâmetro nome recebe um sufixo como 'festival' ou 'galeria'. Não foram introduzidos loops, listeners ou estruturas novas para realizar essa navegação.
+- O CSS oculta .bernardo_secao e exibe .bernardo_secao.bernardo_exibida. O HTML marca Festival como exibido e seu botão como ativo desde o início, sem depender de uma função de inicialização.
+- Nos seis links do menu, onclick abre a aba correspondente antes da navegação padrão do href até o ID. Os links continuam sendo âncoras reais; a função não impede a navegação.
+- Botões com Flexbox, flex-wrap e espaçamentos simples para caber em telas pequenas. Fundo neutro, aba ativa em verde-lima e texto escuro nos dois temas; contorno de foco de 3px preservado, distinto do destaque ativo.
+- O aside e seus controles de personalização permanecem fora das seções ocultáveis. As funções de abas não modificam a cor inline nem a classe de tema do body.
+- Preservados os dois Grids, gap de 20px, nove cards, nove espaços da galeria, tabela 7×5, avisos acadêmicos, Azul #9ecbff, CSS interno/inline e formulário desabilitado. Atualizada apenas a mensagem de funcionamento das seções; nenhum dado de artista foi acrescentado.
+
+### Verificações efetivamente realizadas pelo assistente
+
+- Comparação de todos os arquivos de estudo/ e apresentacao/: mesma lista; HTML, CSS e JavaScript iguais ao retirar apenas comentários de estudo e normalizar CRLF/LF; demais arquivos idênticos.
+- Verificação estática de IDs únicos e prefixos, correspondência dos seis pares de botão/seção, onclick dos links, type="button", destinos de labels e âncoras, caminhos locais e contagens dos elementos semânticos. Conferidos cards, galeria, tabela 7×5, dois fieldsets desabilitados, duas aplicações inline, texto do aluno e Azul #9ecbff. Materiais de referencias/ sem alterações.
+- Chrome local sem janela nas duas versões, em 1440 e 390 px. Inicialmente uma única seção visível (Festival) e um único botão ativo. Para cada uma das dez combinações de cor e tema, acionados os seis botões e os seis links do menu: 40 estados de personalização e **480 acionamentos** no total.
+- Após cada acionamento, conferidos exatamente um conteúdo visível e um botão ativo, correspondência com a seção solicitada, diferença de fundo entre ativo/inativo e preservação de cor e tema. Nos links, conferido também o hash de destino após a abertura da seção.
+- Conferidos botões dentro da largura da tela, sem rolagem horizontal da página, foco de 3px, formulário ainda desabilitado e gap de 20px em todos os estados testados. Os estilos dos Grids existentes foram mantidos.
+- Teclado via automação do Chrome: Tab percorreu os seis botões na ordem e Enter abriu cada aba, nas duas versões e duas larguras, totalizando **24 ativações por teclado**. A primeira execução da rotina não enviava o caractere completo de Enter; a rotina temporária foi corrigida e a execução final passou sem alteração no código do site.
+- Nenhuma exceção JavaScript capturada na execução final. Capturas da aba Atrações com os seis botões em desktop e 390 px foram abertas e inspecionadas pelo assistente. Os botões quebram em duas linhas a 390 px; o foco pode estar em um botão diferente do ativo, como esperado para navegação por teclado.
+- Testes feitos fora do sandbox com autorização do ambiente, sem instalar pacotes. Rotina, resultados e capturas ficaram apenas na pasta temporária do sistema.
+- A revisão manual anterior continua atribuída a Bernardo. Estes resultados são testes automatizados e inspeção de capturas pelo assistente; não constituem revisão manual completa do aluno nesta nova etapa.
+
+### Pendente e limites
+
+- Revisão manual das abas pelo aluno; outros navegadores, leitor de tela, zoom e dispositivo físico. A largura de 390 px foi simulada no Chrome desktop.
+- Não foi implementada sincronização das abas com o histórico Voltar/Avançar ou com hashes digitados diretamente na URL. O comportamento desta etapa cobre os botões e os links do menu por onclick; toda abertura da página começa em Festival.
+- Imagens locais reais, descrições verificadas e validação HTML completa continuam pendentes. Carrossel, modal e validação do formulário não foram implementados.
+- Parar nesta funcionalidade. Commit e push somente após nova autorização.
+
+### Arquivos alterados
+
+- estudo/index.html, estudo/style.css e estudo/script.js.
+- apresentacao/index.html, apresentacao/style.css e apresentacao/script.js.
+- docs/progresso.md e docs/roteiro-defesa.md.
+
+## Encerramento das abas — 21/10/2026
+
+- Bernardo solicitou o encerramento com commit local e push manual. Conferidos branch `main`, remoto origin e diff dos oito arquivos desta etapa. Não houve avanço para outra funcionalidade.
+- A alteração do aluno está no título h2 da seção Festival: “Sobre o Festival”, igualmente nos dois HTML. O botão permanece com o texto “Festival”; seu ID bernardo_botao_festival e o argumento 'festival' permanecem intactos, assim como o ID bernardo_festival da seção. Foi preservada também a inicial maiúscula em “Quero aprender mais sobre css e javascript”. Nenhum desses textos foi reescrito neste encerramento.
+- **Conferências do assistente neste encerramento:** comparação de todos os arquivos das versões, IDs únicos, seis seções, links com os argumentos corretos, Festival marcado como exibido/ativo e formulário ainda desabilitado. HTML, CSS e JavaScript diferem somente nos comentários, com CRLF/LF normalizados na comparação; demais arquivos idênticos. Todas essas verificações estáticas passaram.
+- **Testes do assistente já realizados na implementação:** 480 acionamentos dos seis botões e seis links nas duas versões, em 1440 e 390 px, com as dez combinações de cor/tema; 24 ativações por Enter e percurso por Tab; estado único de seção/botão, personalização preservada e capturas inspecionadas. Esses testes são os registrados na seção “Sistema de abas”; não foram repetidos no encerramento após a alteração textual do aluno.
+- **Revisão manual do aluno:** Bernardo informou sua revisão manual. A autoria dessa revisão é dele; ela não foi feita pelo assistente. Como os testes individuais não foram detalhados, não são presumidos resultados específicos de zoom, outros navegadores, leitor de tela ou celular físico.
+- Continuam sem resultado registrado os testes específicos não detalhados acima. Permanecem pendentes imagens locais reais, descrições verificadas e validação HTML completa. Carrossel, modal e validação do formulário continuam fora desta etapa.
+- Commit autorizado com a mensagem "Adiciona navegação por seis abas ao Geek Beats", limitado aos seis arquivos HTML/CSS/JS das versões e aos dois documentos. O identificador será informado após criar e conferir o commit. Nenhum push será feito pelo assistente.

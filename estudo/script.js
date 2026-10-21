@@ -21,3 +21,36 @@ function bernardo_alternarTema() {
 
   // Esta função não modifica backgroundColor: a cor escolhida continua aplicada.
 }
+
+// Primeiro retiramos as classes de exibição e destaque dos seis pares.
+// As chamadas explícitas seguem a função de limpeza do exemplo do professor.
+function bernardo_limparAbas() {
+  document.getElementById("bernardo_festival").classList.remove("bernardo_exibida");
+  document.getElementById("bernardo_atracoes").classList.remove("bernardo_exibida");
+  document.getElementById("bernardo_programacao").classList.remove("bernardo_exibida");
+  document.getElementById("bernardo_estrutura").classList.remove("bernardo_exibida");
+  document.getElementById("bernardo_galeria").classList.remove("bernardo_exibida");
+  document.getElementById("bernardo_inscricao").classList.remove("bernardo_exibida");
+
+  document.getElementById("bernardo_botao_festival").classList.remove("bernardo_ativo");
+  document.getElementById("bernardo_botao_atracoes").classList.remove("bernardo_ativo");
+  document.getElementById("bernardo_botao_programacao").classList.remove("bernardo_ativo");
+  document.getElementById("bernardo_botao_estrutura").classList.remove("bernardo_ativo");
+  document.getElementById("bernardo_botao_galeria").classList.remove("bernardo_ativo");
+  document.getElementById("bernardo_botao_inscricao").classList.remove("bernardo_ativo");
+}
+
+function bernardo_mostrarAba(nome) {
+  // nome recebe textos como "festival" ou "galeria" enviados pelo onclick.
+  // A limpeza vem antes da abertura: nunca deixamos duas abas abertas.
+  bernardo_limparAbas();
+
+  const conteudo = document.getElementById("bernardo_" + nome);
+  conteudo.classList.add("bernardo_exibida");
+
+  // O mesmo sufixo localiza o botão que deve receber o destaque visual.
+  const botao = document.getElementById("bernardo_botao_" + nome);
+  botao.classList.add("bernardo_ativo");
+
+  // Nenhuma cor ou classe de tema é alterada ao navegar entre as abas.
+}

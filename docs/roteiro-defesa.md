@@ -120,3 +120,45 @@ O assistente testou por automação as dez combinações nas duas versões, em 1
 A revisão manual da etapa CSS foi feita por Bernardo, conforme seu relato. A revisão manual desta nova funcionalidade ainda deve ser realizada pelo aluno. Abas, carrossel, modal e validação ainda não estão implementados.
 
 No encerramento de 21/10/2026, o assistente repetiu os 60 casos automatizados com o Azul #9ecbff: todos passaram, com mínimo de contraste aproximadamente 8,29:1. Não houve nova inspeção visual das capturas. A revisão manual informada pelo aluno permanece atribuída a Bernardo; os testes específicos que ele realizou não foram detalhados. As comparações finais confirmaram as versões diferentes apenas nos comentários. O push deste encerramento será manual, pelo aluno.
+
+## Sistema de seis abas
+
+Esta etapa substitui a exibição simultânea das seis seções por uma seção de cada vez. As explicações anteriores sobre seções visíveis e abas pendentes pertencem ao histórico. Festival começa visível e com seu botão destacado; as outras cinco seções continuam no HTML, inicialmente escondidas pelo CSS.
+
+### Clique → limpeza → abertura → destaque
+
+O botão Galeria tem type="button" e onclick="bernardo_mostrarAba('galeria')". O texto 'galeria' é o argumento; nome é o parâmetro que o recebe na função. O mesmo padrão atende às outras cinco abas.
+
+Primeiro, bernardo_mostrarAba(nome) chama bernardo_limparAbas(). A limpeza remove bernardo_exibida das seis seções e bernardo_ativo dos seis botões, por meio de getElementById() e classList.remove(), como no exemplo do professor. As chamadas são explícitas para facilitar a leitura do código.
+
+Depois, "bernardo_" + nome localiza bernardo_galeria. classList.add("bernardo_exibida") permite que a regra .bernardo_secao.bernardo_exibida aplique display: block. As outras seções continuam com display: none. Finalmente, "bernardo_botao_" + nome encontra o botão e recebe bernardo_ativo para o destaque. A limpeza antes da abertura evita acumular conteúdos e destaques.
+
+Os dois nomes de classe em .bernardo_secao.bernardo_exibida estão juntos, sem espaço: o seletor corresponde a um mesmo elemento que possui ambas as classes. Isso é diferente do seletor descendente .bernardo_card h3. O padrão de duas classes juntas também aparece no CSS de abas do professor.
+
+### Menu, teclado e personalização
+
+O nav mantém ul, li e links separados da div com os botões. O link Galeria tem href="#bernardo_galeria" e chama a mesma função no onclick. A seção aparece durante o clique, antes da navegação padrão do navegador até a âncora. Sem esse onclick, a âncora poderia apontar para uma seção ainda oculta.
+
+Os botões continuam sendo controles HTML nativos, acessíveis com Tab e acionáveis com Enter. O contorno indica o foco do teclado; o preenchimento verde-lima indica a aba ativa. Esses dois estados podem estar em botões diferentes. Não foram adicionados papéis ARIA de tablist, nem navegação por setas: o comportamento desta etapa é o de botões nativos conforme o exemplo de aula.
+
+flex-wrap permite quebrar os seis botões em linhas menores. Os dois Grids de conteúdo e artistas permanecem nas suas regiões originais. O aside não é escondido junto com as seções, então cores e tema continuam disponíveis. A função de abas não altera backgroundColor nem bernardo_claro no body, preservando as escolhas enquanto o usuário navega. O formulário continua desabilitado mesmo quando Inscrição está aberta.
+
+### Três perguntas de defesa
+
+1. Como o argumento 'galeria' permite localizar tanto a seção quanto seu botão sem mudar os IDs existentes?
+2. Por que a função de limpeza precisa executar antes de adicionar as classes da aba escolhida? O que poderia acontecer se apenas adicionássemos classes?
+3. Por que o link do menu precisa de onclick além de href? Qual é a diferença entre o destaque ativo e o contorno de foco?
+
+### Pequeno exercício para fazer sozinho
+
+Troque somente o texto do botão “Festival” por “Sobre o festival” nos dois HTML. Preserve seu ID e o argumento 'festival'. Reabra a página e confira que ele continua ativo inicialmente, abre a mesma seção e cabe no layout de 390 px. Explique por que mudar o rótulo não muda a associação entre botão e conteúdo.
+
+No encerramento de 21/10/2026, a alteração feita por Bernardo foi uma variação do exercício: ele mudou o título h2 da seção para “Sobre o Festival” nas duas versões. O botão continua “Festival”. IDs e argumento 'festival' foram preservados; o parágrafo também passou a começar com “Quero”. As alterações foram mantidas sem reescrita. Na defesa, explique por que mudar o título do conteúdo não interfere na associação entre o botão e a seção.
+
+### Testes realizados e prática pendente
+
+O assistente testou as duas versões em 1440 e 390 px, com as dez combinações de cores e temas: 480 acionamentos dos seis botões e seis links. Em todos, houve uma única seção visível e um único botão ativo, sem perder a personalização. Também testou 24 ativações por Enter, percorrendo os seis botões com Tab nas duas versões e larguras. Capturas desktop/celular da aba Atrações foram inspecionadas.
+
+A revisão manual desta nova funcionalidade pelo aluno ainda está pendente. Testes de outros navegadores, leitores de tela, zoom, histórico e URLs abertas diretamente com hash não foram feitos. A implementação não sincroniza abas com Voltar/Avançar ou hash digitado; inicia em Festival e atende aos cliques nos controles da página. Não implemente carrossel, modal ou validação nesta etapa.
+
+Atualização no encerramento: Bernardo informou sua revisão manual das abas. Essa revisão é atribuída ao aluno, sem presumir quais testes específicos ele realizou. O assistente revalidou estaticamente o título, IDs, argumentos e a igualdade das versões; os 480 acionamentos e as 24 ativações por teclado citados acima são da implementação, não foram repetidos após a alteração textual. Testes específicos não detalhados pelo aluno continuam sem resultado registrado. O push deste encerramento será feito manualmente por Bernardo.
