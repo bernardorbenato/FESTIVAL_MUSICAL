@@ -376,3 +376,25 @@ A revisão manual é atribuída a Bernardo, conforme o encerramento solicitado. 
 O assistente repetiu os 208 casos de validação, oito verificações de layout e 40 de preservação no Chrome, com a nova mensagem, nas duas versões e nos dois tamanhos/temas: todos passaram. Conferiu também sintaxe, diff, equivalência do código exceto comentários e imagens idênticas. Não houve nova inspeção visual de capturas neste encerramento. Outros navegadores, leitor de tela, zoom e celular físico continuam pendentes.
 
 Etapa encerrada para commit local com a mensagem “Adiciona validação do formulário demonstrativo do Geek Beats”. O push fica a cargo do aluno; nenhuma nova funcionalidade foi iniciada.
+
+## Acabamento dos textos e imagens dos cards — 21/10/2026
+
+Os espaços de imagem foram substituídos nos nove cards pelos mesmos caminhos usados no array bernardo_fotos. Cada img tem alt igual à legenda correspondente do carrossel: fotografias/retratos e ilustrações mantêm suas descrições próprias. Não houve cópia adicional ou alteração dos arquivos de imagem nem dos arrays. A origem das nove imagens ainda está pendente e consta individualmente em fontes.md; nomes de arquivo e legendas não comprovam procedência.
+
+A regra .bernardo_card img é um seletor descendente: atinge imagens dentro dos cards. width: 100% usa a largura disponível; height: 220px define o quadro; object-fit: contain mostra a imagem inteira mantendo sua proporção. Pode haver faixas de fundo, como no carrossel. O exemplo do professor já apresenta object-fit com cover; contain evita recortes e distorções nesta aplicação. As media queries e os dois Grids existentes foram preservados.
+
+Os novos parágrafos dos cards explicam a seleção imaginada para o Geek Beats, sem serem biografias ou confirmação de participação. O banner continua textual, com título, slogan, apresentação e aviso acadêmico. O texto de aprendizado de Bernardo foi preservado. O exercício de AniRap foi retirado do parágrafo isolado e do final da mensagem do modal, mantendo a proposta fictícia. A mensagem de sucesso da validação não foi modificada.
+
+### Três perguntas de defesa
+
+1. Como o seletor .bernardo_card img atinge as imagens dos cards sem mudar as regras da imagem do carrossel?
+2. Por que object-fit: contain preserva as proporções mesmo com um quadro de altura definida? Qual seria a diferença de usar cover?
+3. Por que um caminho local e um alt correto não comprovam autoria ou origem? Onde estão registradas as fontes ainda pendentes?
+
+### Pequeno exercício para fazer sozinho
+
+Altere apenas a altura do quadro das imagens dos cards de 220px para 200px nas duas versões. Confira desktop e 390px: a imagem deve continuar inteira e proporcional, enquanto a altura do carrossel permanece igual.
+
+### Evidências atuais
+
+O assistente conferiu 72 estados das nove imagens dos cards, 160 estados dos slides, 96 acionamentos de abas/links, 72 ciclos dos nove cards no modal, oito substituições de conteúdo e 40 estados de cores/temas, nas duas versões, 1440/390px e ambos os temas. Também repetiu os 208 casos de validação. Nenhum erro JavaScript, de console ou de carregamento foi capturado na execução final. Quatro capturas dos cards foram inspecionadas pelo assistente. A revisão manual deste acabamento pelo aluno ainda não foi informada; outros navegadores, zoom, leitor de tela e celular físico continuam pendentes.

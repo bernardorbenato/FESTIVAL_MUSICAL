@@ -1,6 +1,14 @@
 # Progresso — Geek Beats
 
-Estado atual em 21/10/2026: validação demonstrativa implementada; campos habilitados. O registro é cronológico: referências a funcionalidades pendentes nas etapas anteriores descrevem aquele momento. A conferência mais recente está em “Etapa de validação do formulário”, ao final.
+## Síntese atual — 21/10/2026
+
+- Portal com identidade urbana, dois Grids responsivos, cinco cores e dois temas, seis abas, carrossel de nove imagens, modal dinâmico e validação demonstrativa dos seis campos mais checkbox. Nenhum dado é enviado ou armazenado.
+- Banner textual finalizado e nove cards com imagens locais reutilizadas do carrossel, sem arquivos duplicados. Os textos dos cards descrevem o conceito acadêmico do festival; não são biografias verificadas. Não há participação confirmada nem vínculo oficial com os artistas.
+- O parágrafo de Bernardo sobre o que deseja aprender e a mensagem atual de sucesso do formulário estão preservados. Espaços reservados e avisos desatualizados foram retirados do site.
+- **Pendência de fontes:** faltam URLs de origem, autoria e condições de uso das nove imagens, relacionadas individualmente em docs/fontes.md. Não foram inventadas informações nem tratadas legendas ou nomes de arquivo como prova de origem.
+- Continuam pendentes pacote compactado e teste após extração, validação HTML completa, outros navegadores, leitor de tela, zoom e celular físico. A revisão manual deste acabamento pelo aluno ainda não foi informada.
+
+O registro abaixo é cronológico: referências a funcionalidades e conteúdos pendentes nas etapas anteriores descrevem aquele momento. O acabamento mais recente está registrado ao final. Sem commit ou push nesta etapa.
 
 ## Sessão de 20/10/2026 — somente HTML
 
@@ -537,3 +545,37 @@ Implementada somente a janela de detalhes reutilizada pelos nove cards. Os regis
 - Reexecutada a automação no Chrome com a expectativa da mensagem atualizada: **208 casos de validação, oito verificações de layout e 40 de preservação**, nas duas versões, 1440/390px e ambos os temas. Todos passaram; nenhuma exceção JavaScript, nenhuma requisição adicional durante os casos de validação e nenhum recarregamento. Erros preservaram dados e sucesso limpou os campos. Estes resultados são do assistente e não substituem nem descrevem a revisão manual de Bernardo.
 - Não houve nova inspeção visual das capturas neste encerramento. As quatro capturas inspecionadas pertencem à implementação registrada acima. Permanecem pendentes outros navegadores, leitor de tela, zoom, celular físico, fontes das imagens, descrições verificadas e validação HTML completa.
 - Diff revisado para commit apenas dos oito arquivos desta etapa, com a mensagem “Adiciona validação do formulário demonstrativo do Geek Beats”. O identificador será informado após criar o commit. Nenhuma nova funcionalidade; o push será feito manualmente pelo aluno.
+
+## Acabamento editorial e imagens dos cards — 21/10/2026
+
+- Lidos AGENTS.md, os arquivos atuais e o progresso. Git inicialmente limpo em main, com a referência local origin/main no mesmo commit 05b1e8e; remoto configurado conferido. Nenhuma alteração preexistente a sobrepor, nenhum novo envio ao remoto.
+- Aplicados os textos exatos solicitados: apresentação no presente, descrições do conceito acadêmico em cada um dos nove cards e aviso lateral sobre ausência de vínculo oficial. Preservados o parágrafo “Quero aprender mais sobre css e javascript”, o aviso geral de participação não confirmada e a mensagem atual de sucesso, incluindo ausência de envio e armazenamento.
+- Banner finalizado apenas com os textos existentes, removendo seu aviso de imagem pendente. Substituídos os nove espaços textuais dos cards por img com os caminhos reais do carrossel e seus alt correspondentes. Ilustrações continuam descritas como ilustrações, sem serem apresentadas como fotos dos artistas.
+- Removido o parágrafo isolado de exercício em AniRap e apenas o complemento “Conteúdo demonstrativo” da mensagem de seu modal. A mensagem restante e o aviso fictício foram preservados.
+- CSS simples em .bernardo_card img: largura de 100%, quadro de 220px e object-fit: contain, preservando imagem inteira e proporções. Essa propriedade já aparece no material do professor e no carrossel existente. Retiradas as regras da antiga classe bernardo_imagem_pendente, sem uso. Nenhuma mudança nos scripts, arrays, legendas ou arquivos de imagem.
+- Busca nos arquivos do site e revisão contextual de “pendente”, espaços reservados, etapa futura, funcionalidades não implementadas e formulário desabilitado. Não restaram avisos desatualizados desse tipo. Os avisos de demonstração acadêmica, programação fictícia e ausência de envio/armazenamento permanecem. Documentos históricos não receberam substituições globais.
+- Buscadas URLs nos arquivos do site, AGENTS.md, documentos e histórico Git desses arquivos: encontrados links do repositório/commit, nenhuma origem das nove imagens. Criado docs/fontes.md com as nove pendências individuais. Autoria, licença e identificação das pessoas/ilustrações não foram verificadas por suposição; os textos dos cards são sobre o projeto, sem biografias.
+
+### Verificações desta etapa pelo assistente
+
+- Chrome local sem janela, abertura por file:// nas duas versões, em 1440/390px e nos modos claro/escuro. **72 verificações de imagens dos cards** (nove × duas versões × duas larguras × dois temas): decodificação, caminhos, alt igual ao do array do carrossel, object-fit: contain, imagem dentro do card e texto de conceito correspondente.
+- **160 verificações dos slides**, cobrindo nove imagens, legenda, alt, contador e navegação circular nos dois sentidos; **96 acionamentos** das seis abas e links; **72 ciclos do modal** pelos nove cards, oito substituições de conteúdo e **40 estados de cores/temas**. Conferidos modal fora de inert, foco de fechamento/retorno, uma única aba visível/ativa e preservação do slide/cor/tema.
+- Conferidas oito configurações de layout: três colunas de cards e conteúdo/aside em desktop; uma coluna em 390px; gap de 20px, botões dentro da largura e ausência de rolagem horizontal da página.
+- Reexecutados **208 casos de validação**, oito verificações de layout do formulário e 40 de preservação das funcionalidades. Mensagem atual de sucesso aceita, dados preservados no erro, campos limpos apenas no sucesso, botão e Enter sem envio/recarregamento. Nenhuma exceção JavaScript ou erro de console; nenhuma falha de carregamento nas verificações do site e nenhuma requisição adicional durante os casos de validação.
+- Quatro capturas dos cards em estudo (1440/390px, claro/escuro) abertas e inspecionadas pelo assistente. Inspeção de capturas e automação não representam revisão manual de Bernardo. Não houve nova revisão manual informada pelo aluno nesta etapa.
+- Comparação estática final confirmou HTML/CSS/JS equivalentes após retirar comentários e normalizar finais de linha/espaços finais, 47 IDs únicos por versão, labels/âncoras/referências ARIA existentes e caminhos com capitalização exata. Os scripts e todas as imagens foram comparados byte a byte com HEAD: inalterados; imagens das duas versões também idênticas. Conferidos nove textos de conceito, dez img no HTML (nove cards mais o carrossel), parágrafo de aprendizado preservado e ausência dos avisos antigos. Diff revisado; git diff --check passou.
+- Na primeira execução, a rotina temporária procurou o parágrafo de aprendizado em innerText enquanto Festival estava oculto. A rotina foi corrigida para conferir textContent da seção, sem alterar o site para esse ajuste; a execução final passou. A primeira conferência estática também precisou distinguir a palavra “pendente” do trecho “independente” em um comentário.
+- Rotinas e capturas ficaram no diretório temporário do sistema, sem dependências do projeto. A execução do Chrome fora do sandbox foi autorizada pelo ambiente.
+
+### Arquivos e limite
+
+- Alterados estudo/index.html, estudo/style.css, apresentacao/index.html, apresentacao/style.css, docs/progresso.md e docs/roteiro-defesa.md; criado docs/fontes.md. Scripts, imagens, AGENTS.md e referencias/ preservados.
+- Pendências restantes: fontes das nove imagens, pacote final e teste após extração, revisão manual deste acabamento pelo aluno, outros navegadores, leitor de tela, zoom, celular físico e validação HTML completa. Não há biografias verificadas no portal; os cards usam apenas textos do conceito fictício solicitado.
+- Nenhuma nova funcionalidade, commit ou push nesta etapa.
+
+## Registro e envio do acabamento final — 21/10/2026
+
+- O aluno autorizou registrar e enviar a versão final ao repositório. Conferidos branch main, diff limitado ao acabamento e documentação e remoto https://github.com/bernardorbenato/FESTIVAL_MUSICAL.git. Consulta direta confirmou main no commit 05b1e8e, igual ao HEAD anterior ao novo commit, sem divergência.
+- Reconfirmadas estaticamente a equivalência das versões exceto comentários/espaços finais e as imagens idênticas; git diff --check passou. Os testes de navegador deste acabamento estão registrados acima e não foram repetidos apenas para o envio.
+- O commit de acabamento inclui os quatro arquivos HTML/CSS das versões, progresso, roteiro e fontes.md. Scripts e imagens são preservados dos commits anteriores; nenhuma funcionalidade nova ou arquivo alheio foi acrescentado.
+- Mantidas as pendências de fontes das nove imagens, pacote compactado/teste após extração e verificações adicionais já listadas. O identificador do commit e o resultado efetivo do push serão informados após a execução.
