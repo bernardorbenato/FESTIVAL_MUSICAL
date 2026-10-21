@@ -39,3 +39,46 @@ Acrescente um parágrafo na seção Festival dizendo o que você quer aprender c
 - Conferir acentos, título da aba e ausência de erros no Console.
 
 Esta lista orienta o estudo manual; não representa testes de navegador já executados.
+
+## Estudo e defesa — etapa CSS
+
+As explicações anteriores registram a etapa HTML. Agora existe estilização e foram feitas verificações no Chrome; o histórico de HTML foi mantido para acompanhar a evolução. JavaScript ainda não foi implementado.
+
+### Onde localizar cada requisito
+
+- **Tag:** body define fundo, texto e fonte; p define o espaçamento dos parágrafos.
+- **Classe:** .bernardo_secao organiza as caixas das seis seções. Uma classe pode ser reutilizada em vários elementos.
+- **ID:** #bernardo_lateral estiliza o único aside. O caractere # indica ID no CSS; ele não é escrito dentro do atributo id do HTML.
+- **Agrupado:** h1, h2, h3 compartilham propriedades usando vírgulas.
+- **Encadeado:** .bernardo_banner h1 seleciona o título dentro do banner. O espaço representa a relação entre um ancestral e seu descendente; não é uma lista de elementos independentes.
+- **CSS externo:** style.css concentra o layout. O link no head carrega o arquivo da própria pasta de cada versão.
+- **CSS interno:** o bloco style no head atinge três parágrafos distintos: etiqueta do banner, slogan e aviso acadêmico. São aplicações pontuais exigidas pelo enunciado.
+- **CSS inline:** o atributo style coloca o título Festival em itálico e reforça a primeira linha do rodapé. Nesta página não há disputa intencional entre estilos para a mesma propriedade; o restante fica no CSS externo.
+
+### Como explicar os Grids e as telas menores
+
+Na regra .bernardo_cards, display: grid habilita o Grid. grid-template-columns: repeat(3, 1fr) repete três colunas iguais; fr divide o espaço disponível depois de descontados os intervalos. Os nove artigos ocupam três linhas de três cards. gap separa as caixas. A galeria estática reaproveita essa distribuição, sem navegação de carrossel.
+
+Na regra .bernardo_layout, 3fr 1fr divide o espaço entre conteúdo e avisos: a primeira coluna recebe três partes e a segunda uma. O gap não faz parte dessas frações. min-width: 0 em .bernardo_conteudo permite que a coluna encolha mesmo contendo uma tabela larga; align-items: start mantém a caixa de avisos na altura do seu conteúdo.
+
+As media queries usam max-width como nos exemplos do professor. Até 1000 px, o aside fica abaixo do conteúdo e os cards passam para duas colunas. Até 600 px, os cards usam uma coluna, os títulos diminuem e os preenchimentos ficam menores. Em 500 px, ambas as media queries se aplicam; a última regra para a mesma propriedade determina a coluna única. As seções nunca são escondidas.
+
+A tabela conserva sua estrutura 7×5. min-width: 640px mantém as colunas legíveis; overflow-x: auto na caixa permite rolagem horizontal quando a tabela não cabe. tabindex="0" torna a área focável pelo teclado, e role="region" com aria-label identifica essa área. Isso é uma adaptação de leitura, não uma interação JavaScript. O seletor a:focus mostra um contorno nos links; a caixa da tabela recebe o mesmo contorno ao ter foco. text-underline-offset afasta o sublinhado do texto para facilitar a leitura dos links.
+
+As fontes são locais e podem variar conforme o sistema: Arial/Helvetica para leitura e Impact/Arial Black para o título. O último nome sans-serif é uma alternativa genérica. As cores claras contrastam com o fundo grafite; o verde-lima marca títulos, bordas e links. Os espaços de imagens continuam identificados por texto e bordas tracejadas.
+
+### Três perguntas de defesa sobre CSS
+
+1. Qual é a diferença entre .bernardo_card, #bernardo_lateral e .bernardo_card h3? Localize também um seletor agrupado e explique o papel da vírgula.
+2. Por que repeat(3, 1fr) cria cards de larguras iguais, enquanto 3fr 1fr cria colunas diferentes? O que acontece com o espaço reservado ao gap?
+3. Quais regras passam a valer em uma tela de 390 px? Por que o aside fica abaixo, os cards usam uma coluna e a tabela pode rolar sem alargar a página?
+
+### Pequeno exercício de CSS para fazer sozinho
+
+Mude apenas o gap de .bernardo_cards e .bernardo_fotos de 16px para 20px nas duas versões de style.css. Abra as páginas em desktop e celular e compare o espaço entre os cards. Não altere grid-template-columns. Explique por que as três colunas continuam iguais, mas ficam um pouco mais estreitas no desktop.
+
+### O que já foi verificado e o que praticar
+
+O Chrome foi usado sem janela para medir as duas versões em desktop e celular simulado. A versão estudo também foi medida em 1024, 768 e 320 px. Os Grids mudaram como previsto, não houve rolagem horizontal da página, as seis seções ficaram visíveis e os controles permaneceram desabilitados. Foram inspecionadas capturas do topo e dos cards em 1440 e 390 px. O foco foi conferido por automação; não foi feita uma navegação manual completa por Tab.
+
+Para praticar, abra a página, percorra os links usando Tab, confirme o contorno de foco e teste a área rolável da tabela no teclado. Examine também tabela, galeria, formulário e rodapé, teste zoom de 200% e compare em outro navegador. Essas verificações manuais continuam pendentes. Não ative o formulário nem acrescente JavaScript neste exercício.

@@ -6,17 +6,33 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Geek Beats | Bernardo Rodrigues Benato</title>
   <link rel="stylesheet" href="style.css">
+  
+  <style>
+    .bernardo_etiqueta {
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    .bernardo_slogan {
+      font-weight: 700;
+    }
+
+    .bernardo_aviso_academico {
+      padding-left: 12px;
+      border-left: 3px solid #c5f35b;
+    }
+  </style>
 </head>
 
 <body id="bernardo_topo">
   
   <header class="bernardo_cabecalho">
     <div class="bernardo_banner">
-      <p>Festival fictício de música geek</p>
+      <p class="bernardo_etiqueta">Festival fictício de música geek</p>
       <h1>Geek Beats</h1>
-      <p>A cultura geek ganha voz.</p>
+      <p class="bernardo_slogan">A cultura geek ganha voz.</p>
       <p>Uma proposta de encontro entre música geek e arte urbana.</p>
-      <p><strong>Projeto acadêmico: programação fictícia, sem participações confirmadas.</strong></p>
+      <p class="bernardo_aviso_academico"><strong>Projeto acadêmico: programação fictícia, sem participações confirmadas.</strong></p>
       <p class="bernardo_imagem_pendente">Espaço para o banner: imagem local JPG ou PNG pendente.</p>
     </div>
   </header>
@@ -39,7 +55,8 @@
       <div class="bernardo_conteudo">
         
         <section id="bernardo_festival" class="bernardo_secao">
-          <h2>Festival</h2>
+          
+          <h2 style="font-style: italic;">Festival</h2>
           <p>quero aprender mais sobre css e javascript</p>
           <p>Geek Beats é um portal criado para estudar HTML, CSS e JavaScript a partir de um festival imaginário de música geek.</p>
           <p>A proposta visual será inspirada em cartazes de shows, grafite e concreto, aproximando a cultura geek da arte urbana.</p>
@@ -105,62 +122,65 @@
           <h2>Programação</h2>
           <p>Simulação acadêmica de distribuição das atrações em dois palcos imaginários. Os blocos indicam uma sequência proposta, sem datas ou horários reais.</p>
           
-          <table id="bernardo_tabela">
-            <caption>Programação fictícia do Geek Beats — participações não confirmadas</caption>
-            <thead>
-              <tr>
-                <th scope="col">Bloco</th>
-                <th scope="col">Palco Concreto</th>
-                <th scope="col">Palco Grafite</th>
-                <th scope="col">Momento</th>
-                <th scope="col">Observação</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row">Abertura</th>
-                <td>Apresentação da proposta</td>
-                <td>Sem atração neste bloco</td>
-                <td>Boas-vindas</td>
-                <td>Simulação acadêmica</td>
-              </tr>
-              <tr>
-                <th scope="row">Bloco 1</th>
-                <td>AniRap</td>
-                <td>M4rkim</td>
-                <td>Atrações propostas</td>
-                <td>Sem confirmação de participação</td>
-              </tr>
-              <tr>
-                <th scope="row">Bloco 2</th>
-                <td>oShaman</td>
-                <td>7 Minutoz</td>
-                <td>Atrações propostas</td>
-                <td>Sem confirmação de participação</td>
-              </tr>
-              <tr>
-                <th scope="row">Bloco 3</th>
-                <td>BLXCK</td>
-                <td>Enygma</td>
-                <td>Atrações propostas</td>
-                <td>Sem confirmação de participação</td>
-              </tr>
-              <tr>
-                <th scope="row">Bloco 4</th>
-                <td>Daarui</td>
-                <td>Anny</td>
-                <td>Atrações propostas</td>
-                <td>Sem confirmação de participação</td>
-              </tr>
-              <tr>
-                <th scope="row">Encerramento</th>
-                <td>Mistery</td>
-                <td>Sem atração neste bloco</td>
-                <td>Última atração proposta</td>
-                <td>Sem confirmação de participação</td>
-              </tr>
-            </tbody>
-          </table>
+          
+          <div class="bernardo_tabela_area" tabindex="0" role="region" aria-label="Programação fictícia: tabela com rolagem horizontal">
+            <table id="bernardo_tabela">
+              <caption>Programação fictícia do Geek Beats — participações não confirmadas</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Bloco</th>
+                  <th scope="col">Palco Concreto</th>
+                  <th scope="col">Palco Grafite</th>
+                  <th scope="col">Momento</th>
+                  <th scope="col">Observação</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Abertura</th>
+                  <td>Apresentação da proposta</td>
+                  <td>Sem atração neste bloco</td>
+                  <td>Boas-vindas</td>
+                  <td>Simulação acadêmica</td>
+                </tr>
+                <tr>
+                  <th scope="row">Bloco 1</th>
+                  <td>AniRap</td>
+                  <td>M4rkim</td>
+                  <td>Atrações propostas</td>
+                  <td>Sem confirmação de participação</td>
+                </tr>
+                <tr>
+                  <th scope="row">Bloco 2</th>
+                  <td>oShaman</td>
+                  <td>7 Minutoz</td>
+                  <td>Atrações propostas</td>
+                  <td>Sem confirmação de participação</td>
+                </tr>
+                <tr>
+                  <th scope="row">Bloco 3</th>
+                  <td>BLXCK</td>
+                  <td>Enygma</td>
+                  <td>Atrações propostas</td>
+                  <td>Sem confirmação de participação</td>
+                </tr>
+                <tr>
+                  <th scope="row">Bloco 4</th>
+                  <td>Daarui</td>
+                  <td>Anny</td>
+                  <td>Atrações propostas</td>
+                  <td>Sem confirmação de participação</td>
+                </tr>
+                <tr>
+                  <th scope="row">Encerramento</th>
+                  <td>Mistery</td>
+                  <td>Sem atração neste bloco</td>
+                  <td>Última atração proposta</td>
+                  <td>Sem confirmação de participação</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </section>
 
         <section id="bernardo_estrutura" class="bernardo_secao">
@@ -280,7 +300,8 @@
   </main>
 
   <footer class="bernardo_rodape">
-    <p>Geek Beats — A cultura geek ganha voz.</p>
+    
+    <p style="font-weight: 700;">Geek Beats — A cultura geek ganha voz.</p>
     <p>Desenvolvido por Bernardo Rodrigues Benato para estudo de Front End.</p>
     <p>Projeto acadêmico e festival fictício. As participações citadas não estão confirmadas.</p>
   </footer>

@@ -117,3 +117,67 @@ O parágrafo `quero aprender mais sobre css e javascript` está nas duas versõe
 - Validação por ferramenta completa de conformidade HTML; a inspeção estrutural local não substitui essa validação.
 - Imagens locais reais, descrições verificadas das atrações, estilização e interações das próximas etapas.
 - O resultado do commit e push será informado ao aluno após a execução e conferência do Git. Este registro foi preparado antes do primeiro commit para fazer parte dele; não declara sucesso antecipado de envio.
+
+## Etapa CSS — 20/10/2026
+
+Esta seção atualiza o estado do projeto; os registros acima descrevem a etapa HTML e suas pendências naquele momento. O aluno autorizou somente CSS, sem commit, push ou implementação de interações.
+
+### Inspeção e referências
+
+- Lidos AGENTS.md, este progresso, roteiro de defesa e arquivos atuais. Conferidos branch `main`, último commit `7a147df`, remoto `origin` e árvore de trabalho inicialmente limpa. A branch apresentava acompanhamento local de `origin/main`; não houve fetch, push ou nova verificação de autenticação nesta etapa.
+- Consultados novamente o enunciado PDF (extração textual das partes de CSS e Grid) e os dois arquivos style.css do professor. Os exemplos sustentam seletores, bordas, tipografia do sistema, foco, Flexbox no menu e media queries com max-width. O enunciado fornece repeat() e fr e exige duas distribuições de Grid.
+- Antes da implementação, explicados os dois Grids e o complemento para a tabela: overflow-x: auto cria rolagem horizontal apenas na caixa quando necessário; tabindex="0" permite focar essa caixa pelo teclado. min-width: 0 evita que o conteúdo largo force a expansão de uma coluna do Grid. Esses complementos estão comentados no código de estudo e no roteiro.
+
+### Implementado e conferido com o enunciado
+
+| Requisito | Aplicação nesta etapa |
+| --- | --- |
+| CSS externo predominante | style.css concentra cores, tipografia, caixas, menu, cards, tabela, formulário, Grids e responsividade. |
+| Seletor de tag | body, h1, p, fieldset e outros. |
+| Seletor de classe | .bernardo_secao e .bernardo_card, entre outros. |
+| Seletor de ID | #bernardo_lateral e #bernardo_tabela. |
+| Seletor agrupado | h1, h2, h3 e outros grupos separados por vírgula. |
+| Seletor encadeado | .bernardo_banner h1, .bernardo_menu a e .bernardo_card h3. |
+| CSS interno em pelo menos três elementos | Bloco style no head aplicado ao primeiro parágrafo do banner, slogan e aviso acadêmico, por suas classes bernardo_. |
+| CSS inline em duas situações | font-style: italic no h2 Festival e font-weight: 700 no primeiro parágrafo do rodapé. |
+| Grid de colunas iguais | .bernardo_cards com repeat(3, 1fr) para os nove artistas; a galeria estática reutiliza a regra. |
+| Grid com proporções diferentes | .bernardo_layout com 3fr 1fr para conteúdo e aside. |
+| Telas menores | Até 1000 px: conteúdo/aside em uma coluna e cards/galeria em duas. Até 600 px: cards/galeria em uma coluna e ajustes de títulos e preenchimentos. |
+| Prefixos | Classes e IDs novos continuam com bernardo_. |
+
+Identidade aplicada: fundo #141617, painéis #202426, texto #f0f1e9 e verde-lima #c5f35b. Fontes Arial/Helvetica e Impact/Arial Black, disponíveis no sistema com alternativas sans-serif. Títulos e bordas lembram cartazes; não há efeitos animados, recursos externos ou dependências.
+
+O HTML recebeu apenas classes para os três alvos do CSS interno, duas aplicações inline, uma caixa focável para a tabela e atualização de comentários. A comparação do texto com o commit anterior confirmou preservação integral do conteúdo, inclusive `quero aprender mais sobre css e javascript`. Não foram acrescentadas descrições dos artistas nem imagens falsas. Seis seções visíveis, galeria estática e formulário desabilitado foram preservados. Ambos os script.js e todos os materiais de referencias/ permanecem sem alterações.
+
+### Verificações realmente realizadas
+
+- Comparação integral das versões: HTML, CSS e JavaScript iguais após retirar apenas os comentários explicativos de estudo. Espaços e quebras restantes também iguais. As pastas img/ continuam com os mesmos arquivos vazios .gitkeep.
+- Conferências estáticas: texto preservado em relação ao commit HTML; três alvos distintos para CSS interno e dois atributos style; IDs únicos e prefixados; destinos dos labels e links existentes; dois fieldsets desabilitados; regras dos Grids e media queries presentes; scripts e referências sem diferenças no Git.
+- Cálculo local de contraste das combinações principais: texto/fundo 15,96:1; texto/painel 13,76:1; verde/painel 12,18:1; texto secundário/área reservada 9,40:1; texto escuro/verde da tabela 14,13:1. Todas superam 4,5:1. Isso não equivale a uma auditoria completa de acessibilidade.
+- Chrome local em modo sem janela, aberto diretamente nos arquivos: estudo em 1440, 1024, 768, 390 e 320 px; apresentação em 1440 e 390 px. Sem npm, bibliotecas ou servidor de desenvolvimento. A execução restrita do Chrome encerrou antes de concluir; a verificação foi concluída fora do sandbox com autorização do ambiente.
+- Confirmados por estilos calculados: três colunas em 1440/1024 px, duas em 768 px, uma em 390/320 px; Grid externo com proporção 3:1 no desktop e uma coluna nas telas menores. Nenhuma rolagem horizontal da página nessas larguras.
+- Em 390/320 px, a tabela mantém 640 px de largura dentro de uma caixa que rola horizontalmente, sem alargar o documento. Todas as seis seções têm altura e continuam visíveis; todos os campos e o botão continuam desabilitados.
+- No navegador, confirmados carregamento das duas folhas de estilo (externa e interna), duas aplicações inline, cores calculadas e contorno de foco sólido de 3 px em um link focado por automação. Nenhuma exceção JavaScript capturada durante a verificação final.
+- Capturas do topo e dos cards em 1440 e 390 px foram abertas e inspecionadas visualmente. Capturas e rotina auxiliar ficaram na pasta temporária do sistema; não são dependências nem arquivos do projeto.
+
+### Pendente após o CSS
+
+- Testes manuais com Tab e teclado na área rolável, cliques reais em todos os links, zoom de 200%, outros navegadores e celular físico. As larguras menores foram simuladas no Chrome desktop, sem emular dispositivo móvel completo.
+- Revisão visual detalhada de tabela, galeria, formulário e rodapé; nesta etapa as capturas inspecionadas foram do topo e dos cards, embora as medições tenham percorrido as seis seções.
+- Imagens locais reais, fontes verificadas para descrições dos artistas, validação HTML completa e interações JavaScript futuras.
+- Nenhum commit ou push da etapa CSS. A próxima etapa depende de nova solicitação do aluno.
+
+### Arquivos alterados nesta etapa
+
+- estudo/index.html e estudo/style.css.
+- apresentacao/index.html e apresentacao/style.css.
+- docs/progresso.md e docs/roteiro-defesa.md.
+
+## Registro para commit da etapa CSS — 21/10/2026
+
+- O aluno autorizou o commit da versão atual e o envio ao repositório já configurado, `bernardorbenato/FESTIVAL_MUSICAL`, na branch `main`.
+- Conferidos estado do Git, último commit e endereços de fetch/push de origin. Apenas os seis arquivos da etapa CSS estão alterados; scripts e referências não foram modificados.
+- O exercício de espaçamento foi realizado: gap dos cards e da galeria em 20px nas duas versões. O valor foi preservado. Foram sincronizadas somente linhas em branco do CSS de apresentação para restabelecer igualdade exata ao retirar os comentários da versão estudo, normalizando apenas CRLF/LF na conferência.
+- Reexecutadas verificações estáticas de igualdade entre as versões, gap de 20px, dois Grids, seis seções, nove cards, formulário desabilitado, IDs únicos, labels, âncoras, arquivos relativos e preservação do parágrafo do aluno. Todas passaram.
+- Não foram repetidos os testes no Chrome nesta solicitação de commit. As medições e capturas da etapa anterior correspondem ao gap de 16px; o ajuste para 20px foi conferido estaticamente. As verificações manuais pendentes listadas acima continuam pendentes.
+- Nenhuma interação JavaScript foi implementada. Este registro é preparado antes do commit; o identificador e o resultado real do push serão informados após a execução e conferência do Git.
