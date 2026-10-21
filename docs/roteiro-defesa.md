@@ -398,3 +398,15 @@ Altere apenas a altura do quadro das imagens dos cards de 220px para 200px nas d
 ### Evidências atuais
 
 O assistente conferiu 72 estados das nove imagens dos cards, 160 estados dos slides, 96 acionamentos de abas/links, 72 ciclos dos nove cards no modal, oito substituições de conteúdo e 40 estados de cores/temas, nas duas versões, 1440/390px e ambos os temas. Também repetiu os 208 casos de validação. Nenhum erro JavaScript, de console ou de carregamento foi capturado na execução final. Quatro capturas dos cards foram inspecionadas pelo assistente. A revisão manual deste acabamento pelo aluno ainda não foi informada; outros navegadores, zoom, leitor de tela e celular físico continuam pendentes.
+
+## Correção do fundo por tema — 21/10/2026
+
+O tema agora muda também o fundo da página. A variável bernardo_corEscolhida guarda o argumento do último botão de cor. Começa vazia, representando o fundo neutro. bernardo_trocarCor(cor) define duas tonalidades, fundoEscuro e fundoClaro, conforme a escolha; classList.contains("bernardo_claro") decide qual aplicar em document.body.style.backgroundColor.
+
+Ao alternar, toggle() muda a classe, a condição atualiza o texto do botão e bernardo_trocarCor(bernardo_corEscolhida) reaplica a tonalidade do novo tema. Assim, escolher azul continua sendo uma escolha de azul, mas seu fundo passa de azul escuro a azul claro. A explicação antiga de que backgroundColor nunca muda ao alternar o tema pertence à implementação anterior e foi substituída por esta decisão.
+
+Não há biblioteca ou recurso de linguagem novo: apenas uma variável let, funções, parâmetros, if / else if / else, classList e style. Recarregar a página continua restaurando o estado inicial escuro e neutro.
+
+Perguntas de defesa: onde a escolha de cor fica guardada? Por que toggle() precisa acontecer antes de reaplicar a tonalidade? Qual é a diferença entre preservar a escolha azul e preservar exatamente o mesmo valor hexadecimal?
+
+Exercício: troque somente fundoClaro do azul por outro azul suave nas duas versões. Confira azul → escuro → claro e veja se a seleção e o texto do botão continuam corretos.

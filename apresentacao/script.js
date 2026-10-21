@@ -1,25 +1,54 @@
 
 
+let bernardo_corEscolhida = "";
+
+
 
 function bernardo_trocarCor(cor) {
-  document.body.style.backgroundColor = cor;
+  bernardo_corEscolhida = cor;
+  let fundoEscuro = "#141617";
+  let fundoClaro = "#edf1ee";
+
+  if (cor === "#c5f35b") {
+    fundoEscuro = "#1b2418";
+    fundoClaro = "#edf3df";
+  } else if (cor === "#b994ed") {
+    fundoEscuro = "#241e2d";
+    fundoClaro = "#eee8f5";
+  } else if (cor === "#9ecbff") {
+    fundoEscuro = "#192532";
+    fundoClaro = "#e6eff8";
+  } else if (cor === "#ff8c91") {
+    fundoEscuro = "#2d1d22";
+    fundoClaro = "#f6e8e9";
+  } else if (cor === "#ffb56b") {
+    fundoEscuro = "#2d231b";
+    fundoClaro = "#f6ecdf";
+  }
+
+  if (document.body.classList.contains("bernardo_claro")) {
+    document.body.style.backgroundColor = fundoClaro;
+  } else {
+    document.body.style.backgroundColor = fundoEscuro;
+  }
 }
 
 function bernardo_alternarTema() {
-  
-  
+
+
   document.body.classList.toggle("bernardo_claro");
 
   const botao = document.getElementById("bernardo_botao_tema");
 
-  
+
   if (document.body.classList.contains("bernardo_claro")) {
     botao.innerText = "Ativar modo escuro";
   } else {
     botao.innerText = "Ativar modo claro";
   }
 
-  
+
+  bernardo_trocarCor(bernardo_corEscolhida);
 }
 
 
@@ -41,18 +70,18 @@ function bernardo_limparAbas() {
 }
 
 function bernardo_mostrarAba(nome) {
-  
-  
+
+
   bernardo_limparAbas();
 
   const conteudo = document.getElementById("bernardo_" + nome);
   conteudo.classList.add("bernardo_exibida");
 
-  
+
   const botao = document.getElementById("bernardo_botao_" + nome);
   botao.classList.add("bernardo_ativo");
 
-  
+
 }
 
 
@@ -87,7 +116,7 @@ let bernardo_indiceFoto = 0;
 function bernardo_atualizarCarrossel() {
   const foto = document.getElementById("bernardo_foto_carrossel");
   foto.src = bernardo_fotos[bernardo_indiceFoto];
-  
+
   foto.alt = bernardo_legendas[bernardo_indiceFoto];
   document.getElementById("bernardo_legenda_carrossel").innerText =
     bernardo_legendas[bernardo_indiceFoto];
@@ -98,12 +127,12 @@ function bernardo_atualizarCarrossel() {
 function bernardo_mudarFoto(direcao) {
   bernardo_indiceFoto = bernardo_indiceFoto + direcao;
 
-  
-  
+
+
   if (bernardo_indiceFoto >= bernardo_fotos.length) {
     bernardo_indiceFoto = 0;
   } else if (bernardo_indiceFoto < 0) {
-    
+
     bernardo_indiceFoto = bernardo_fotos.length - 1;
   }
 
@@ -124,14 +153,14 @@ function bernardo_abrirModal(titulo, mensagem) {
     bernardo_focoAnterior = document.activeElement;
   }
 
-  
-  
+
+
   document.getElementById("bernardo_titulo_modal").innerText = titulo;
   document.getElementById("bernardo_mensagem_modal").innerText = mensagem;
 
-  
+
   modal.classList.add("bernardo_modal_visivel");
-  
+
   document.getElementById("bernardo_pagina").inert = true;
   document.getElementById("bernardo_fechar_modal").focus();
 }

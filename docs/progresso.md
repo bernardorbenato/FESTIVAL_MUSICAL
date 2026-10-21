@@ -3,6 +3,7 @@
 ## Síntese atual — 21/10/2026
 
 - Portal com identidade urbana, dois Grids responsivos, cinco cores e dois temas, seis abas, carrossel de nove imagens, modal dinâmico e validação demonstrativa dos seis campos mais checkbox. Nenhum dado é enviado ou armazenado.
+- Ajuste posterior ao commit final: claro/escuro também altera o fundo da página. A cor selecionada permanece como escolha, com tonalidade suave no claro e escura no escuro. Esta correção ainda não foi commitada ou enviada.
 - Banner textual finalizado e nove cards com imagens locais reutilizadas do carrossel, sem arquivos duplicados. Os textos dos cards descrevem o conceito acadêmico do festival; não são biografias verificadas. Não há participação confirmada nem vínculo oficial com os artistas.
 - O parágrafo de Bernardo sobre o que deseja aprender e a mensagem atual de sucesso do formulário estão preservados. Espaços reservados e avisos desatualizados foram retirados do site.
 - **Pendência de fontes:** faltam URLs de origem, autoria e condições de uso das nove imagens, relacionadas individualmente em docs/fontes.md. Não foram inventadas informações nem tratadas legendas ou nomes de arquivo como prova de origem.
@@ -579,3 +580,19 @@ Implementada somente a janela de detalhes reutilizada pelos nove cards. Os regis
 - Reconfirmadas estaticamente a equivalência das versões exceto comentários/espaços finais e as imagens idênticas; git diff --check passou. Os testes de navegador deste acabamento estão registrados acima e não foram repetidos apenas para o envio.
 - O commit de acabamento inclui os quatro arquivos HTML/CSS das versões, progresso, roteiro e fontes.md. Scripts e imagens são preservados dos commits anteriores; nenhuma funcionalidade nova ou arquivo alheio foi acrescentado.
 - Mantidas as pendências de fontes das nove imagens, pacote compactado/teste após extração e verificações adicionais já listadas. O identificador do commit e o resultado efetivo do push serão informados após a execução.
+
+## Correção do fundo claro/escuro — 21/10/2026
+
+- Solicitação do aluno: mudar também o background-color da página ao alternar tema e usar cores mais suaves. Antes, o CSS claro só alterava o texto do body, e uma cor inline escolhida continuava igual nos dois temas.
+- Criada a variável bernardo_corEscolhida para guardar a escolha atual, sem armazenamento persistente. A função bernardo_trocarCor(cor) escolhe um par de tonalidades por if / else if e aplica a tonalidade correspondente à classe de tema. A função de alternância reaplica a escolha após toggle(). Usa apenas variáveis, condições, parâmetros, classList e style, já presentes nos materiais.
+- O fundo inicial continua grafite #141617. No claro neutro passa a #edf1ee. Paletas escuro/claro: verde #1b2418/#edf3df; roxo #241e2d/#eee8f5; azul #192532/#e6eff8; vermelho #2d1d22/#f6e8e9; laranja #2d231b/#f6ecdf. A seleção da cor é preservada, enquanto o valor de background-color se adapta ao tema; substitui a decisão anterior de manter exatamente o mesmo valor nos dois modos.
+- Chrome nas duas versões em 1440/390px e ambos os temas: conferidos ida/volta do fundo neutro e 40 estados das cinco cores, mudança real do fundo em uma alternância, restauração ao voltar, escolha guardada e texto do botão correto. Também passaram 96 acionamentos de abas/links, 160 verificações de slides, 72 ciclos do modal, oito substituições e 72 estados das imagens dos cards. Nenhuma exceção JavaScript, erro de console ou falha de carregamento.
+- Quatro capturas de Festival abertas e inspecionadas pelo assistente, em desktop/390px e claro/escuro. Não equivalem à revisão manual do aluno. Comparação estática das versões, node --check nos dois scripts e git diff --check passaram. A revisão manual desta correção e outros navegadores/dispositivos continuam pendentes.
+- Reexecutados também 208 casos de validação, oito verificações do layout do formulário e 40 de preservação das funcionalidades: todos passaram, com mensagem de sucesso e ausência de envio/recarregamento preservadas. Nenhuma exceção JavaScript; contraste calculado das mensagens de erro/sucesso permaneceu em pelo menos 7,84:1/9,11:1 nos fundos dos painéis.
+- Alterados apenas script.js e style.css das duas versões, este progresso e o roteiro. Preservados apresentacao.zip e docs/relatorio-finalizacao.md, já existentes e não rastreados no início. O ZIP anterior não contém esta correção e deverá ser recriado antes de entregar. O relatório continua sendo o retrato do commit 9d74b52.
+- Sem commit ou push nesta solicitação. Fontes das imagens e demais pendências anteriores não foram resolvidas por esta mudança visual.
+
+### Registro e envio da correção de tema
+
+- O aluno autorizou o envio ao GitHub. Conferidos main, remoto origin e referência direta no GitHub em 9d74b52 antes do novo commit. Reconfirmadas equivalência das versões e ausência de erros em git diff --check. Os testes de navegador registrados acima não foram repetidos apenas para o envio.
+- Commit limitado aos quatro arquivos CSS/JS e aos dois documentos da correção. apresentacao.zip e docs/relatorio-finalizacao.md foram preservados e ficaram fora do commit. O resultado efetivo do push e o identificador serão informados após executar o envio.

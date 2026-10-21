@@ -1,8 +1,36 @@
-// onclick no HTML chama esta função e envia uma cor como argumento.
-// O parâmetro cor recebe esse valor e backgroundColor muda o fundo do body.
-// Os painéis têm fundos próprios para manter a leitura com qualquer uma das cinco cores.
+// Guardamos a escolha para reaplicar sua tonalidade quando o tema mudar.
+// Vazio representa o fundo neutro inicial, antes de escolher uma das cinco cores.
+let bernardo_corEscolhida = "";
+
+// Cada cor tem uma tonalidade escura e outra clara, com menos saturação.
+// O argumento dos botões identifica a cor; o tema decide a tonalidade aplicada.
 function bernardo_trocarCor(cor) {
-  document.body.style.backgroundColor = cor;
+  bernardo_corEscolhida = cor;
+  let fundoEscuro = "#141617";
+  let fundoClaro = "#edf1ee";
+
+  if (cor === "#c5f35b") {
+    fundoEscuro = "#1b2418";
+    fundoClaro = "#edf3df";
+  } else if (cor === "#b994ed") {
+    fundoEscuro = "#241e2d";
+    fundoClaro = "#eee8f5";
+  } else if (cor === "#9ecbff") {
+    fundoEscuro = "#192532";
+    fundoClaro = "#e6eff8";
+  } else if (cor === "#ff8c91") {
+    fundoEscuro = "#2d1d22";
+    fundoClaro = "#f6e8e9";
+  } else if (cor === "#ffb56b") {
+    fundoEscuro = "#2d231b";
+    fundoClaro = "#f6ecdf";
+  }
+
+  if (document.body.classList.contains("bernardo_claro")) {
+    document.body.style.backgroundColor = fundoClaro;
+  } else {
+    document.body.style.backgroundColor = fundoEscuro;
+  }
 }
 
 function bernardo_alternarTema() {
@@ -19,7 +47,8 @@ function bernardo_alternarTema() {
     botao.innerText = "Ativar modo claro";
   }
 
-  // Esta função não modifica backgroundColor: a cor escolhida continua aplicada.
+  // Reaplica a escolha com a tonalidade do novo tema, inclusive no fundo da página.
+  bernardo_trocarCor(bernardo_corEscolhida);
 }
 
 // Primeiro retiramos as classes de exibição e destaque dos seis pares.

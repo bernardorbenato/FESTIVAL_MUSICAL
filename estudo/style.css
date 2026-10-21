@@ -463,8 +463,9 @@ textarea {
 
 /* Como no exemplo body.escuro .bloco, a classe no body muda os descendentes.
    Aqui a classe representa o modo claro, pois o escuro é o padrão.
-   O tema não redefine o fundo do body: ele pertence à escolha de cor do usuário. */
+   O fundo neutro também muda; o JavaScript adapta a tonalidade se uma cor foi escolhida. */
 body.bernardo_claro {
+  background-color: #edf1ee;
   color: #26312a;
 }
 
