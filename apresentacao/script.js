@@ -54,3 +54,61 @@ function bernardo_mostrarAba(nome) {
 
   
 }
+
+
+
+const bernardo_fotos = [
+  "img/anirap.jpg",
+  "img/m4rkim.png",
+  "img/oshaman.png",
+  "img/7minutoz.png",
+  "img/BLXCK.png",
+  "img/enygma.png",
+  "img/daarui.png",
+  "img/anny.png",
+  "img/mistery.png"
+];
+
+const bernardo_legendas = [
+  "AniRap — foto em um estúdio.",
+  "M4rkim — retrato em preto e branco.",
+  "oShaman — ilustração de personagem de cabelos alaranjados.",
+  "7 Minutoz — composição ilustrada com o texto 7MZ.",
+  "BLXCK — ilustração de personagem com linhas luminosas cruzadas.",
+  "Enygma — ilustração de personagem com a mão no rosto.",
+  "Daarui — ilustração de personagem de óculos e chapéu.",
+  "Anny — retrato com jaqueta clara e escura.",
+  "Mistery — ilustração de personagem com microfone em tons vermelhos."
+];
+
+
+let bernardo_indiceFoto = 0;
+
+function bernardo_atualizarCarrossel() {
+  const foto = document.getElementById("bernardo_foto_carrossel");
+  foto.src = bernardo_fotos[bernardo_indiceFoto];
+  
+  foto.alt = bernardo_legendas[bernardo_indiceFoto];
+  document.getElementById("bernardo_legenda_carrossel").innerText =
+    bernardo_legendas[bernardo_indiceFoto];
+  document.getElementById("bernardo_contador_carrossel").innerText =
+    (bernardo_indiceFoto + 1) + " de " + bernardo_fotos.length;
+}
+
+function bernardo_mudarFoto(direcao) {
+  bernardo_indiceFoto = bernardo_indiceFoto + direcao;
+
+  
+  
+  if (bernardo_indiceFoto >= bernardo_fotos.length) {
+    bernardo_indiceFoto = 0;
+  } else if (bernardo_indiceFoto < 0) {
+    
+    bernardo_indiceFoto = bernardo_fotos.length - 1;
+  }
+
+  bernardo_atualizarCarrossel();
+}
+
+
+bernardo_atualizarCarrossel();

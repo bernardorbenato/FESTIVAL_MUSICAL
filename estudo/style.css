@@ -186,10 +186,8 @@ main {
   font-weight: 700;
 }
 
-/* Grid A: repeat(3, 1fr) cria três colunas iguais para os nove cards.
-   A galeria estática reaproveita a mesma distribuição, sem virar carrossel. */
-.bernardo_cards,
-.bernardo_fotos {
+/* Grid A: repeat(3, 1fr) cria três colunas iguais para os nove cards. */
+.bernardo_cards {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
@@ -197,7 +195,7 @@ main {
 }
 
 .bernardo_card,
-.bernardo_fotos figure {
+.bernardo_carrossel figure {
   min-width: 0;
   margin: 0;
   padding: 16px;
@@ -219,6 +217,47 @@ main {
 
 figcaption {
   font-size: 14px;
+}
+
+/* contain preserva a imagem inteira e sua proporção dentro do quadro.
+   As faixas de fundo são preferíveis a recortar ou esticar retratos e ilustrações. */
+#bernardo_foto_carrossel {
+  display: block;
+  width: 100%;
+  max-width: 600px;
+  height: 360px;
+  margin: 0 auto 16px;
+  background-color: #141617;
+  object-fit: contain;
+}
+
+.bernardo_carrossel {
+  margin-top: 24px;
+}
+
+#bernardo_contador_carrossel {
+  margin-top: 16px;
+  font-weight: 700;
+}
+
+.bernardo_controles_carrossel {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.bernardo_controles_carrossel button {
+  padding: 10px 12px;
+  border: 1px solid #8c9899;
+  background-color: #292f31;
+  color: #f0f1e9;
+  font-family: inherit;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.bernardo_controles_carrossel button:hover {
+  background-color: #434b4c;
 }
 
 /* # seleciona um ID único. Os avisos têm uma caixa lateral própria. */
@@ -372,7 +411,7 @@ body.bernardo_claro .bernardo_rodape {
 }
 
 body.bernardo_claro .bernardo_card,
-body.bernardo_claro .bernardo_fotos figure {
+body.bernardo_claro .bernardo_carrossel figure {
   background-color: #f3f5ed;
   border-color: #677563;
 }
@@ -401,6 +440,7 @@ body.bernardo_claro tbody th {
 
 body.bernardo_claro .bernardo_menu a:hover,
 body.bernardo_claro .bernardo_botao_aba:hover,
+body.bernardo_claro .bernardo_controles_carrossel button:hover,
 body.bernardo_claro .bernardo_personalizacao button:hover {
   background-color: #d2dcc4;
 }
@@ -427,8 +467,7 @@ body.bernardo_claro .bernardo_tabela_area:focus {
     grid-template-columns: 1fr;
   }
 
-  .bernardo_cards,
-  .bernardo_fotos {
+  .bernardo_cards {
     grid-template-columns: repeat(2, 1fr);
   }
 }
@@ -457,12 +496,15 @@ body.bernardo_claro .bernardo_tabela_area:focus {
     padding: 20px;
   }
 
-  .bernardo_cards,
-  .bernardo_fotos {
+  .bernardo_cards {
     grid-template-columns: 1fr;
   }
 
   fieldset {
     padding: 12px;
+  }
+
+  #bernardo_foto_carrossel {
+    height: 260px;
   }
 }

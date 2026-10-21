@@ -295,3 +295,115 @@ Esta etapa implementa somente as seis abas. Os registros anteriores de seis seç
 - **Revisão manual do aluno:** Bernardo informou sua revisão manual. A autoria dessa revisão é dele; ela não foi feita pelo assistente. Como os testes individuais não foram detalhados, não são presumidos resultados específicos de zoom, outros navegadores, leitor de tela ou celular físico.
 - Continuam sem resultado registrado os testes específicos não detalhados acima. Permanecem pendentes imagens locais reais, descrições verificadas e validação HTML completa. Carrossel, modal e validação do formulário continuam fora desta etapa.
 - Commit autorizado com a mensagem "Adiciona navegação por seis abas ao Geek Beats", limitado aos seis arquivos HTML/CSS/JS das versões e aos dois documentos. O identificador será informado após criar e conferir o commit. Nenhum push será feito pelo assistente.
+
+## Carrossel da galeria — 21/10/2026
+
+Esta etapa implementa somente o carrossel circular. Não houve commit, push, implementação de modal ou validação.
+
+### Inspeção e arquivos de imagem
+
+- Lidos AGENTS.md, progresso, código atual e exemplo de carrossel do professor (arrays de fotos/legendas, índice e atualização de src). Conferidos Git, branch `main` e remoto origin. As alterações existentes eram as nove imagens ainda não rastreadas em cada pasta; foram preservadas sem renomear ou modificar seus bytes.
+- Todas as nove imagens estão presentes em estudo/img/ e apresentacao/img/, com conteúdo binário idêntico. Conferidas assinaturas JPEG/WebP e igualdade dos arquivos; as nove imagens de estudo foram abertas para inspeção visual. Nenhuma imagem faltando, externa, falsa ou gerada nesta etapa.
+
+| Posição | Artista indicado pelo arquivo | Caminho relativo real |
+| --- | --- | --- |
+| 1 | AniRap | img/anirap.jpg |
+| 2 | M4rkim | img/m4rkim.webp |
+| 3 | oShaman | img/oshaman.webp |
+| 4 | 7 Minutoz | img/7minutoz.webp |
+| 5 | BLXCK | img/BLXCK.webp |
+| 6 | Enygma | img/enygma.webp |
+| 7 | Daarui | img/daarui.webp |
+| 8 | Anny | img/anny.webp |
+| 9 | Mistery | img/mistery.webp |
+
+Há um JPG e oito WebP reais. O pedido desta etapa determina usar os nomes e extensões reais, e os arquivos foram mantidos assim. **A adequação integral ao formato JPG/PNG citado no enunciado continua pendente para os oito WebP**; não foram apenas trocadas extensões nem produzidas conversões sem solicitação. O JPG já existente é usado normalmente. Autoria, origem e associação das imagens aos artistas não foram verificadas externamente: a associação segue os nomes dos arquivos fornecidos pelo aluno. As legendas descrevem apenas o conteúdo visual observado, sem inventar biografias ou títulos de músicas.
+
+### Implementação
+
+- Galeria com uma única figure contendo img e figcaption, contador e dois botões type="button" com onclick: Anterior chama bernardo_mudarFoto(-1), Próximo chama bernardo_mudarFoto(1). Os nove espaços textuais da galeria foram substituídos pelo carrossel; os nove cards de atrações permanecem intactos.
+- Dois arrays const, bernardo_fotos e bernardo_legendas, mantêm caminhos e descrições na mesma ordem. A variável let bernardo_indiceFoto começa em 0.
+- bernardo_mudarFoto(direcao) soma -1 ou 1 ao índice. Se o índice atingir bernardo_fotos.length, retorna a 0; se ficar negativo, recebe length - 1. Não há número 9 fixado nessas condições nem botões desabilitados nos extremos.
+- bernardo_atualizarCarrossel() atualiza src, alt, legenda e contador usando o mesmo índice. O alt recebe a descrição da legenda, incluindo a indicação de ilustração quando pertinente. O contador usa índice + 1 e length, começando em “1 de 9”. A função é chamada no fim do script para sincronizar a apresentação inicial com os arrays.
+- CSS com width: 100%, altura de 360px no desktop e 260px até 600px, object-fit: contain e fundo de enquadramento. A proporção original é preservada, sem recortar a imagem ou esticá-la; sobras de espaço ficam preenchidas pelo fundo.
+- Mantidos abas, cinco cores, tema, dois Grids, gap de 20px nos cards, tabela 7×5, aviso de programação fictícia e formulário desabilitado. Removidas apenas regras da antiga grade estática da galeria que deixaram de ser usadas. Avisos atualizados para refletir a existência das imagens e do carrossel.
+- Sem autoplay, animações, transições, bibliotecas, armazenamento ou dependências.
+
+### Verificações realizadas pelo assistente
+
+- Chrome local sem janela nas duas versões, em 1440 e 390px. Em cada abertura, conferida a aba Festival inicial; depois, aberta Galeria e confirmado “1 de 9”.
+- **76 observações de slides**: quatro estados iniciais e os estados após 72 cliques para percorrer nove passos para frente e nove para trás em cada versão/largura. Conferidos os nove slides, os dois sentidos e os retornos 9→1 e 1→9.
+- Em cada observação, conferidos índice, caminho exato (inclusive BLXCK com maiúsculas), carregamento/decodificação da imagem com dimensões naturais válidas, artista da legenda, alt igual à legenda, contador, total e correspondência entre os dois arrays. Nenhum arquivo quebrado.
+- Mais quatro verificações do último slide, antes dos testes de preservação: o índice 8 foi mantido ao sair da Galeria e voltar por link do menu. Nos **40 estados** das dez combinações de cor/tema × duas versões × duas larguras, conferidos preservação do slide/cor/tema, única seção visível e botão ativo, formulário desabilitado, foco de 3px e ausência de rolagem horizontal da página.
+- Verificado object-fit: contain nas imagens e quadro dentro da largura da tela. Capturas da primeira imagem e dos controles em desktop e 390px foram abertas e inspecionadas pelo assistente na primeira execução. A repetição final reforçou a preservação do último slide; suas novas capturas não foram novamente inspecionadas.
+- Nenhuma exceção JavaScript capturada na execução final. Rotina, resultados e capturas permaneceram na pasta temporária do sistema, sem dependências adicionadas ao projeto. Chrome executado fora do sandbox com autorização do ambiente.
+- Comparação final de todos os arquivos: estudo/ e apresentacao/ têm a mesma lista; HTML/CSS/JavaScript iguais ao retirar apenas comentários de estudo e normalizar CRLF/LF; imagens idênticas byte a byte.
+- Verificados também IDs únicos e prefixados, labels, links, caminhos reais, seis seções, nove cards, tabela 7×5, formulário desabilitado, duas aplicações inline e preservação dos textos “Sobre o Festival” e “Quero aprender mais sobre css e javascript”. Materiais de referencias/ sem alterações.
+
+### Pendente
+
+- Revisão manual deste carrossel pelo aluno, navegação completa pelo teclado, testes em outros navegadores, leitor de tela, zoom e celular físico. O foco foi testado por automação; a revisão manual anterior de Bernardo não é apresentada como revisão deste novo carrossel.
+- Adequação dos oito WebP ao requisito literal JPG/PNG, caso exigida na entrega; verificação e documentação de fontes das imagens. Não há imagens faltando para o funcionamento atual do carrossel.
+- Banner e imagens dos cards permanecem como espaços textuais; sua integração não faz parte desta etapa. Descrições biográficas e validação HTML completa continuam pendentes.
+- Modal e validação do formulário continuam sem implementação. Parar no carrossel e aguardar nova solicitação.
+
+### Arquivos desta etapa
+
+- estudo/index.html, estudo/style.css e estudo/script.js; apresentacao/index.html, apresentacao/style.css e apresentacao/script.js; docs/progresso.md e docs/roteiro-defesa.md.
+- Nove imagens fornecidas pelo aluno em cada pasta img/, já presentes no início e preservadas. Ainda não foram adicionadas ao índice do Git nem commitadas nesta etapa.
+
+## Adequação das imagens para JPG/PNG — 21/10/2026
+
+A pendência de formatos do carrossel foi resolvida. Os registros anteriores de uso de WebP descrevem o estado antes desta adequação; o site agora usa **um JPG e oito PNG reais**. Não houve commit ou push.
+
+### Conversão real e preservação
+
+- Conferidos AGENTS.md, progresso, estado do Git e remoto. Preservadas as alterações de código e as imagens ainda não rastreadas da etapa do carrossel.
+- Não foram encontrados comandos magick, ffmpeg ou dwebp no PATH. Foi usado o Chrome já disponível, em modo sem janela, com rotina temporária fora do site: decodificação do WebP, desenho em canvas nas dimensões naturais e exportação real por toDataURL('image/png'). Nenhuma ferramenta ou dependência foi instalada no projeto.
+- Cada PNG foi decodificado novamente e comparado ao quadro decodificado do WebP: mesmas dimensões e valores RGBA iguais pixel a pixel nos oito casos. A conversão não redimensionou as imagens, não mudou proporções e não acrescentou compressão com perda. Ela preserva a qualidade disponível no WebP original, sem recuperar detalhes já perdidos antes da conversão.
+- Verificada a assinatura binária PNG, não apenas a extensão. O mesmo conteúdo gerado foi gravado em estudo/img/ e apresentacao/img/ e a igualdade SHA-256 das duas cópias foi conferida antes da remoção dos originais.
+- anirap.jpg permaneceu intacto; seu SHA-256 continua igual ao registrado antes da conversão.
+
+| Original substituído | PNG utilizado atualmente | Dimensões preservadas |
+| --- | --- | --- |
+| 7minutoz.webp | img/7minutoz.png | 250 × 250 |
+| anny.webp | img/anny.png | 300 × 300 |
+| BLXCK.webp | img/BLXCK.png | 860 × 860 |
+| daarui.webp | img/daarui.png | 250 × 250 |
+| enygma.webp | img/enygma.png | 250 × 250 |
+| m4rkim.webp | img/m4rkim.png | 860 × 860 |
+| mistery.webp | img/mistery.png | 300 × 300 |
+| oshaman.webp | img/oshaman.png | 250 × 250 |
+
+Os PNG ocupam mais espaço que os WebP originais, em troca da codificação sem perda adicional e da adequação ao formato exigido. Não houve simples troca de extensão.
+
+### Caminhos, legenda e remoção dos WebP
+
+- Atualizados os oito caminhos em ambos os arrays bernardo_fotos, preservando grafia e maiúsculas dos nomes, inclusive BLXCK.png. O caminho img/anirap.jpg não mudou. Busca no HTML, CSS e JavaScript das duas versões não encontrou referência a .webp.
+- A alteração do aluno “AniRap — foto em um estúdio.” estava inicialmente no alt e figcaption do HTML de apresentação, enquanto os arrays ainda continham a descrição antiga. O texto fornecido foi preservado literalmente e sincronizado no HTML inicial, no alt e no primeiro item de bernardo_legendas das duas versões. Assim, a atualização inicial do JavaScript não volta à legenda antiga. A descrição é do aluno; a conversão não verifica o contexto ou a origem da fotografia.
+- Preservada a formatação atual do HTML de apresentação e aplicados os mesmos elementos e textos ao HTML de estudo, mantendo seus comentários. A comparação por tokens antes da sincronização confirmou que a legenda era a diferença de conteúdo.
+- Primeiro testado o carregamento dos nove slides pelos novos caminhos. Depois, conferidos todos os caminhos absolutos de remoção dentro do projeto, assinaturas PNG, igualdade das cópias e ausência de dependências WebP no site. Só então foram removidos os 16 WebP substituídos, oito em cada pasta, sem remoção recursiva.
+- As referências a WebP nos documentos permanecem apenas como histórico da conversão. Nenhum arquivo do site depende delas; as pastas img/ agora contêm o JPG, os oito PNG e .gitkeep.
+
+### Testes efetivamente realizados pelo assistente
+
+- Conversão: oito verificações de dimensões e igualdade de pixels decodificados; oito verificações de assinatura PNG e igualdade de cópias. Nenhum dos oito PNG é um arquivo WebP renomeado.
+- Chrome sem janela nas duas versões, em 1440 e 390px, antes e depois da remoção dos WebP. A execução final com os WebP ausentes passou: 76 observações dos nove slides e dos estados após 72 cliques para percorrer os dois sentidos, incluindo os retornos 9→1 e 1→9, mais quatro verificações do último slide.
+- Em cada slide: caminho esperado JPG/PNG, carregamento e decodificação com dimensões naturais válidas, artista da legenda, alt igual à legenda, posição do contador e correspondência dos dois arrays. A primeira legenda foi comparada explicitamente ao texto novo do aluno em ambas as versões.
+- Quarenta estados adicionais com as dez combinações de cor e tema, duas versões e duas larguras: slide preservado ao sair e voltar à Galeria, cor e tema preservados, uma aba e um botão ativos, formulário desabilitado, foco de 3px e página sem rolagem horizontal. Nenhuma exceção JavaScript capturada na execução final.
+- Capturas finais do último slide em desktop e 390px foram abertas e inspecionadas pelo assistente. object-fit: contain e limites da largura foram conferidos por estilos computados.
+- Comparação final de todos os arquivos: HTML/CSS/JavaScript iguais após retirar somente comentários e normalizar CRLF/LF; imagens idênticas byte a byte; mesmos arquivos nas duas pastas. Nove imagens em cada uma, oito PNG e um JPG; nenhuma imagem .webp restante. Caminhos válidos, IDs únicos e formulário desabilitado reconferidos.
+- A revisão manual anterior continua atribuída ao aluno. Os testes acima foram executados pelo assistente por automação e inspeção de capturas; não representam uma nova revisão manual de Bernardo.
+
+### Estado e pendências
+
+- Adequação JPG/PNG do carrossel concluída. Continuam pendentes revisão manual atual pelo aluno, outros navegadores, teclado completo, zoom, leitor de tela, dispositivo físico, fontes/autoria das imagens e validação HTML completa.
+- Modal e validação não foram implementados. Banner e cards continuam fora do escopo desta adequação.
+- Alterados os dois HTML e os dois scripts, sincronizando a legenda e os caminhos; acrescentados oito PNG em cada pasta e removidos os oito WebP substituídos de cada uma. Atualizados progresso e roteiro de defesa. Os arquivos CSS não precisaram de alterações adicionais nesta adequação.
+
+## Envio do carrossel ao GitHub — 21/10/2026
+
+- O aluno autorizou commit e push da versão atual. Conferidos branch `main`, remoto `https://github.com/bernardorbenato/FESTIVAL_MUSICAL.git` e alterações limitadas ao carrossel, adequação das imagens e documentação.
+- Reconfirmadas estaticamente a igualdade das versões apenas com diferenças de comentários, as nove imagens JPG/PNG idênticas e os caminhos válidos, sem dependência WebP. Os testes de navegador já realizados estão registrados acima e não foram repetidos nesta solicitação de envio.
+- O commit inclui os seis arquivos HTML/CSS/JS das versões, os dois documentos e as nove imagens de cada versão. Não inclui alterações em referencias/, nem modal ou validação.
+- Registro preparado antes do commit. Identificador e resultado efetivo do push serão informados após a execução e conferência do Git.

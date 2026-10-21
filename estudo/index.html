@@ -48,12 +48,42 @@
          O menu com links permanece separado dos botões de abas. -->
     <nav class="bernardo_menu" aria-label="Navegação principal">
       <ul>
-        <li><a href="#bernardo_festival" onclick="bernardo_mostrarAba('festival')">Festival</a></li>
-        <li><a href="#bernardo_atracoes" onclick="bernardo_mostrarAba('atracoes')">Atrações</a></li>
-        <li><a href="#bernardo_programacao" onclick="bernardo_mostrarAba('programacao')">Programação</a></li>
-        <li><a href="#bernardo_estrutura" onclick="bernardo_mostrarAba('estrutura')">Estrutura</a></li>
-        <li><a href="#bernardo_galeria" onclick="bernardo_mostrarAba('galeria')">Galeria</a></li>
-        <li><a href="#bernardo_inscricao" onclick="bernardo_mostrarAba('inscricao')">Inscrição</a></li>
+        <li>
+          <a href="#bernardo_festival" onclick="bernardo_mostrarAba('festival')"
+            >Festival</a
+          >
+        </li>
+        <li>
+          <a href="#bernardo_atracoes" onclick="bernardo_mostrarAba('atracoes')"
+            >Atrações</a
+          >
+        </li>
+        <li>
+          <a
+            href="#bernardo_programacao"
+            onclick="bernardo_mostrarAba('programacao')"
+            >Programação</a
+          >
+        </li>
+        <li>
+          <a
+            href="#bernardo_estrutura"
+            onclick="bernardo_mostrarAba('estrutura')"
+            >Estrutura</a
+          >
+        </li>
+        <li>
+          <a href="#bernardo_galeria" onclick="bernardo_mostrarAba('galeria')"
+            >Galeria</a
+          >
+        </li>
+        <li>
+          <a
+            href="#bernardo_inscricao"
+            onclick="bernardo_mostrarAba('inscricao')"
+            >Inscrição</a
+          >
+        </li>
       </ul>
     </nav>
 
@@ -61,18 +91,64 @@
       <!-- O parâmetro é o sufixo que relaciona cada botão ao ID da seção.
            Festival já começa destacado, assim como seu conteúdo começa visível. -->
       <div class="bernardo_abas">
-        <button type="button" id="bernardo_botao_festival" class="bernardo_botao_aba bernardo_ativo" onclick="bernardo_mostrarAba('festival')">Festival</button>
-        <button type="button" id="bernardo_botao_atracoes" class="bernardo_botao_aba" onclick="bernardo_mostrarAba('atracoes')">Atrações</button>
-        <button type="button" id="bernardo_botao_programacao" class="bernardo_botao_aba" onclick="bernardo_mostrarAba('programacao')">Programação</button>
-        <button type="button" id="bernardo_botao_estrutura" class="bernardo_botao_aba" onclick="bernardo_mostrarAba('estrutura')">Estrutura</button>
-        <button type="button" id="bernardo_botao_galeria" class="bernardo_botao_aba" onclick="bernardo_mostrarAba('galeria')">Galeria</button>
-        <button type="button" id="bernardo_botao_inscricao" class="bernardo_botao_aba" onclick="bernardo_mostrarAba('inscricao')">Inscrição</button>
+        <button
+          type="button"
+          id="bernardo_botao_festival"
+          class="bernardo_botao_aba bernardo_ativo"
+          onclick="bernardo_mostrarAba('festival')"
+        >
+          Festival
+        </button>
+        <button
+          type="button"
+          id="bernardo_botao_atracoes"
+          class="bernardo_botao_aba"
+          onclick="bernardo_mostrarAba('atracoes')"
+        >
+          Atrações
+        </button>
+        <button
+          type="button"
+          id="bernardo_botao_programacao"
+          class="bernardo_botao_aba"
+          onclick="bernardo_mostrarAba('programacao')"
+        >
+          Programação
+        </button>
+        <button
+          type="button"
+          id="bernardo_botao_estrutura"
+          class="bernardo_botao_aba"
+          onclick="bernardo_mostrarAba('estrutura')"
+        >
+          Estrutura
+        </button>
+        <button
+          type="button"
+          id="bernardo_botao_galeria"
+          class="bernardo_botao_aba"
+          onclick="bernardo_mostrarAba('galeria')"
+        >
+          Galeria
+        </button>
+        <button
+          type="button"
+          id="bernardo_botao_inscricao"
+          class="bernardo_botao_aba"
+          onclick="bernardo_mostrarAba('inscricao')"
+        >
+          Inscrição
+        </button>
       </div>
+
       <!-- O Grid externo distribui conteúdo e avisos em colunas de proporções diferentes. -->
       <div class="bernardo_layout">
         <div class="bernardo_conteudo">
           <!-- Apenas a seção com bernardo_exibida aparece; os demais conteúdos são preservados no HTML. -->
-          <section id="bernardo_festival" class="bernardo_secao bernardo_exibida">
+          <section
+            id="bernardo_festival"
+            class="bernardo_secao bernardo_exibida"
+          >
             <!-- CSS inline: um destaque local, sem concentrar o layout no HTML. -->
             <h2 style="font-style: italic">Sobre o Festival</h2>
             <p>Quero aprender mais sobre css e javascript</p>
@@ -91,9 +167,9 @@
               artistas.
             </p>
             <p>
-              Use os botões ou os links do menu para abrir uma seção por vez.
-              As cores e o modo claro/escuro podem ser personalizados na área
-              de avisos. Modal e carrossel ainda não estão implementados.
+              Use os botões ou os links do menu para abrir uma seção por vez. As
+              cores e o modo claro/escuro podem ser personalizados na área de
+              avisos. Modal e validação ainda não estão implementados.
             </p>
           </section>
 
@@ -276,85 +352,40 @@
           <section id="bernardo_galeria" class="bernardo_secao">
             <h2>Galeria</h2>
             <p>
-              Imagens locais ainda não foram fornecidas. Os espaços abaixo
-              reservam as nove posições da galeria; o carrossel ainda não está
-              implementado.
+              Imagens da seleção proposta para o festival fictício. Nenhuma
+              participação está confirmada.
             </p>
 
-            <!-- figure agrupa o espaço da futura foto com sua legenda em figcaption. Não há img com src inexistente. -->
-            <div class="bernardo_fotos">
+            <!-- Uma mesma imagem recebe o caminho e a legenda da posicao atual dos arrays. -->
+            <div class="bernardo_carrossel">
               <figure>
-                <p class="bernardo_imagem_pendente">
-                  Imagem local JPG ou PNG pendente.
-                </p>
-                <figcaption>
-                  AniRap — espaço reservado na galeria fictícia.
+                <img
+                  id="bernardo_foto_carrossel"
+                  src="img/anirap.jpg"
+                  alt="AniRap — foto em um estúdio."
+                />
+                <figcaption id="bernardo_legenda_carrossel">
+                  AniRap — foto em um estúdio.
                 </figcaption>
               </figure>
-              <figure>
-                <p class="bernardo_imagem_pendente">
-                  Imagem local JPG ou PNG pendente.
-                </p>
-                <figcaption>
-                  M4rkim — espaço reservado na galeria fictícia.
-                </figcaption>
-              </figure>
-              <figure>
-                <p class="bernardo_imagem_pendente">
-                  Imagem local JPG ou PNG pendente.
-                </p>
-                <figcaption>
-                  oShaman — espaço reservado na galeria fictícia.
-                </figcaption>
-              </figure>
-              <figure>
-                <p class="bernardo_imagem_pendente">
-                  Imagem local JPG ou PNG pendente.
-                </p>
-                <figcaption>
-                  7 Minutoz — espaço reservado na galeria fictícia.
-                </figcaption>
-              </figure>
-              <figure>
-                <p class="bernardo_imagem_pendente">
-                  Imagem local JPG ou PNG pendente.
-                </p>
-                <figcaption>
-                  BLXCK — espaço reservado na galeria fictícia.
-                </figcaption>
-              </figure>
-              <figure>
-                <p class="bernardo_imagem_pendente">
-                  Imagem local JPG ou PNG pendente.
-                </p>
-                <figcaption>
-                  Enygma — espaço reservado na galeria fictícia.
-                </figcaption>
-              </figure>
-              <figure>
-                <p class="bernardo_imagem_pendente">
-                  Imagem local JPG ou PNG pendente.
-                </p>
-                <figcaption>
-                  Daarui — espaço reservado na galeria fictícia.
-                </figcaption>
-              </figure>
-              <figure>
-                <p class="bernardo_imagem_pendente">
-                  Imagem local JPG ou PNG pendente.
-                </p>
-                <figcaption>
-                  Anny — espaço reservado na galeria fictícia.
-                </figcaption>
-              </figure>
-              <figure>
-                <p class="bernardo_imagem_pendente">
-                  Imagem local JPG ou PNG pendente.
-                </p>
-                <figcaption>
-                  Mistery — espaço reservado na galeria fictícia.
-                </figcaption>
-              </figure>
+              <p id="bernardo_contador_carrossel">1 de 9</p>
+              <div class="bernardo_controles_carrossel">
+                <!-- O parametro direcao vale -1 para voltar e 1 para avancar. -->
+                <button
+                  type="button"
+                  id="bernardo_anterior"
+                  onclick="bernardo_mudarFoto(-1)"
+                >
+                  Anterior
+                </button>
+                <button
+                  type="button"
+                  id="bernardo_proximo"
+                  onclick="bernardo_mudarFoto(1)"
+                >
+                  Próximo
+                </button>
+              </div>
             </div>
           </section>
 
@@ -494,7 +525,7 @@
           </div>
           <p>Portal acadêmico de Bernardo Rodrigues Benato.</p>
           <p>Programação inteiramente fictícia, sem artistas confirmados.</p>
-          <p>Fotos e descrições das atrações aguardam materiais verificados.</p>
+          <p>Descrições das atrações aguardam fontes verificadas.</p>
           <a href="#bernardo_topo">Voltar ao topo</a>
         </aside>
       </div>
@@ -512,7 +543,7 @@
       </p>
     </footer>
 
-    <!-- O arquivo implementa as cinco cores, a alternância de tema e as seis abas. -->
+    <!-- O arquivo implementa cores, tema, seis abas e carrossel. -->
     <script src="script.js"></script>
   </body>
 </html>

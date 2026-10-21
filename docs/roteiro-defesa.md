@@ -162,3 +162,47 @@ O assistente testou as duas versões em 1440 e 390 px, com as dez combinações 
 A revisão manual desta nova funcionalidade pelo aluno ainda está pendente. Testes de outros navegadores, leitores de tela, zoom, histórico e URLs abertas diretamente com hash não foram feitos. A implementação não sincroniza abas com Voltar/Avançar ou hash digitado; inicia em Festival e atende aos cliques nos controles da página. Não implemente carrossel, modal ou validação nesta etapa.
 
 Atualização no encerramento: Bernardo informou sua revisão manual das abas. Essa revisão é atribuída ao aluno, sem presumir quais testes específicos ele realizou. O assistente revalidou estaticamente o título, IDs, argumentos e a igualdade das versões; os 480 acionamentos e as 24 ativações por teclado citados acima são da implementação, não foram repetidos após a alteração textual. Testes específicos não detalhados pelo aluno continuam sem resultado registrado. O push deste encerramento será feito manualmente por Bernardo.
+
+## Carrossel circular da galeria
+
+O carrossel agora está implementado; os registros anteriores de galeria estática ou carrossel pendente são históricos. São nove imagens reais fornecidas pelo aluno. Na implementação inicial foram usados um JPG e oito WebP. Na adequação posterior, os oito WebP foram convertidos de verdade para PNG e substituídos no site, que agora usa somente JPG/PNG no carrossel. O resultado da conversão está registrado no progresso.
+
+### Arrays, índice e atualização
+
+bernardo_fotos guarda os caminhos relativos e bernardo_legendas guarda as descrições na mesma ordem. A primeira posição dos dois arrays é AniRap, a segunda é M4rkim, e assim por diante. Alterar a ordem de um array exige alterar a ordem do outro para manter a correspondência.
+
+bernardo_indiceFoto começa em zero porque o primeiro item de um array é acessado com [0]. Já o contador para o visitante soma 1, mostrando “1 de 9”. bernardo_fotos.length informa a quantidade total; o último índice válido é length - 1, isto é, 8 com os nove itens atuais.
+
+Anterior chama bernardo_mudarFoto(-1) e Próximo chama bernardo_mudarFoto(1). O parâmetro direcao é somado ao índice. Se o índice ficar igual ou maior que length, ele volta a 0. Se ficar menor que 0, ele passa a length - 1. As condições não dependem de escrever o número 9: elas acompanham a quantidade do array.
+
+Depois de ajustar o limite, bernardo_atualizarCarrossel() coloca o caminho do índice atual no src, a descrição no alt e no figcaption e a posição no contador. alt é o texto alternativo da imagem; não é uma biografia nem uma informação extra inventada sobre o artista. Como algumas imagens são ilustrações, as descrições dizem isso expressamente.
+
+A atualização inicial é chamada no final de script.js, que fica depois dos elementos do HTML. O contador começa sincronizado com os arrays. Trocar de aba não reinicia o índice; a Galeria volta à imagem em que estava. Cores e tema também continuam preservados.
+
+### CSS e controles
+
+object-fit: contain mantém a imagem inteira, proporcional, no quadro de 360px de altura ou 260px em telas menores. Pode haver faixas de fundo ao redor; elas evitam recortes e distorções. Os botões usam type="button", onclick e o foco visível já existente. Não há reprodução automática ou efeitos de transição.
+
+### Três perguntas de defesa
+
+1. Por que os caminhos e as legendas precisam estar na mesma ordem? O que aconteceria se apenas uma legenda fosse movida de posição?
+2. Por que o contador usa índice + 1, enquanto o último índice válido é length - 1?
+3. Como os dois limites funcionam: o que acontece com o índice ao avançar da última imagem e ao voltar da primeira?
+
+### Exercício de legenda realizado pelo aluno
+
+O aluno escolheu a primeira legenda “AniRap — foto em um estúdio.”, uma variação do texto sugerido no exercício. Ela foi preservada e sincronizada nos dois HTML e nos dois arrays de legendas. Ao abrir Galeria, o alt, a legenda e o primeiro item do array usam o mesmo texto, com contador “1 de 9”. Explique por que alterar apenas o HTML inicial não bastava: bernardo_atualizarCarrossel() substitui esses textos pelos valores do array ao carregar e navegar.
+
+### Testes e prática pendente
+
+O assistente conferiu as nove imagens, suas legendas e alt, ambos os sentidos e limites, nas duas versões em 1440 e 390px. Foram 76 observações dos percursos e mais quatro verificações do último slide, além de 40 estados de preservação de slide, cores, tema e abas. As imagens carregaram e foram decodificadas pelo Chrome, sem erros JavaScript capturados. Capturas desktop/celular da primeira imagem foram inspecionadas pelo assistente.
+
+A revisão manual deste carrossel pelo aluno continua pendente, assim como testes em celular físico, outros navegadores, zoom e leitor de tela. A revisão manual anterior continua atribuída a Bernardo e não equivale a uma revisão desta nova funcionalidade. Modal e validação permanecem pendentes; não avançar para eles neste exercício.
+
+### Adequação dos formatos e nova verificação
+
+O Chrome foi usado apenas como ferramenta externa de conversão: decodificou cada WebP e exportou um PNG nas mesmas dimensões. A comparação dos pixels decodificados antes e depois foi igual nos oito arquivos; as assinaturas dos PNG e as cópias idênticas nas duas pastas foram conferidas. Isso é diferente de renomear .webp para .png, que não altera a codificação real.
+
+Os caminhos dos arrays agora usam .png, exceto anirap.jpg, que permaneceu intacto. Depois de testar os caminhos novos e conferir ausência de dependências, os WebP foram removidos. A conversão não acrescentou bibliotecas, canvas ou ferramentas ao código do site: a rotina ficou na pasta temporária do sistema.
+
+Após a remoção, o assistente repetiu no Chrome os nove slides, as legendas e alt, contador e os dois limites circulares, em ambas as versões e larguras de 1440 e 390px, além dos 40 estados de preservação de slide/cor/tema. Também inspecionou capturas finais. Os testes passaram sem arquivos quebrados ou exceções JavaScript capturadas. A revisão manual pelo aluno continua distinta desses testes automatizados.
